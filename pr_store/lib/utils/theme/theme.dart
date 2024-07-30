@@ -5,6 +5,7 @@ import 'package:pr_store/utils/theme/custom_themes/checkbox_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/chip_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/elevated_button_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/outlined_button_theme.dart';
+import 'package:pr_store/utils/theme/custom_themes/text_filed_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/text_theme.dart';
 
 class PrAppTheme {
@@ -22,6 +23,7 @@ class PrAppTheme {
     checkboxTheme: PrCheckBoxTheme.lightCheckBoxTheme,
     chipTheme: PrChipTheme.lightChipTheme,
     outlinedButtonTheme: PrOutlinedButtonTheme.lightOutlinedButton,
+    inputDecorationTheme: PrTextFieldTheme.lightInputDecorationTheme,
   );
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
@@ -36,5 +38,6 @@ class PrAppTheme {
     checkboxTheme: PrCheckBoxTheme.darkCheckBoxTheme,
     chipTheme: PrChipTheme.darkChipTheme,
     outlinedButtonTheme: PrOutlinedButtonTheme.darkOutlinedButton,
+    inputDecorationTheme: PrTextFieldTheme.darkInputDecorationTheme,
   );
 }
