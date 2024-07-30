@@ -41,6 +41,15 @@ dependencies:
 
   #StateManagement_________________________
   get:
+  get_storage:
+
+
+ #utility package
+  http:
+  intl:
+  logger:
+  url_launcher:
+
 
 dev_dependencies:
   flutter_test:
