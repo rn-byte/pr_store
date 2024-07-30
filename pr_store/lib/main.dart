@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pr_store/utils/theme/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,8 +13,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       title: 'PR-Store',
-      theme: ThemeData(),
-      darkTheme: ThemeData(),
+      theme: PrAppTheme.lightTheme,
+      darkTheme: PrAppTheme.darkTheme,
     );
   }
 }
