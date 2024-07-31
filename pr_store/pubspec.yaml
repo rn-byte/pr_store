@@ -52,6 +52,7 @@ dependencies:
   intl:
   logger:
   url_launcher:
+  flutter_native_splash:
 
 
 dev_dependencies:
