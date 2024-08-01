@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
-import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/constants/text_strings.dart';
-import 'package:pr_store/utils/devices/devices_utility.dart';
-import 'package:pr_store/utils/helpers/helper.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'widgets/onboarding_circular_button.dart';
 import 'widgets/onboarding_navigation.dart';
 import 'widgets/onboarding_page.dart';
 import 'widgets/onboarding_skip.dart';
@@ -43,6 +39,7 @@ class OnboardingScreen extends StatelessWidget {
           const OnBoardingNavigation(),
 
           ///circular button
+          const OnBoardingCircularButton()
         ],
       ),
     );
