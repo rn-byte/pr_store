@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pr_store/features/authentication/controllers_onboarding/onboarding_controller.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
-
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/devices/devices_utility.dart';
 
-class OnBoardingCircularButton extends StatelessWidget {
-  const OnBoardingCircularButton({
+class OnboardingNextButton extends StatelessWidget {
+  const OnboardingNextButton({
     super.key,
   });
 
@@ -20,7 +20,7 @@ class OnBoardingCircularButton extends StatelessWidget {
             style: ElevatedButton.styleFrom(
                 shape: const CircleBorder(),
                 backgroundColor: dark ? PrColor.primary : PrColor.dark),
-            onPressed: () {},
+            onPressed: () => OnboardingController.instance.nextPage(),
             child: const Icon(Icons.arrow_forward_ios)));
   }
 }

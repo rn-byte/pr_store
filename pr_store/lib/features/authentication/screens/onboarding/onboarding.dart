@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/text_strings.dart';
-import 'widgets/onboarding_circular_button.dart';
+import '../../controllers_onboarding/onboarding_controller.dart';
+import 'widgets/onboarding_next_button.dart';
 import 'widgets/onboarding_navigation.dart';
 import 'widgets/onboarding_page.dart';
 import 'widgets/onboarding_skip.dart';
@@ -11,11 +13,14 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(OnboardingController());
     return Scaffold(
       body: Stack(
         children: [
           ///Horizontal scroolable page
           PageView(
+            controller: controller.pageController,
+            onPageChanged: controller.updatePageIndicator,
             children: const [
               OnBoardingPage(
                   image: PrImage.onBoardingImage1,
@@ -39,7 +44,7 @@ class OnboardingScreen extends StatelessWidget {
           const OnBoardingNavigation(),
 
           ///circular button
-          const OnBoardingCircularButton()
+          const OnboardingNextButton()
         ],
       ),
     );
