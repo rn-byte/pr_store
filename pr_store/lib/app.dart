@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pr_store/features/authentication/screens/onboarding.dart';
 import 'utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -6,12 +8,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       title: 'PR-Store',
       theme: PrAppTheme.lightTheme,
       darkTheme: PrAppTheme.darkTheme,
+      home: const OnboardingScreen(),
     );
   }
 }

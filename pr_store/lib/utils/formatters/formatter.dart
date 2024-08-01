@@ -1,5 +1,4 @@
 import 'package:intl/intl.dart';
-import 'package:libphonenumber/libphonenumber.dart';
 
 class PrFormatter {
   PrFormatter._();
@@ -24,24 +23,24 @@ class PrFormatter {
 
   //format international phoneNumber
   // Method to format an international phone number
-  static Future<String> formatInternationalPhoneNumber(
-      String phoneNumber, String regionCode) async {
-    try {
-      bool isValid = await PhoneNumberUtil.isValidPhoneNumber(
-              phoneNumber: phoneNumber, isoCode: regionCode) ??
-          false;
+  // static Future<String> formatInternationalPhoneNumber(
+  //     String phoneNumber, String regionCode) async {
+  //   try {
+  //     bool isValid = await PhoneNumberUtil.isValidPhoneNumber(
+  //             phoneNumber: phoneNumber, isoCode: regionCode) ??
+  //         false;
 
-      if (isValid) {
-        String formatted = await PhoneNumberUtil.formatAsYouType(
-                phoneNumber: phoneNumber, isoCode: regionCode) ??
-            phoneNumber;
+  //     if (isValid) {
+  //       String formatted = await PhoneNumberUtil.formatAsYouType(
+  //               phoneNumber: phoneNumber, isoCode: regionCode) ??
+  //           phoneNumber;
 
-        return formatted;
-      } else {
-        return "Invalid phone number";
-      }
-    } catch (e) {
-      return "Error formatting phone number";
-    }
-  }
+  //       return formatted;
+  //     } else {
+  //       return "Invalid phone number";
+  //     }
+  //   } catch (e) {
+  //     return "Error formatting phone number";
+  //   }
+  // }
 }

@@ -3,11 +3,11 @@ flutter_native_splash:
   color_dark: '#272727'
   image: assets/logos/PR_logo_light.png
   image_dark: assets/logos/PR_logo_dark.png
-
-  android_12:
+  
+  android:
     color: '#FFFFFF'
     color_dark: '#272727'
     image: assets/logos/PR_logo_light.png
     image_dark: assets/logos/PR_logo_dark.png
-
+    
   web: false
