@@ -2,7 +2,7 @@ class PrImage {
   PrImage._();
 
   // -- App Logos
-  static const String darkAppLogo = "assets/logos/PR_logo_dark.png";
+  static const String darkAppLogo = "assets/logos/PR_dark.png";
   static const String lightAppLogo = "assets/logos/PR_logo_light.png";
 
 // -- Social Logos

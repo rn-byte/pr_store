@@ -52,8 +52,13 @@ dependencies:
   intl:
   logger:
   url_launcher:
-  flutter_native_splash:
+  
   smooth_page_indicator:
+  flutter_native_splash: ^2.4.1
+  
+
+  
+
 
 
 dev_dependencies:
