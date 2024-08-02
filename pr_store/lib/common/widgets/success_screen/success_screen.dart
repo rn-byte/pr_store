@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../features/authentication/screens/login/login.dart';
-import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/constants/text_strings.dart';
 import '../../../utils/helpers/helper.dart';
 import '../../styles/spaicing_styles.dart';
 
 class SuccessScreen extends StatelessWidget {
-  const SuccessScreen({super.key});
+  final String image, title, subTitle;
+  final VoidCallback onPressed;
+  const SuccessScreen(
+      {super.key,
+      required this.image,
+      required this.title,
+      required this.subTitle,
+      required this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -20,17 +24,17 @@ class SuccessScreen extends StatelessWidget {
             children: [
               /// Image
               Image(
-                image: const AssetImage(PrImage.staticSuccessIllustration),
+                image: AssetImage(image),
                 width: PrHelper.screenWidth() * 0.6,
               ),
               const SizedBox(height: PrSizes.spaceBtwSections),
 
               /// Title & SubTitle
-              Text(PrText.yourAccountCreatedTitle,
+              Text(title,
                   style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center),
               const SizedBox(height: PrSizes.spaceBtwItems),
-              Text(PrText.yourAccountCreatedSubTitle,
+              Text(subTitle,
                   style: Theme.of(context).textTheme.labelMedium,
                   textAlign: TextAlign.center),
               const SizedBox(height: PrSizes.spaceBtwSections),
@@ -39,8 +43,7 @@ class SuccessScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(() => const LoginScreen()),
-                    child: const Text(PrText.tContinue)),
+                    onPressed: onPressed, child: const Text(PrText.tContinue)),
               ),
             ],
           ),
