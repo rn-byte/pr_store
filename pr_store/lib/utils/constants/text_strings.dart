@@ -31,6 +31,7 @@ class PrText {
   static const String orsigninwith = "or sign in with";
   static const String orsignupwith = "or sign up with";
   static const String iAgreeTo = "I agree to";
+  static const String and = "and";
   static const String privacyPolicy = "Privacy Policy";
   static const String termsOfUse = "Terms of use";
   static const String verificationCode = "verificationCode";

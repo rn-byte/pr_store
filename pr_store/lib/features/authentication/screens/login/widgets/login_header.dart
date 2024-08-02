@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../../../../../utils/helpers/helper.dart';
 
 class LoginHeader extends StatelessWidget {
   const LoginHeader({
     super.key,
-    required this.isDark,
   });
-
-  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
+    final isDark = PrHelper.isDarkMode(context);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_utils/src/extensions/string_extensions.dart';
+
 import 'package:pr_store/common/styles/spaicing_styles.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
-import 'package:pr_store/utils/helpers/helper.dart';
+import '../../../../utils/constants/text_strings.dart';
 import 'widgets/widgets.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -9,7 +11,6 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = PrHelper.isDarkMode(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -17,17 +18,19 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             children: [
               ///Logo title and subtitle
-              LoginHeader(isDark: isDark),
+              const LoginHeader(),
               //Form
               const LoginForm(),
               //Divider
-              FormDivider(isDark: isDark),
+              PrFormDivider(
+                dividerText: PrText.orsigninwith.capitalize!,
+              ),
               const SizedBox(
                 height: PrSizes.spaceBtwItems,
               ),
 
               ///Footer
-              const LoginFooter(),
+              const PrSocialFooter(),
             ],
           ),
         ),

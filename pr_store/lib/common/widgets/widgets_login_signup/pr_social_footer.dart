@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../utils/constants/colors.dart';
-import '../../../../../utils/constants/image_strings.dart';
-import '../../../../../utils/constants/sizes.dart';
+import '../../../utils/constants/colors.dart';
+import '../../../utils/constants/image_strings.dart';
+import '../../../utils/constants/sizes.dart';
 
-class LoginFooter extends StatelessWidget {
-  const LoginFooter({
+class PrSocialFooter extends StatelessWidget {
+  const PrSocialFooter({
     super.key,
   });
 
