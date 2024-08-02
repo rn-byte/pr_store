@@ -3,10 +3,7 @@ import 'package:get/get.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/text_strings.dart';
 import '../../controllers_onboarding/onboarding_controller.dart';
-import 'widgets/onboarding_next_button.dart';
-import 'widgets/onboarding_navigation.dart';
-import 'widgets/onboarding_page.dart';
-import 'widgets/onboarding_skip.dart';
+import 'widgets/widgets.dart';
 
 class OnboardingScreen extends StatelessWidget {
   const OnboardingScreen({super.key});
