@@ -6,8 +6,8 @@ class PrImage {
   static const String lightAppLogo = "assets/logos/PR_logo_light.png";
 
 // -- Social Logos
-  static const String google = "assets/Logos/google-icon.png";
-  static const String facebook = "assets/Logos/facebook-icon.png";
+  static const String google = "assets/logos/icons-google.png";
+  static const String facebook = "assets/logos/icons-facebook.png";
 
   // -- OnBoardingImage
 
