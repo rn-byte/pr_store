@@ -35,6 +35,7 @@ class PrText {
   static const String privacyPolicy = "Privacy Policy";
   static const String termsOfUse = "Terms of use";
   static const String tContinue = "Continue";
+  static const String submit = "Submit";
   static const String verificationCode = "verificationCode";
   static const String resendEmail = "Resend Email";
   static const String resendEmailin = "Resend email in";
