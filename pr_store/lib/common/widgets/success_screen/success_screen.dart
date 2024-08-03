@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/constants/text_strings.dart';
 import '../../../utils/helpers/helper.dart';
-import '../../styles/spaicing_styles.dart';
+import '../../styles/spacing_styles.dart';
 
 class SuccessScreen extends StatelessWidget {
   final String image, title, subTitle;
