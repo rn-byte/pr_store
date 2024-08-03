@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/features/shop/screens/home/home.dart';
+import 'package:pr_store/utils/constants/colors.dart';
+import 'package:pr_store/utils/helpers/helper.dart';
 
 class NavigationMenu extends StatelessWidget {
   const NavigationMenu({super.key});
@@ -8,11 +11,16 @@ class NavigationMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(NavigationController());
+    final isDark = PrHelper.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(
         () => NavigationBar(
           height: 80,
           elevation: 0,
+          backgroundColor: isDark ? PrColor.dark : PrColor.light,
+          indicatorColor: isDark
+              ? PrColor.white.withOpacity(0.1)
+              : PrColor.black.withOpacity(0.1),
           selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) =>
               controller.selectedIndex.value = index,
@@ -32,7 +40,7 @@ class NavigationMenu extends StatelessWidget {
 class NavigationController extends GetxController {
   RxInt selectedIndex = 0.obs;
   final screen = [
-    Container(color: Colors.red),
+    const HomeScreen(),
     Container(color: Colors.blue),
     Container(color: Colors.green),
     Container(color: Colors.yellow),
