@@ -19,7 +19,7 @@ class PrHomeAppBar extends StatelessWidget {
           Text(PrText.homeAppbarTitle,
               style: Theme.of(context)
                   .textTheme
-                  .labelMedium!
+                  .titleMedium!
                   .apply(color: PrColor.grey)),
           Text(PrText.homeAppbarSubTitle,
               style: Theme.of(context)
