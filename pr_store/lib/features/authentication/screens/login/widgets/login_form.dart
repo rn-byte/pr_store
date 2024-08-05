@@ -70,7 +70,7 @@ class LoginForm extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => Get.to(() => const NavigationMenu()),
+                onPressed: () => Get.off(() => const NavigationMenu()),
                 child: const Text(PrText.signin),
               ),
             ),

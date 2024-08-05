@@ -32,6 +32,7 @@ class PrPrimaryHeaderConatiner extends StatelessWidget {
                   right: -300,
                   child: PrCircularContainer(
                       backgroundColor: PrColor.textWhite.withOpacity(0.1))),
+              child,
             ],
           ),
         ),
