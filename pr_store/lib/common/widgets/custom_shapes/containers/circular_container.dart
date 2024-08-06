@@ -11,11 +11,13 @@ class PrCircularContainer extends StatelessWidget {
     this.padding = 0,
     this.child,
     this.backgroundColor = PrColor.white,
+    this.margin,
   });
   final double? height;
   final double? width;
   final double radius;
   final double padding;
+  final EdgeInsets? margin;
   final Widget? child;
   final Color backgroundColor;
 
@@ -24,6 +26,7 @@ class PrCircularContainer extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+      margin: margin,
       padding: EdgeInsets.all(padding),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),

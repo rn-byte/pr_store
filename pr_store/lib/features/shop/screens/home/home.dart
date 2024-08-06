@@ -5,21 +5,21 @@ import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
-import '../../../../common/widgets/images/pr_rounded_image.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import 'widgets/home_categories.dart';
+import 'widgets/promo_slider.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             ///Home Screen Header
-            const PrPrimaryHeaderConatiner(
+            PrPrimaryHeaderConatiner(
               child: Column(
                 children: [
                   ///AppBar
@@ -59,9 +59,13 @@ class HomeScreen extends StatelessWidget {
 
             ///Body
             Padding(
-              padding: const EdgeInsets.all(PrSizes.defaultSpace * 0.3),
-              child: PrRoundedImage(
-                imageUrl: PrImage.promoBanner3,
+              padding: EdgeInsets.all(PrSizes.defaultSpace * 0.1),
+              child: PrPromoSlider(
+                banners: [
+                  PrImage.promoBanner1,
+                  PrImage.promoBanner2,
+                  PrImage.promoBanner3,
+                ],
               ),
             ),
           ],
