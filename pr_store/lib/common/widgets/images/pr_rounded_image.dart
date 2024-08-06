@@ -17,6 +17,7 @@ class PrRoundedImage extends StatelessWidget {
     this.isNetworkImage = false,
     this.onPressed,
     this.borderRadius = PrSizes.md,
+    this.margin,
   });
   final double? width, height;
   final String imageUrl;
@@ -25,6 +26,7 @@ class PrRoundedImage extends StatelessWidget {
   final Color backgroundColor;
   final BoxFit? fit;
   final EdgeInsetsGeometry? padding;
+  final EdgeInsets? margin;
   final bool isNetworkImage;
   final VoidCallback? onPressed;
   final double borderRadius;

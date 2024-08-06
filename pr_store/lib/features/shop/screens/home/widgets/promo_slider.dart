@@ -25,7 +25,14 @@ class PrPromoSlider extends StatelessWidget {
             onPageChanged: (index, reason) =>
                 controller.updatePageIndicator(index),
           ),
-          items: banners.map((url) => PrRoundedImage(imageUrl: url)).toList(),
+          items: banners
+              .map((url) => PrRoundedImage(
+                    imageUrl: url,
+                    height: 150,
+                    width: 400,
+                    fit: BoxFit.fill,
+                  ))
+              .toList(),
         ),
         const SizedBox(
           height: PrSizes.spaceBtwItems,

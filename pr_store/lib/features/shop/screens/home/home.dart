@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget {
 
             ///Body
             Padding(
-              padding: EdgeInsets.all(PrSizes.defaultSpace * 0.1),
+              padding: EdgeInsets.all(PrSizes.defaultSpace * 0.2),
               child: PrPromoSlider(
                 banners: [
                   PrImage.promoBanner1,
