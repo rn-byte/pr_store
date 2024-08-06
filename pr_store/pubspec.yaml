@@ -55,6 +55,7 @@ dependencies:
   
   smooth_page_indicator:
   flutter_native_splash: ^2.4.1
+  carousel_slider: ^4.2.1
   
 
   
@@ -87,6 +88,7 @@ flutter:
   assets:
     - assets/images/on_boarding_images/
     - assets/images/animations/
+    - assets/images/banner/
     - assets/icons/categories/
     - assets/logos/
   #   - images/a_dot_ham.jpeg

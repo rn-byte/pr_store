@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pr_store/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:pr_store/utils/constants/colors.dart';
+import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
+import '../../../../common/widgets/images/pr_rounded_image.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import 'widgets/home_categories.dart';
 
@@ -12,11 +14,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            PrPrimaryHeaderConatiner(
+            ///Home Screen Header
+            const PrPrimaryHeaderConatiner(
               child: Column(
                 children: [
                   ///AppBar
@@ -26,7 +29,6 @@ class HomeScreen extends StatelessWidget {
                   ),
 
                   ///Search Bar
-
                   PrSearchContainer(text: 'Search in store'),
                   SizedBox(
                     height: PrSizes.spaceBtwSections,
@@ -52,6 +54,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                   )
                 ],
+              ),
+            ),
+
+            ///Body
+            Padding(
+              padding: const EdgeInsets.all(PrSizes.defaultSpace * 0.3),
+              child: PrRoundedImage(
+                imageUrl: PrImage.promoBanner3,
               ),
             ),
           ],
