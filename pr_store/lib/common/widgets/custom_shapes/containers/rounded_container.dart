@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:pr_store/utils/constants/sizes.dart';
 
 import '../../../../utils/constants/colors.dart';
 
-class PrCircularContainer extends StatelessWidget {
-  const PrCircularContainer({
+class PrRoundedContainer extends StatelessWidget {
+  const PrRoundedContainer({
     super.key,
-    this.height = 400,
-    this.width = 400,
-    this.radius = 400,
-    this.padding = 0,
+    this.height,
+    this.width,
+    this.radius = PrSizes.cardRadiusLg,
+    this.padding,
     this.child,
     this.backgroundColor = PrColor.white,
     this.margin,
+    this.showBorder = false,
+    this.borderColor = PrColor.borderPrimary,
   });
   final double? height;
   final double? width;
   final double radius;
-  final double padding;
-  final EdgeInsets? margin;
+  final bool showBorder;
+  final Color borderColor;
+  final EdgeInsetsGeometry? padding;
+  final EdgeInsetsGeometry? margin;
   final Widget? child;
   final Color backgroundColor;
 
@@ -27,10 +32,11 @@ class PrCircularContainer extends StatelessWidget {
       width: width,
       height: height,
       margin: margin,
-      padding: EdgeInsets.all(padding),
+      padding: padding,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(radius),
         color: backgroundColor,
+        border: showBorder ? Border.all(color: borderColor) : null,
       ),
       child: child,
     );
