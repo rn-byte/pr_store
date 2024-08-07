@@ -47,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                           textColor: PrColor.light,
                         ),
                         SizedBox(
-                          height: PrSizes.spaceBtwItems,
+                          height: PrSizes.spaceBtwSections,
                         ),
 
                         /// categories section

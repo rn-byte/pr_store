@@ -27,7 +27,8 @@ class VerifyEmailScreen extends StatelessWidget {
                 color: isDark ? PrColor.light : PrColor.dark,
               ))
         ],
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        systemOverlayStyle:
+            isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/utils/devices/devices_utility.dart';
+import 'package:pr_store/utils/helpers/helper.dart';
 
 import '../../../utils/constants/sizes.dart';
 
@@ -21,10 +23,13 @@ class PrAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = PrHelper.isDarkMode(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: PrSizes.md),
       child: AppBar(
         automaticallyImplyLeading: false,
+        systemOverlayStyle:
+            isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
         leading: showBackArrow
             ? IconButton(
                 onPressed: () => Get.back(),

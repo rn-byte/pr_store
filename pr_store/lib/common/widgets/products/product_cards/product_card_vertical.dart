@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/common/styles/shadows.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
 import 'package:pr_store/utils/constants/colors.dart';
@@ -23,6 +24,7 @@ class PrProductCardVertical extends StatelessWidget {
         width: 180,
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
+          boxShadow: [PrShadowsStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(PrSizes.productImageRadius),
           color: isDark ? PrColor.darkerGrey : PrColor.light,
         ),

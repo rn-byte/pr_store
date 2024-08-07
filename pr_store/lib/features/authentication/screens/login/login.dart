@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get_utils/src/extensions/string_extensions.dart';
 
 import 'package:pr_store/common/styles/spacing_styles.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
+import 'package:pr_store/utils/helpers/helper.dart';
 import '../../../../utils/constants/text_strings.dart';
 import 'widgets/widgets.dart';
 
@@ -11,7 +13,13 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final isDark = PrHelper.isDarkMode(context);
     return Scaffold(
+      // appBar: AppBar(
+      //   automaticallyImplyLeading: false,
+      //   systemOverlayStyle:
+      //       isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: PrSpacingStyle.paddingWithAppBarHeight,

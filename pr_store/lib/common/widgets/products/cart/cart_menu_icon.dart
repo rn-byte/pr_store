@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/utils/helpers/helper.dart';
 
 import '../../../../utils/constants/colors.dart';
 
@@ -14,6 +15,7 @@ class PrCartCounterIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = PrHelper.isDarkMode(context);
     return Stack(
       children: [
         IconButton(
@@ -28,15 +30,16 @@ class PrCartCounterIcon extends StatelessWidget {
             width: 18,
             height: 18,
             decoration: BoxDecoration(
+              color: isDark ? PrColor.light : PrColor.dark,
               borderRadius: BorderRadius.circular(100),
             ),
             child: Center(
               child: Text(
                 '2',
-                style: Theme.of(context)
-                    .textTheme
-                    .labelLarge!
-                    .apply(color: PrColor.white.withOpacity(0.8)),
+                style: Theme.of(context).textTheme.labelLarge!.apply(
+                    color: isDark
+                        ? PrColor.dark.withOpacity(0.8)
+                        : PrColor.light.withOpacity(0.8)),
               ),
             ),
           ),
