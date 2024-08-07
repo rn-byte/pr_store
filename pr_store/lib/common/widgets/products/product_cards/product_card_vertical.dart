@@ -6,9 +6,10 @@ import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
-
 import '../../icons/pr_circular_icon.dart';
+import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
+import '../cart/add_to_cart_button.dart';
 
 class PrProductCardVertical extends StatelessWidget {
   const PrProductCardVertical({super.key});
@@ -104,37 +105,17 @@ class PrProductCardVertical extends StatelessWidget {
                       )
                     ],
                   ),
-                  //price
-                  Row(
+
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        '\$35.5',
-                        style: Theme.of(context).textTheme.headlineMedium,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      //price
+                      PrProductPriceText(
+                        price: '4999',
                       ),
 
                       ///add to cart button
-                      Container(
-                        decoration: const BoxDecoration(
-                          color: PrColor.black,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(PrSizes.cardRadiusMd),
-                              bottomRight:
-                                  Radius.circular(PrSizes.productImageRadius)),
-                        ),
-                        child: const SizedBox(
-                          height: PrSizes.iconLg * 1.2,
-                          width: PrSizes.iconLg * 1.2,
-                          child: Center(
-                            child: Icon(
-                              Iconsax.add,
-                              color: PrColor.white,
-                            ),
-                          ),
-                        ),
-                      )
+                      PrAddToCartButton()
                     ],
                   )
                 ],
