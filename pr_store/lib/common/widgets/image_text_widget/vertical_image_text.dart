@@ -10,7 +10,7 @@ class PrVerticalImageText extends StatelessWidget {
     required this.image,
     required this.title,
     this.textColor = PrColor.white,
-    this.backgroundColor = PrColor.white,
+    this.backgroundColor,
     this.onTap,
   });
   final String image, title;

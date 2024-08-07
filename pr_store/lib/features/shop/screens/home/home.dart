@@ -60,24 +60,38 @@ class HomeScreen extends StatelessWidget {
             ),
 
             ///Body
-            const Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace * 0.4),
-              child: PrPromoSlider(banners: [
-                PrImage.promoBanner1,
-                PrImage.promoBanner2,
-                PrImage.promoBanner3
-              ]),
-            ),
-            const SizedBox(
-              height: PrSizes.spaceBtwSections,
-            ),
+            Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: PrSizes.defaultSpace),
+                child: Column(
+                  children: [
+                    const PrPromoSlider(banners: [
+                      PrImage.promoBanner1,
+                      PrImage.promoBanner2,
+                      PrImage.promoBanner3
+                    ]),
 
-            ///-------------POPULAR PRODUCTS------------------///
-            PrGridLayout(
-              itemCount: 4,
-              itemBuilder: (context, index) => const PrProductCardVertical(),
-            ),
+                    const SizedBox(
+                      height: PrSizes.spaceBtwSections,
+                    ),
+
+                    ///Heading
+                    PrSectionHeading(
+                      title: 'Popular Products',
+                      onPressed: () {},
+                    ),
+                    const SizedBox(
+                      height: PrSizes.spaceBtwItems,
+                    ),
+
+                    ///-------------POPULAR PRODUCTS------------------///
+                    PrGridLayout(
+                      itemCount: 4,
+                      itemBuilder: (context, index) =>
+                          const PrProductCardVertical(),
+                    ),
+                  ],
+                )),
           ],
         ),
       ),

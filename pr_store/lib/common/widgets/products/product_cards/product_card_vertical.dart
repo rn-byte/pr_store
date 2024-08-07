@@ -105,21 +105,24 @@ class PrProductCardVertical extends StatelessWidget {
                       )
                     ],
                   ),
-
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      //price
-                      PrProductPriceText(
-                        price: '4999',
-                      ),
-
-                      ///add to cart button
-                      PrAddToCartButton()
-                    ],
-                  )
                 ],
               ),
+            ),
+            const Spacer(),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                //price
+                Padding(
+                  padding: EdgeInsets.only(left: PrSizes.sm),
+                  child: PrProductPriceText(
+                    price: '4999',
+                  ),
+                ),
+
+                ///add to cart button
+                PrAddToCartButton()
+              ],
             )
           ],
         ),
