@@ -69,7 +69,7 @@ class HomeScreen extends StatelessWidget {
               ]),
             ),
             SizedBox(
-              height: PrSizes.spaceBtwItems,
+              height: PrSizes.spaceBtwSections,
             ),
 
             ///-------------POPULAR PRODUCTS------------------///

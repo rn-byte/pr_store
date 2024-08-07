@@ -17,6 +17,7 @@ class PrPromoSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
+
     return Column(
       children: [
         CarouselSlider(
@@ -31,6 +32,7 @@ class PrPromoSlider extends StatelessWidget {
                     height: 150,
                     width: 400,
                     fit: BoxFit.fill,
+                    backgroundColor: Colors.transparent,
                   ))
               .toList(),
         ),
