@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
 import 'package:pr_store/utils/constants/colors.dart';
@@ -7,6 +8,7 @@ import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 
 import '../../icons/pr_circular_icon.dart';
+import '../../texts/product_title_text.dart';
 
 class PrProductCardVertical extends StatelessWidget {
   const PrProductCardVertical({super.key});
@@ -55,12 +57,53 @@ class PrProductCardVertical extends StatelessWidget {
                 ),
 
                 ///-------Fav ICon Button-----------///
-                const PrCircularIcon()
+                const Positioned(
+                  top: 0,
+                  right: 0,
+                  child: PrCircularIcon(
+                    icon: Iconsax.heart5,
+                    color: Colors.red,
+                  ),
+                )
               ],
             ),
           ),
+          const SizedBox(
+            height: PrSizes.spaceBtwItems / 2,
+          ),
 
           ///-------Details--------------------///
+          Padding(
+            padding: EdgeInsets.only(left: PrSizes.sm),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PrProductTitleText(
+                  title: 'Nike Air Force Shoes',
+                  smallSize: true,
+                ),
+                SizedBox(
+                  height: PrSizes.spaceBtwItems / 2,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      'Nike',
+                      style: Theme.of(context).textTheme.labelMedium,
+                    ),
+                    const SizedBox(
+                      width: PrSizes.xs,
+                    ),
+                    Icon(
+                      Iconsax.verify5,
+                      color: PrColor.primary,
+                      size: PrSizes.iconXs,
+                    )
+                  ],
+                )
+              ],
+            ),
+          )
         ],
       ),
     );
