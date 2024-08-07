@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:pr_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:pr_store/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
+import '../../../../common/widgets/layouts/grid_layout.dart';
+import '../../../../common/widgets/products/product_cards/product_card_vertical.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
 import 'widgets/home_categories.dart';
 import 'widgets/promo_slider.dart';
@@ -15,12 +16,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             ///Home Screen Header
-            PrPrimaryHeaderConatiner(
+            const PrPrimaryHeaderConatiner(
               child: Column(
                 children: [
                   ///AppBar
@@ -59,7 +60,7 @@ class HomeScreen extends StatelessWidget {
             ),
 
             ///Body
-            Padding(
+            const Padding(
               padding:
                   EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace * 0.4),
               child: PrPromoSlider(banners: [
@@ -68,12 +69,15 @@ class HomeScreen extends StatelessWidget {
                 PrImage.promoBanner3
               ]),
             ),
-            SizedBox(
+            const SizedBox(
               height: PrSizes.spaceBtwSections,
             ),
 
             ///-------------POPULAR PRODUCTS------------------///
-            PrProductCardVertical()
+            PrGridLayout(
+              itemCount: 4,
+              itemBuilder: (context, index) => const PrProductCardVertical(),
+            ),
           ],
         ),
       ),
