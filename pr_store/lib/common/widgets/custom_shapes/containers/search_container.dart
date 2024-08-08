@@ -13,16 +13,18 @@ class PrSearchContainer extends StatelessWidget {
     this.icon = Iconsax.search_normal,
     this.showBackground = true,
     this.showBorder = true,
+    this.padding = const EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace),
   });
   final String text;
   final IconData? icon;
   final bool showBackground, showBorder;
+  final EdgeInsetsGeometry padding;
 
   @override
   Widget build(BuildContext context) {
     final isDark = PrHelper.isDarkMode(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace),
+      padding: padding,
       child: Container(
         width: PrDeviceUtils.getScreenWidth(),
         padding: const EdgeInsets.all(PrSizes.md),
