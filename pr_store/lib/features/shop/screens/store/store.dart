@@ -82,6 +82,9 @@ class StoreScreen extends StatelessWidget {
                               overlayColor:
                                   isDark ? PrColor.white : PrColor.black,
                             ),
+                            const SizedBox(width: PrSizes.spaceBtwItems / 2),
+
+                            ///--------- Text------------------////
                           ],
                         ),
                       ),
