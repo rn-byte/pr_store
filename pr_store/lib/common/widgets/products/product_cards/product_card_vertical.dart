@@ -3,13 +3,12 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/styles/shadows.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
-import 'package:pr_store/common/widgets/texts/brand_text_title.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/enum.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import '../../icons/pr_circular_icon.dart';
+import '../../texts/brand_title_text_with_verified_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 import '../cart/add_to_cart_button.dart';
@@ -93,7 +92,9 @@ class PrProductCardVertical extends StatelessWidget {
                     height: PrSizes.spaceBtwItems / 2,
                   ),
                   //brand name
-                  PrBrandTitleWithVerifiedIcon(),
+                  PrBrandTitleWithVerifiedIcon(
+                    title: 'Nike',
+                  ),
                 ],
               ),
             ),
@@ -116,36 +117,6 @@ class PrProductCardVertical extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class PrBrandTitleWithVerifiedIcon extends StatelessWidget {
-  const PrBrandTitleWithVerifiedIcon({
-    super.key,
-    required this.title,
-    this.maxLines = 1,
-    this.textColor,
-    this.iconColor = PrColor.primary,
-    this.textAlign = TextAlign.center,
-    this.brandTextSize = TextSizes.small,
-  });
-  final String title;
-  final int maxLines;
-  final Color? textColor, iconColor;
-  final TextAlign? textAlign;
-  final TextSizes brandTextSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Flexible(child: PrBrandTitleText()),
-        const SizedBox(width: PrSizes.xs),
-        const Icon(Iconsax.verify5,
-            color: PrColor.primary, size: PrSizes.iconXs)
-      ],
     );
   }
 }

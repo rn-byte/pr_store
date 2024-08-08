@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/search_container.dart';
+import 'package:pr_store/common/widgets/layouts/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/cart/cart_menu_icon.dart';
+import 'package:pr_store/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/utils/constants/colors.dart';
+import 'package:pr_store/utils/constants/enum.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
@@ -68,24 +71,53 @@ class StoreScreen extends StatelessWidget {
                         height: PrSizes.spaceBtwItems / 1.5,
                       ),
 
-                      PrRoundedContainer(
-                        padding: const EdgeInsets.all(PrSizes.sm),
-                        showBorder: true,
-                        backgroundColor: Colors.transparent,
-                        child: Row(
-                          children: [
-                            //icon
-                            PrCircularImage(
-                              isNetworkImage: false,
-                              image: PrImage.clothIcon,
-                              backgroundColor: Colors.transparent,
-                              overlayColor:
-                                  isDark ? PrColor.white : PrColor.black,
-                            ),
-                            const SizedBox(width: PrSizes.spaceBtwItems / 2),
+                      PrGridLayout(
+                        itemCount: 4,
+                        mainAxisCount: 80,
+                        itemBuilder: (_, index) => GestureDetector(
+                          onTap: () {},
+                          child: PrRoundedContainer(
+                            padding: const EdgeInsets.all(PrSizes.sm),
+                            showBorder: true,
+                            backgroundColor: Colors.transparent,
+                            child: Row(
+                              children: [
+                                //icon
+                                Flexible(
+                                  child: PrCircularImage(
+                                    isNetworkImage: false,
+                                    image: PrImage.clothIcon,
+                                    backgroundColor: Colors.transparent,
+                                    overlayColor:
+                                        isDark ? PrColor.white : PrColor.black,
+                                  ),
+                                ),
+                                const SizedBox(
+                                    width: PrSizes.spaceBtwItems / 2),
 
-                            ///--------- Text------------------////
-                          ],
+                                ///--------- Text------------------///
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      const PrBrandTitleWithVerifiedIcon(
+                                          title: 'Nike',
+                                          brandTextSize: TextSizes.large),
+                                      Text(
+                                        '256 products',
+                                        overflow: TextOverflow.ellipsis,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium,
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
