@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get_utils/src/extensions/string_extensions.dart';
-
 import 'package:pr_store/common/styles/spacing_styles.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
-import 'package:pr_store/utils/helpers/helper.dart';
 import '../../../../utils/constants/text_strings.dart';
 import 'widgets/widgets.dart';
 
