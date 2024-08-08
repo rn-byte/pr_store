@@ -40,7 +40,7 @@ class StoreScreen extends StatelessWidget {
                 automaticallyImplyLeading: false,
                 pinned: true,
                 floating: true,
-                backgroundColor: isDark ? PrColor.black : PrColor.white,
+                backgroundColor: Colors.transparent,
                 expandedHeight: 440,
                 flexibleSpace: Padding(
                   padding: const EdgeInsets.all(PrSizes.defaultSpace),
