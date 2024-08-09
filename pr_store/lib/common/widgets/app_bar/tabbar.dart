@@ -15,13 +15,16 @@ class PrTabBar extends StatelessWidget implements PreferredSizeWidget {
     final isDark = PrHelper.isDarkMode(context);
     return Material(
       color: isDark ? PrColor.black : PrColor.white,
-      child: TabBar(
-        tabs: tabs,
-        isScrollable: true,
-        tabAlignment: TabAlignment.start,
-        indicatorColor: PrColor.primary,
-        unselectedLabelColor: PrColor.darkGrey,
-        labelColor: isDark ? PrColor.white : PrColor.primary,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        child: TabBar(
+          tabs: tabs,
+          isScrollable: true,
+          tabAlignment: TabAlignment.start,
+          indicatorColor: PrColor.primary,
+          unselectedLabelColor: PrColor.darkGrey,
+          labelColor: isDark ? PrColor.white : PrColor.primary,
+        ),
       ),
     );
   }

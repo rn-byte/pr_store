@@ -6,9 +6,11 @@ import 'package:pr_store/common/widgets/layouts/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/utils/constants/colors.dart';
+import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
-import 'widgets/brand_card_widget.dart';
+import '../../../../common/widgets/brands/brand_card_widget.dart';
+import '../../../../common/widgets/brands/brand_show_case.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -35,69 +37,158 @@ class StoreScreen extends StatelessWidget {
 
         ///HEader
         body: NestedScrollView(
-            headerSliverBuilder: (_, innerBoxIsScrolled) {
-              return [
-                SliverAppBar(
-                  automaticallyImplyLeading: false,
-                  pinned: true,
-                  floating: true,
-                  backgroundColor: Colors.transparent,
-                  expandedHeight: 440,
-                  flexibleSpace: Padding(
-                    padding: const EdgeInsets.all(PrSizes.defaultSpace),
-                    child: ListView(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      children: [
-                        ///Search Bar
-                        const SizedBox(
-                          height: PrSizes.spaceBtwItems,
-                        ),
-                        const PrSearchContainer(
-                          text: 'Search in Store',
-                          showBorder: true,
-                          showBackground: false,
-                          padding: EdgeInsets.zero,
-                        ),
-                        const SizedBox(
-                          height: PrSizes.spaceBtwSections,
-                        ),
+          headerSliverBuilder: (_, innerBoxIsScrolled) {
+            return [
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                pinned: true,
+                floating: true,
+                backgroundColor: Colors.transparent,
+                expandedHeight: 440,
+                flexibleSpace: Padding(
+                  padding: const EdgeInsets.all(PrSizes.defaultSpace),
+                  child: ListView(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    children: [
+                      ///Search Bar
+                      const SizedBox(
+                        height: PrSizes.spaceBtwItems,
+                      ),
+                      const PrSearchContainer(
+                        text: 'Search in Store',
+                        showBorder: true,
+                        showBackground: false,
+                        padding: EdgeInsets.zero,
+                      ),
+                      const SizedBox(
+                        height: PrSizes.spaceBtwSections,
+                      ),
 
-                        ///Featured Brands
-                        PrSectionHeading(
-                          title: 'Featured Brands',
-                          onPressed: () {},
-                        ),
-                        const SizedBox(
-                          height: PrSizes.spaceBtwItems / 1.5,
-                        ),
+                      ///Featured Brands
+                      PrSectionHeading(
+                        title: 'Featured Brands',
+                        onPressed: () {},
+                      ),
+                      const SizedBox(
+                        height: PrSizes.spaceBtwItems / 1.5,
+                      ),
 
-                        ///BRand Grid Layout
-                        PrGridLayout(
-                            itemCount: 4,
-                            mainAxisCount: 80,
-                            itemBuilder: (_, index) {
-                              //In backend part we will pass each brans and onPressed event
-                              return const PrBrandCard(
-                                showBorder: false,
-                              );
-                            }),
-                      ],
-                    ),
+                      ///BRand Grid Layout
+                      PrGridLayout(
+                          itemCount: 4,
+                          mainAxisCount: 80,
+                          itemBuilder: (_, index) {
+                            //In backend part we will pass each brans and onPressed event
+                            return const PrBrandCard(
+                              showBorder: false,
+                            );
+                          }),
+                    ],
+                  ),
+                ),
+
+                ///---------------Tabs--------------------------------///
+                bottom: const PrTabBar(tabs: [
+                  Tab(child: Text('Sports')),
+                  Tab(child: Text('Furnitures')),
+                  Tab(child: Text('Electronics')),
+                  Tab(child: Text('Clothes')),
+                  Tab(child: Text('Cosmetics')),
+                ]),
+              ),
+            ];
+          },
+
+          ///----------Body-------///
+          body: const TabBarView(children: [
+            Padding(
+              padding: EdgeInsets.all(PrSizes.defaultSpace),
+              child: Column(
+                children: [
+                  ///------Brands-------///
+                  PrBrandShowcase(
+                    images: [
+                      PrImage.productImage1,
+                      PrImage.productImage2,
+                      PrImage.productImage3,
+                    ],
                   ),
 
-                  ///---------------Tabs--------------------------------///
-                  bottom: const PrTabBar(tabs: [
-                    Tab(child: Text('Sports')),
-                    Tab(child: Text('Furnitures')),
-                    Tab(child: Text('Electronics')),
-                    Tab(child: Text('Clothes')),
-                    Tab(child: Text('Cosmetics')),
-                  ]),
-                ),
-              ];
-            },
-            body: Container()),
+                  ///------Products-----///
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(PrSizes.defaultSpace),
+              child: Column(
+                children: [
+                  ///------Brands-------///
+                  PrBrandShowcase(
+                    images: [
+                      PrImage.productImage1,
+                      PrImage.productImage2,
+                      PrImage.productImage3,
+                    ],
+                  ),
+
+                  ///------Products-----///
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(PrSizes.defaultSpace),
+              child: Column(
+                children: [
+                  ///------Brands-------///
+                  PrBrandShowcase(
+                    images: [
+                      PrImage.productImage1,
+                      PrImage.productImage2,
+                      PrImage.productImage3,
+                    ],
+                  ),
+
+                  ///------Products-----///
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(PrSizes.defaultSpace),
+              child: Column(
+                children: [
+                  ///------Brands-------///
+                  PrBrandShowcase(
+                    images: [
+                      PrImage.productImage1,
+                      PrImage.productImage2,
+                      PrImage.productImage3,
+                    ],
+                  ),
+
+                  ///------Products-----///
+                ],
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(PrSizes.defaultSpace),
+              child: Column(
+                children: [
+                  ///------Brands-------///
+                  PrBrandShowcase(
+                    images: [
+                      PrImage.productImage1,
+                      PrImage.productImage2,
+                      PrImage.productImage3,
+                    ],
+                  ),
+
+                  ///------Products-----///
+                ],
+              ),
+            ),
+          ]),
+        ),
       ),
     );
   }
