@@ -5,12 +5,11 @@ import 'package:pr_store/common/widgets/custom_shapes/containers/search_containe
 import 'package:pr_store/common/widgets/layouts/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import '../../../../common/widgets/brands/brand_card_widget.dart';
-import '../../../../common/widgets/brands/brand_show_case.dart';
 
 class StoreScreen extends StatelessWidget {
   const StoreScreen({super.key});
@@ -80,9 +79,7 @@ class StoreScreen extends StatelessWidget {
                           mainAxisCount: 80,
                           itemBuilder: (_, index) {
                             //In backend part we will pass each brans and onPressed event
-                            return const PrBrandCard(
-                              showBorder: false,
-                            );
+                            return const PrBrandCard(showBorder: false);
                           }),
                     ],
                   ),
@@ -102,91 +99,11 @@ class StoreScreen extends StatelessWidget {
 
           ///----------Body-------///
           body: const TabBarView(children: [
-            Padding(
-              padding: EdgeInsets.all(PrSizes.defaultSpace),
-              child: Column(
-                children: [
-                  ///------Brands-------///
-                  PrBrandShowcase(
-                    images: [
-                      PrImage.productImage1,
-                      PrImage.productImage2,
-                      PrImage.productImage3,
-                    ],
-                  ),
-
-                  ///------Products-----///
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(PrSizes.defaultSpace),
-              child: Column(
-                children: [
-                  ///------Brands-------///
-                  PrBrandShowcase(
-                    images: [
-                      PrImage.productImage1,
-                      PrImage.productImage2,
-                      PrImage.productImage3,
-                    ],
-                  ),
-
-                  ///------Products-----///
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(PrSizes.defaultSpace),
-              child: Column(
-                children: [
-                  ///------Brands-------///
-                  PrBrandShowcase(
-                    images: [
-                      PrImage.productImage1,
-                      PrImage.productImage2,
-                      PrImage.productImage3,
-                    ],
-                  ),
-
-                  ///------Products-----///
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(PrSizes.defaultSpace),
-              child: Column(
-                children: [
-                  ///------Brands-------///
-                  PrBrandShowcase(
-                    images: [
-                      PrImage.productImage1,
-                      PrImage.productImage2,
-                      PrImage.productImage3,
-                    ],
-                  ),
-
-                  ///------Products-----///
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(PrSizes.defaultSpace),
-              child: Column(
-                children: [
-                  ///------Brands-------///
-                  PrBrandShowcase(
-                    images: [
-                      PrImage.productImage1,
-                      PrImage.productImage2,
-                      PrImage.productImage3,
-                    ],
-                  ),
-
-                  ///------Products-----///
-                ],
-              ),
-            ),
+            PrCategoryTab(),
+            PrCategoryTab(),
+            PrCategoryTab(),
+            PrCategoryTab(),
+            PrCategoryTab(),
           ]),
         ),
       ),

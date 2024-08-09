@@ -25,6 +25,9 @@ class PrBrandShowcase extends StatelessWidget {
           ///-----Brand with Product Count-----///
 
           const PrBrandCard(showBorder: false),
+          const SizedBox(
+            height: PrSizes.spaceBtwItems,
+          ),
 
           ///-----Brand Top 3 Product image----///
           Row(
