@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../custom_shapes/containers/rounded_container.dart';
-import '../images/Pr_circular_image.dart';
+import '../images/pr_circular_image.dart';
 import '../texts/brand_title_text_with_verified_icon.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/enum.dart';

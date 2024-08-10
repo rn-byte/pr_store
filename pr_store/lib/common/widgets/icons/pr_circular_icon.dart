@@ -30,14 +30,14 @@ class PrCircularIcon extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         color: backgroundColor ??
             (isDark
-                ? PrColor.black.withOpacity(0.9)
+                ? PrColor.dark.withOpacity(0.9)
                 : PrColor.white.withOpacity(0.9)),
       ),
       child: IconButton(
         onPressed: onPressed,
         icon: Icon(
           icon,
-          color: color,
+          color: color ?? (isDark ? PrColor.white : PrColor.dark),
           size: size,
         ),
       ),
