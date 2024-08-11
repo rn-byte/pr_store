@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
-import '../../../utils/constants/image_strings.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper.dart';
 
@@ -40,7 +39,7 @@ class PrCircularImage extends StatelessWidget {
         fit: fit,
         image: isNetworkImage
             ? NetworkImage(image)
-            : const AssetImage(PrImage.clothIcon) as ImageProvider,
+            : AssetImage(image) as ImageProvider,
         color: overlayColor,
       ),
     );

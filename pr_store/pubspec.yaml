@@ -90,6 +90,7 @@ flutter:
     - assets/images/products/
     - assets/images/animations/
     - assets/images/banner/
+    - assets/images/user/
     - assets/icons/categories/
     - assets/logos/
   #   - images/a_dot_ham.jpeg

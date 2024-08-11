@@ -56,6 +56,9 @@ class PrImage {
   static const String promoBanner2 = "assets/images/banner/promo-banner-2.png";
   static const String promoBanner3 = "assets/images/banner/promo-banner-3.png";
 
+  //User Image
+  static const String user = "assets/images/user/user.png";
+
 //Products
   static const String productImage1 =
       "assets/images/products/nike-air-force.png";

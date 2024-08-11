@@ -4,6 +4,8 @@ import 'package:pr_store/common/widgets/custom_shapes/containers/primary_header_
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
+import '../../../../common/widgets/layouts/list_tile/user_profile_tile.dart';
+
 class SettingScreen extends StatelessWidget {
   const SettingScreen({super.key});
 
@@ -13,11 +15,12 @@ class SettingScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            ///Heading
+            ///Header
 
             PrPrimaryHeaderConatiner(
                 child: Column(
               children: [
+                ///AppBar
                 PrAppBar(
                   title: Text('Account',
                       style: Theme.of(context)
@@ -26,6 +29,13 @@ class SettingScreen extends StatelessWidget {
                           .apply(color: PrColor.white)),
                 ),
                 const SizedBox(height: PrSizes.spaceBtwSections),
+
+                ///User Profile Card
+                const PrProfileUserTile(),
+
+                const SizedBox(
+                  height: PrSizes.spaceBtwSections,
+                ),
               ],
             ))
 
