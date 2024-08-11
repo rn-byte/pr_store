@@ -43,7 +43,7 @@ class StoreScreen extends StatelessWidget {
                 pinned: true,
                 floating: true,
                 backgroundColor: Colors.transparent,
-                expandedHeight: 440,
+                expandedHeight: 430,
                 flexibleSpace: Padding(
                   padding: const EdgeInsets.all(PrSizes.defaultSpace),
                   child: ListView(
@@ -79,7 +79,7 @@ class StoreScreen extends StatelessWidget {
                           mainAxisCount: 80,
                           itemBuilder: (_, index) {
                             //In backend part we will pass each brans and onPressed event
-                            return const PrBrandCard(showBorder: false);
+                            return const PrBrandCard(showBorder: true);
                           }),
                     ],
                   ),

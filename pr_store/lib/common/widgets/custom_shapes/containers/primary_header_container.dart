@@ -18,7 +18,6 @@ class PrPrimaryHeaderConatiner extends StatelessWidget {
         color: PrColor.primary,
         padding: const EdgeInsets.all(0),
         child: SizedBox(
-          height: 400,
           child: Stack(
             children: [
               ///Background custom shape

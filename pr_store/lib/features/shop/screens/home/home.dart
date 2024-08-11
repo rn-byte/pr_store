@@ -54,7 +54,10 @@ class HomeScreen extends StatelessWidget {
                         PrHomeCategories(),
                       ],
                     ),
-                  )
+                  ),
+                  SizedBox(
+                    height: PrSizes.spaceBtwSections * 1.3,
+                  ),
                 ],
               ),
             ),
