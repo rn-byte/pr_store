@@ -126,6 +126,19 @@ class SettingScreen extends StatelessWidget {
                       onChanged: (value) {},
                     ),
                   ),
+
+                  ///Logout Button
+                  const SizedBox(
+                    height: PrSizes.spaceBtwSections,
+                  ),
+                  SizedBox(
+                    width: double.infinity,
+                    child: OutlinedButton(
+                        onPressed: () {}, child: const Text("Logout")),
+                  ),
+                  const SizedBox(
+                    height: PrSizes.spaceBtwSections * 2.5,
+                  )
                 ],
               ),
             ),
