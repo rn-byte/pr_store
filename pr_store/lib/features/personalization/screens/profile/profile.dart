@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/images/pr_circular_image.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
@@ -73,20 +74,39 @@ class PrProfileScreen extends StatelessWidget {
                 height: PrSizes.spaceBtwItems,
               ),
 
-              PrProfileMenu(onPressed: () {}, title: 'User ID', value: '2212'),
+              PrProfileMenu(
+                onPressed: () {},
+                title: 'User ID',
+                value: '2212',
+                icon: Iconsax.copy,
+              ),
               PrProfileMenu(
                   onPressed: () {},
                   title: 'Email',
-                  value: 'pr_store@gmail.com'),
+                  value: 'pr_store123@gmail.com'),
               PrProfileMenu(
                   onPressed: () {},
-                  title: 'Phone Number.',
+                  title: 'Phone Number',
                   value: '+977 9814858508'),
               PrProfileMenu(
                   onPressed: () {},
                   title: 'Date of Birth',
                   value: '01 Jan 2000'),
               PrProfileMenu(onPressed: () {}, title: 'Gender', value: 'Male'),
+              const SizedBox(
+                height: PrSizes.spaceBtwItems,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: PrSizes.spaceBtwSections,
+              ),
+              Center(
+                child: TextButton(
+                  onPressed: () {},
+                  child: const Text('Close Account',
+                      style: TextStyle(color: Colors.red)),
+                ),
+              )
             ],
           ),
         ),

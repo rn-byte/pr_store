@@ -4,7 +4,7 @@ class PrSectionHeading extends StatelessWidget {
   const PrSectionHeading({
     super.key,
     required this.title,
-    this.buttonTitle = 'view all',
+    this.buttonTitle = 'View all',
     this.textColor,
     this.showActionButton = true,
     this.onPressed,
