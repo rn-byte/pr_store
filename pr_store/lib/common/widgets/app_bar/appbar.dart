@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/devices/devices_utility.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 
@@ -33,10 +34,17 @@ class PrAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: showBackArrow
             ? IconButton(
                 onPressed: () => Get.back(),
-                icon: const Icon(Iconsax.arrow_left))
+                icon: Icon(
+                  Iconsax.arrow_left,
+                  color: isDark ? PrColor.white : PrColor.black,
+                ))
             : leadingIcon != null
                 ? IconButton(
-                    onPressed: leadingOnPressed, icon: Icon(leadingIcon))
+                    onPressed: leadingOnPressed,
+                    icon: Icon(
+                      leadingIcon,
+                      color: isDark ? PrColor.white : PrColor.black,
+                    ))
                 : null,
         title: title,
         actions: actions,

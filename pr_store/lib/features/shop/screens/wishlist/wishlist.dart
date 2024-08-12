@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/icons/pr_circular_icon.dart';
-import 'package:pr_store/common/widgets/layouts/grid_layout.dart';
+import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:pr_store/features/shop/screens/home/home.dart';
 import 'package:pr_store/utils/constants/sizes.dart';

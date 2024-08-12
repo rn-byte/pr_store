@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:pr_store/common/widgets/layouts/list_tile/settings_menu_tile.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/personalization/screens/profile/profile.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
-
 import '../../../../common/widgets/layouts/list_tile/user_profile_tile.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -31,10 +32,12 @@ class SettingScreen extends StatelessWidget {
                             .headlineMedium!
                             .apply(color: PrColor.white)),
                   ),
-                  const SizedBox(height: PrSizes.spaceBtwSections),
+                  //const SizedBox(height: PrSizes.spaceBtwItems),
 
                   ///User Profile Card
-                  const PrProfileUserTile(),
+                  PrProfileUserTile(
+                    onPressed: () => Get.to(() => const PrProfileScreen()),
+                  ),
 
                   const SizedBox(
                     height: PrSizes.spaceBtwSections,

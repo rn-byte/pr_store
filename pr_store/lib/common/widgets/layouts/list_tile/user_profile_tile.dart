@@ -7,7 +7,9 @@ import '../../images/pr_circular_image.dart';
 class PrProfileUserTile extends StatelessWidget {
   const PrProfileUserTile({
     super.key,
+    required this.onPressed,
   });
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class PrProfileUserTile extends StatelessWidget {
             Theme.of(context).textTheme.bodyMedium!.apply(color: PrColor.white),
       ),
       trailing: IconButton(
-          onPressed: () {},
+          onPressed: onPressed,
           icon: const Icon(
             Iconsax.edit,
             color: PrColor.white,
