@@ -103,8 +103,11 @@ class PrProfileScreen extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: () {},
-                  child: const Text('Close Account',
-                      style: TextStyle(color: Colors.red)),
+                  child: Text('Close Account',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyLarge!
+                          .copyWith(color: Colors.red)),
                 ),
               )
             ],
