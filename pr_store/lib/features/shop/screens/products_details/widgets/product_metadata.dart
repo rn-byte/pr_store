@@ -67,7 +67,7 @@ class ProductMetadata extends StatelessWidget {
         ///Stock status
         Row(
           children: [
-            const PrProductTitleText(title: 'Status'),
+            const PrProductTitleText(title: 'Status :'),
             const SizedBox(width: PrSizes.spaceBtwItems),
             Text(
               'In Stock',
@@ -84,8 +84,10 @@ class ProductMetadata extends StatelessWidget {
               image: PrImage.nike,
               height: 32,
               width: 32,
+              backgroundColor: Colors.transparent,
               overlayColor: isDark ? PrColor.white : PrColor.black,
             ),
+            const SizedBox(width: PrSizes.spaceBtwItems * 0.5),
             const PrBrandTitleWithVerifiedIcon(
               title: 'Nike',
               brandTextSize: TextSizes.medium,
