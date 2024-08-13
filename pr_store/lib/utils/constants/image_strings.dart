@@ -67,12 +67,10 @@ class PrImage {
   static const String productImage4 = "assets/images/products/laptop.png";
   static const String productImage5 =
       "assets/images/products/shoes-cartoon.png";
-  static const String productImage6 =
-      "assets/images/products/product-slippers.png";
-  static const String productImage7 =
-      "assets/images/products/Nike Air JordonBlackRed.png";
+  static const String productImage6 = "assets/images/products/T-Shirt.png";
+  static const String productImage7 = "assets/images/products/Slipper.png";
   static const String productImage8 =
-      "assets/images/products/Nike Air JordonOrange.png";
+      "assets/images/products/nike-air-jordan-black-red.png.png";
   static const String productImage9 =
       "assets/images/products/Nike Air JordonwhiteMagenta.png";
   static const String productImage10 =
