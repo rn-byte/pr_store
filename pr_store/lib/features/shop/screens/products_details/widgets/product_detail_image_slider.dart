@@ -28,7 +28,11 @@ class PrProductImageSlider extends StatelessWidget {
               child: Padding(
                 padding: EdgeInsets.all(PrSizes.productImageRadius * 2),
                 child: Center(
-                    child: Image(image: AssetImage(PrImage.productImage8))),
+                    child: Image(
+                  image: AssetImage(
+                    PrImage.productImage1,
+                  ),
+                )),
               ),
             ),
 
@@ -48,14 +52,14 @@ class PrProductImageSlider extends StatelessWidget {
                         backgroundColor: isDark ? PrColor.dark : PrColor.white,
                         border: Border.all(color: PrColor.primary),
                         padding: const EdgeInsets.all(PrSizes.sm),
-                        imageUrl: PrImage.productImage5),
+                        imageUrl: PrImage.productImage1),
                     separatorBuilder: (_, __) => const SizedBox(
                           width: PrSizes.spaceBtwItems,
                         ),
                     itemCount: 6),
               ),
             ),
-            PrAppBar(
+            const PrAppBar(
               showBackArrow: true,
               actions: [
                 Icon(
