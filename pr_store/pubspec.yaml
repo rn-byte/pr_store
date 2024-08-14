@@ -52,9 +52,14 @@ dependencies:
   intl:
   logger:
   url_launcher:
+
   
   smooth_page_indicator:
   flutter_native_splash: ^2.4.1
+  
+
+  #producr specific
+  readmore: ^3.0.0
   carousel_slider: ^4.2.1
   
 

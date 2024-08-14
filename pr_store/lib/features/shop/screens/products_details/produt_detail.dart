@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/screens/products_details/widgets/product_attributes.dart';
 import 'package:pr_store/features/shop/screens/products_details/widgets/product_metadata.dart';
-
 import 'package:pr_store/utils/constants/sizes.dart';
-
+import 'package:readmore/readmore.dart';
 import 'widgets/product_detail_image_slider.dart';
 import 'widgets/rating_share_widget.dart';
 
@@ -43,10 +44,48 @@ class PrProdutDetailScreen extends StatelessWidget {
                     width: double.infinity,
                     child: ElevatedButton(
                         onPressed: () {}, child: const Text('Checkout')),
-                  )
+                  ),
+                  const SizedBox(height: PrSizes.spaceBtwSections),
 
                   ///---description
+                  const PrSectionHeading(
+                    title: 'Description',
+                    showActionButton: false,
+                  ),
+                  const SizedBox(height: PrSizes.spaceBtwItems),
+                  const ReadMoreText(
+                    'Elevate your performance with the Nike Red and Black Running Shoe, designed for athletes and style enthusiasts alike. This sleek, two-tone shoe combines vibrant red with bold black accents, making a statement on the track and the streets.',
+                    trimLines: 2,
+                    trimMode: TrimMode.Line,
+                    trimCollapsedText: 'Show More',
+                    trimExpandedText: '  Less',
+                    moreStyle:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                  ),
+
                   ///---review
+                  const Divider(),
+                  const SizedBox(height: PrSizes.spaceBtwItems),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      PrSectionHeading(
+                        title: 'Reviews(199)',
+                        onPressed: () {},
+                        showActionButton: false,
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Iconsax.arrow_right_3,
+                          size: 18,
+                        ),
+                        onPressed: () {},
+                      )
+                    ],
+                  ),
+                  const SizedBox(height: PrSizes.spaceBtwSections),
                 ],
               ),
             )
