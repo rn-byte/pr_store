@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/screens/products_details/widgets/bottom_add_to_cart.dart';
 import 'package:pr_store/features/shop/screens/products_details/widgets/product_attributes.dart';
 import 'package:pr_store/features/shop/screens/products_details/widgets/product_metadata.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -14,6 +15,7 @@ class PrProdutDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomSheet: const PrBottomAddToCart(),
       body: SingleChildScrollView(
         child: Column(
           children: [
