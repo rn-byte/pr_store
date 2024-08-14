@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pr_store/features/shop/screens/products_details/widgets/product_attributes.dart';
 import 'package:pr_store/features/shop/screens/products_details/widgets/product_metadata.dart';
 
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -31,9 +32,11 @@ class PrProdutDetailScreen extends StatelessWidget {
                   PrRatingAndShare(),
 
                   ///---- Price, Title, Stock and brand
-                  ProductMetadata()
+                  PrProductMetadata(),
 
                   ///---Attributes
+                  PrProductAttributes(),
+
                   ///--checkout button
                   ///---description
                   ///---review

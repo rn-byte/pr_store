@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/text_strings.dart';
-import 'package:pr_store/utils/helpers/helper.dart';
 import '../../controllers_onboarding/onboarding_controller.dart';
 import 'widgets/widgets.dart';
 
@@ -13,12 +11,8 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(OnboardingController());
-    final isDark = PrHelper.isDarkMode(context);
+
     return Scaffold(
-      appBar: AppBar(
-        systemOverlayStyle:
-            isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
-      ),
       body: Stack(
         children: [
           ///Horizontal scroolable page

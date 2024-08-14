@@ -11,8 +11,8 @@ import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/helpers/helper.dart';
 
-class ProductMetadata extends StatelessWidget {
-  const ProductMetadata({super.key});
+class PrProductMetadata extends StatelessWidget {
+  const PrProductMetadata({super.key});
 
   @override
   Widget build(BuildContext context) {
