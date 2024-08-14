@@ -17,20 +17,25 @@ class PrChoiceChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isColor = PrHelper.getColor(text) != null;
-    return ChoiceChip(
-      label: isColor ? const SizedBox() : Text(text),
-      selected: selected,
-      onSelected: onSelected,
-      labelStyle: TextStyle(color: selected ? PrColor.white : null),
-      avatar: isColor
-          ? PrCircularContainer(
-              width: 50, height: 50, backgroundColor: PrHelper.getColor(text)!)
-          : null,
-      shape: isColor ? const CircleBorder() : null,
-      labelPadding: isColor ? const EdgeInsets.all(0) : null,
-      padding: isColor ? const EdgeInsets.all(0) : null,
-      selectedColor: isColor ? PrHelper.getColor(text)! : null,
-      backgroundColor: isColor ? PrHelper.getColor(text)! : null,
+    return Theme(
+      data: Theme.of(context).copyWith(canvasColor: Colors.transparent),
+      child: ChoiceChip(
+        label: isColor ? const SizedBox() : Text(text),
+        selected: selected,
+        onSelected: onSelected,
+        labelStyle: TextStyle(color: selected ? PrColor.white : null),
+        avatar: isColor
+            ? PrCircularContainer(
+                width: 50,
+                height: 50,
+                backgroundColor: PrHelper.getColor(text)!)
+            : null,
+        shape: isColor ? const CircleBorder() : null,
+        labelPadding: isColor ? const EdgeInsets.all(0) : null,
+        padding: isColor ? const EdgeInsets.all(0) : null,
+        selectedColor: isColor ? PrHelper.getColor(text)! : null,
+        backgroundColor: isColor ? PrHelper.getColor(text)! : null,
+      ),
     );
   }
 }
