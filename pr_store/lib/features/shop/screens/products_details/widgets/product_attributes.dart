@@ -7,6 +7,8 @@ import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 
+import '../../../../../common/widgets/chips/choice_chips.dart';
+
 class PrProductAttributes extends StatelessWidget {
   const PrProductAttributes({super.key});
 
@@ -85,18 +87,54 @@ class PrProductAttributes extends StatelessWidget {
           ),
         ),
         const SizedBox(height: PrSizes.spaceBtwItems),
+
+        ///Attributes
         Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Colors
             const PrSectionHeading(
               title: 'Colors',
               showActionButton: false,
             ),
             const SizedBox(height: PrSizes.spaceBtwItems / 2),
-            ChoiceChip(
-              label: const Text('Blue'),
-              selected: true,
-              onSelected: (value) {},
-              labelStyle: const TextStyle(color: true ? PrColor.white : null),
+            Wrap(
+              spacing: 8,
+              children: [
+                PrChoiceChip(
+                    text: 'green', selected: false, onSelected: (value) {}),
+                PrChoiceChip(
+                    text: 'red', selected: true, onSelected: (value) {}),
+                PrChoiceChip(
+                    text: 'blue', selected: false, onSelected: (value) {}),
+                PrChoiceChip(
+                    text: 'orange', selected: false, onSelected: (value) {}),
+              ],
+            ),
+          ],
+        ),
+
+        ///Sizes
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const PrSectionHeading(
+              title: 'Sizes',
+              showActionButton: false,
+            ),
+            const SizedBox(height: PrSizes.spaceBtwItems / 2),
+            Wrap(
+              spacing: 8,
+              children: [
+                PrChoiceChip(
+                    text: '40', selected: false, onSelected: (value) {}),
+                PrChoiceChip(
+                    text: '41', selected: false, onSelected: (value) {}),
+                PrChoiceChip(
+                    text: '42', selected: true, onSelected: (value) {}),
+                PrChoiceChip(
+                    text: '43', selected: false, onSelected: (value) {}),
+              ],
             )
           ],
         )

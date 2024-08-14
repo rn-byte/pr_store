@@ -12,16 +12,16 @@ class PrProdutDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             /// 1. ------- Product Image Slider-------
-            PrProductImageSlider(),
+            const PrProductImageSlider(),
 
             /// 2. ------- Product Details------------
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 left: PrSizes.defaultSpace,
                 right: PrSizes.defaultSpace,
                 bottom: PrSizes.defaultSpace,
@@ -29,15 +29,22 @@ class PrProdutDetailScreen extends StatelessWidget {
               child: Column(
                 children: [
                   ///---- Rating And share button
-                  PrRatingAndShare(),
+                  const PrRatingAndShare(),
 
                   ///---- Price, Title, Stock and brand
-                  PrProductMetadata(),
+                  const PrProductMetadata(),
 
                   ///---Attributes
-                  PrProductAttributes(),
+                  const PrProductAttributes(),
+                  const SizedBox(height: PrSizes.spaceBtwSections),
 
                   ///--checkout button
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        onPressed: () {}, child: const Text('Checkout')),
+                  )
+
                   ///---description
                   ///---review
                 ],

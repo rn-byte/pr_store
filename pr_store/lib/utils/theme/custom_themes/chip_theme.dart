@@ -13,7 +13,7 @@ class PrChipTheme {
   );
   static ChipThemeData darkChipTheme = const ChipThemeData(
     disabledColor: PrColor.darkGrey,
-    labelStyle: TextStyle(color: Colors.white),
+    labelStyle: TextStyle(color: PrColor.white),
     selectedColor: PrColor.primary,
     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
     checkmarkColor: PrColor.white,
