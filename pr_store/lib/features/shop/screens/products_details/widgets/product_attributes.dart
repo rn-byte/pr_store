@@ -84,9 +84,22 @@ class PrProductAttributes extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(
-          height: PrSizes.spaceBtwItems,
-        ),
+        const SizedBox(height: PrSizes.spaceBtwItems),
+        Column(
+          children: [
+            const PrSectionHeading(
+              title: 'Colors',
+              showActionButton: false,
+            ),
+            const SizedBox(height: PrSizes.spaceBtwItems / 2),
+            ChoiceChip(
+              label: const Text('Blue'),
+              selected: true,
+              onSelected: (value) {},
+              labelStyle: const TextStyle(color: true ? PrColor.white : null),
+            )
+          ],
+        )
       ],
     );
   }
