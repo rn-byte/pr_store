@@ -87,7 +87,7 @@ class PrProdutDetailScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  const SizedBox(height: PrSizes.spaceBtwSections),
+                  const SizedBox(height: PrSizes.spaceBtwSections * 2),
                 ],
               ),
             )
