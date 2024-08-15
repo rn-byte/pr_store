@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
-import 'package:pr_store/features/shop/screens/products_details/widgets/bottom_add_to_cart.dart';
-import 'package:pr_store/features/shop/screens/products_details/widgets/product_attributes.dart';
-import 'package:pr_store/features/shop/screens/products_details/widgets/product_metadata.dart';
+import 'package:pr_store/features/shop/screens/product_review/product_reviews.dart';
+import 'package:pr_store/features/shop/screens/product_details/widgets/bottom_add_to_cart.dart';
+import 'package:pr_store/features/shop/screens/product_details/widgets/product_attributes.dart';
+import 'package:pr_store/features/shop/screens/product_details/widgets/product_metadata.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:readmore/readmore.dart';
 import 'widgets/product_detail_image_slider.dart';
@@ -83,7 +85,7 @@ class PrProdutDetailScreen extends StatelessWidget {
                           Iconsax.arrow_right_3,
                           size: 18,
                         ),
-                        onPressed: () {},
+                        onPressed: () => Get.to(() => const PrProductReviews()),
                       )
                     ],
                   ),

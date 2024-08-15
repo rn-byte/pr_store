@@ -4,7 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/styles/shadows.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
-import 'package:pr_store/features/shop/screens/products_details/produt_detail.dart';
+import 'package:pr_store/features/shop/screens/product_details/produt_detail.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
