@@ -59,6 +59,14 @@ class PrImage {
   //User Image
   static const String user = "assets/images/user/user.png";
 
+  // ReviewProfile Image
+  static const String userProfileImage1 =
+      "assets/images/reviews/reviewImage1.png";
+  static const String userProfileImage2 =
+      "assets/images/reviews/reviewImage2.png";
+  static const String userProfileImage3 =
+      "assets/images/reviews/reviewImage3.png";
+
   //Brand image
   static const String nike = "assets/images/products/Nike_logo.png";
 

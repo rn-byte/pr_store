@@ -7,12 +7,14 @@ import '../../../../utils/constants/colors.dart';
 class PrRatingBarIndicator extends StatelessWidget {
   const PrRatingBarIndicator({
     super.key,
+    required this.rating,
   });
+  final double rating;
 
   @override
   Widget build(BuildContext context) {
     return RatingBarIndicator(
-        rating: 3.5,
+        rating: rating,
         itemSize: 20,
         unratedColor: PrColor.grey,
         itemBuilder: (_, __) => const Icon(
