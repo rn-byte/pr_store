@@ -5,6 +5,7 @@ import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:pr_store/common/widgets/layouts/list_tile/settings_menu_tile.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/personalization/screens/address/address.dart';
 import 'package:pr_store/features/personalization/screens/profile/profile.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -58,7 +59,8 @@ class SettingScreen extends StatelessWidget {
                   const SizedBox(
                     height: PrSizes.spaceBtwItems,
                   ),
-                  const PrSettingsMenuTile(
+                  PrSettingsMenuTile(
+                      onTap: () => Get.to(() => const UserAddressScreen()),
                       icon: Iconsax.safe_home,
                       title: 'My Address ',
                       subTitle: 'Set Shopping Delevery Address'),

@@ -70,6 +70,7 @@ class PrProdutDetailScreen extends StatelessWidget {
                   ),
 
                   ///---review
+                  const SizedBox(height: PrSizes.spaceBtwSections),
                   const Divider(),
                   const SizedBox(height: PrSizes.spaceBtwItems),
                   Row(
