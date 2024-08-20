@@ -29,7 +29,7 @@ class PrSingleAddress extends StatelessWidget {
         children: [
           Positioned(
             right: 5,
-            top: 0,
+            top: 16,
             child: Icon(
               selectedAddress ? Iconsax.tick_circle5 : null,
               color: selectedAddress
@@ -40,16 +40,29 @@ class PrSingleAddress extends StatelessWidget {
             ),
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '4480 Kumaripati-20, Purnachandi, Lalitpur, Nepal',
-                maxLines: 2,
+                'PR Store',
+                maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
-              SizedBox(
+              const SizedBox(
                 height: PrSizes.sm / 2,
-              )
+              ),
+              const Text(
+                '+977 9807805496',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              const SizedBox(
+                height: PrSizes.sm / 2,
+              ),
+              const Text(
+                '4480 Kumaripati-20, Purnachandi, Lalitpur, Nepal',
+                softWrap: true,
+              ),
             ],
           )
         ],

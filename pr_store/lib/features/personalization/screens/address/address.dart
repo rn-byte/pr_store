@@ -27,12 +27,12 @@ class UserAddressScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.headlineSmall,
         ),
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         padding: EdgeInsets.all(PrSizes.defaultSpace),
         child: Column(
           children: [
-            PrSingleAddress(selectedAddress: true),
-            PrSingleAddress(selectedAddress: false)
+            PrSingleAddress(selectedAddress: false),
+            PrSingleAddress(selectedAddress: true)
           ],
         ),
       ),
