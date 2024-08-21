@@ -5,14 +5,12 @@ import 'package:pr_store/utils/constants/sizes.dart';
 
 import '../../../../common/widgets/products/cart/add_remove_button.dart';
 import '../../../../common/widgets/products/cart/cart_item.dart';
-import '../../../../utils/helpers/helper.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isDark = PrHelper.isDarkMode(context);
     return Scaffold(
       appBar: PrAppBar(
         showBackArrow: true,
@@ -29,17 +27,17 @@ class CartScreen extends StatelessWidget {
           separatorBuilder: (_, __) => const SizedBox(
             height: PrSizes.spaceBtwSections,
           ),
-          itemBuilder: (_, index) => Column(
+          itemBuilder: (_, index) => const Column(
             children: [
-              const PrCartItem(),
-              const SizedBox(height: PrSizes.spaceBtwItems),
+              PrCartItem(),
+              SizedBox(height: PrSizes.spaceBtwItems),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   /// Extra Space
                   Row(
                     children: [
-                      const SizedBox(width: 70),
+                      SizedBox(width: 70),
 
                       /// Add Remove Button
                       PrProductQuantityWithAddRemoveButton(),
@@ -51,6 +49,11 @@ class CartScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(PrSizes.defaultSpace),
+        child: ElevatedButton(
+            onPressed: () {}, child: const Text('Checkout Rs. 4999')),
       ),
     );
   }
