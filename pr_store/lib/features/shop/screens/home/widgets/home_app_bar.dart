@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pr_store/features/shop/screens/cart/cart.dart';
 
 import '../../../../../common/widgets/app_bar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
@@ -30,7 +32,7 @@ class PrHomeAppBar extends StatelessWidget {
       ),
       actions: [
         PrCartCounterIcon(
-          onPressed: () {},
+          onPressed: () => Get.to(() => const CartScreen()),
           iconColor: PrColor.white,
         ),
       ],

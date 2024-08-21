@@ -9,9 +9,9 @@ class AddNewAddressScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PrAppBar(
+      appBar: const PrAppBar(
         showBackArrow: true,
-        title: const Text('Add new Address'),
+        title: Text('Add new Address'),
       ),
       body: SingleChildScrollView(
         child: Padding(
