@@ -20,7 +20,7 @@ class CartScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(PrSizes.defaultSpace),
+        padding: const EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace),
         child: ListView.separated(
           shrinkWrap: true,
           itemCount: 10,
