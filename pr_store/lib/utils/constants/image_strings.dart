@@ -70,6 +70,21 @@ class PrImage {
   //Brand image
   static const String nike = "assets/images/products/Nike_logo.png";
 
+  // Payment Methods
+  static const String applePay = "assets/icons/payment_methods/apple-pay.png";
+  static const String googlePay = "assets/icons/payment_methods/google-pay.png";
+  static const String creditCard =
+      "assets/icons/payment_methods/credit-card.png";
+  static const String masterCard =
+      "assets/icons/payment_methods/master-card.png";
+  static const String paypal = "assets/icons/payment_methods/paypal.png";
+  static const String visa = "assets/icons/payment_methods/visa-card.png";
+  static const String esewa = "assets/icons/payment_methods/esewa.png";
+  static const String paytm = "assets/icons/payment_methods/paytm.png";
+  static const String khalti = "assets/icons/payment_methods/khalti.png";
+  static const String successfulPaymentIcon =
+      "assets/icons/payment_methods/payment_sucessful.png";
+
 //Products
   static const String productImage1 =
       "assets/images/products/nike-air-force.png";

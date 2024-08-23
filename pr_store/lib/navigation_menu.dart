@@ -5,7 +5,6 @@ import 'package:pr_store/features/shop/screens/home/home.dart';
 import 'package:pr_store/features/shop/screens/store/store.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
-
 import 'features/personalization/screens/settings/settings.dart';
 import 'features/shop/screens/wishlist/wishlist.dart';
 
