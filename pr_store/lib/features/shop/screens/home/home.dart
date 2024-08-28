@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             ///Home Screen Header
-            const PrPrimaryHeaderConatiner(
+            const PrPrimaryHeaderContainer(
               child: Column(
                 children: [
                   ///AppBar

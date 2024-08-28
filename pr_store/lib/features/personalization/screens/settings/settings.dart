@@ -7,6 +7,7 @@ import 'package:pr_store/common/widgets/layouts/list_tile/settings_menu_tile.dar
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/personalization/screens/address/address.dart';
 import 'package:pr_store/features/personalization/screens/profile/profile.dart';
+import 'package:pr_store/features/shop/screens/order/order.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/layouts/list_tile/user_profile_tile.dart';
@@ -22,7 +23,7 @@ class SettingScreen extends StatelessWidget {
           children: [
             ///Header
 
-            PrPrimaryHeaderConatiner(
+            PrPrimaryHeaderContainer(
               child: Column(
                 children: [
                   ///AppBar
@@ -63,12 +64,13 @@ class SettingScreen extends StatelessWidget {
                       onTap: () => Get.to(() => const UserAddressScreen()),
                       icon: Iconsax.safe_home,
                       title: 'My Address ',
-                      subTitle: 'Set Shopping Delevery Address'),
+                      subTitle: 'Set Shopping Delivery Address'),
                   const PrSettingsMenuTile(
                       icon: Iconsax.shopping_cart,
                       title: 'My Cart ',
                       subTitle: 'Add , remove product and move to Checkout'),
-                  const PrSettingsMenuTile(
+                  PrSettingsMenuTile(
+                      onTap: () => Get.to(() => const OrderScreen()),
                       icon: Iconsax.bag_tick,
                       title: 'My Orders ',
                       subTitle: 'In-progress and complete orders'),

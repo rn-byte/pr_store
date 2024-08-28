@@ -4,8 +4,8 @@ import '../../../../utils/constants/colors.dart';
 import '../curved_edges/curved_edges_widget.dart';
 import 'circular_container.dart';
 
-class PrPrimaryHeaderConatiner extends StatelessWidget {
-  const PrPrimaryHeaderConatiner({
+class PrPrimaryHeaderContainer extends StatelessWidget {
+  const PrPrimaryHeaderContainer({
     super.key,
     required this.child,
   });
