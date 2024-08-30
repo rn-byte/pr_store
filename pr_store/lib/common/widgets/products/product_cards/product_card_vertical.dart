@@ -29,7 +29,7 @@ class PrProductCardVertical extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [PrShadowsStyle.verticalProductShadow],
           borderRadius: BorderRadius.circular(PrSizes.productImageRadius),
-          color: isDark ? PrColor.darkerGrey : PrColor.light,
+          color: isDark ? PrColor.darkerGrey : PrColor.white,
         ),
         child: Column(
           children: [
@@ -72,7 +72,7 @@ class PrProductCardVertical extends StatelessWidget {
                       icon: Iconsax.heart5,
                       color: Colors.red,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
