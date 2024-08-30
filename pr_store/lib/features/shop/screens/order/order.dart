@@ -16,7 +16,9 @@ class OrderScreen extends StatelessWidget {
         showBackArrow: true,
       ),
       body: const Padding(
-        padding: EdgeInsets.all(PrSizes.defaultSpace),
+        padding: EdgeInsets.symmetric(
+          horizontal: PrSizes.defaultSpace,
+        ),
 
         /// orders
         child: PrOrderListItems(),
