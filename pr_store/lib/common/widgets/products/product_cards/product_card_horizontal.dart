@@ -8,10 +8,8 @@ import 'package:pr_store/common/widgets/texts/product_title_text.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
-import '../../../styles/shadows.dart';
 import '../../icons/pr_circular_icon.dart';
 
 class PrProductCardHorizontal extends StatelessWidget {

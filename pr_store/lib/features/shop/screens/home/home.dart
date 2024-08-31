@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pr_store/features/shop/screens/all_products/all_products.dart';
 import 'package:pr_store/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
@@ -81,7 +83,7 @@ class HomeScreen extends StatelessWidget {
                     ///Heading
                     PrSectionHeading(
                       title: 'Popular Products',
-                      onPressed: () {},
+                      onPressed: () => Get.to(() => const AllProducts()),
                     ),
                     const SizedBox(
                       height: PrSizes.spaceBtwItems,
