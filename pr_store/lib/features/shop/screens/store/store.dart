@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/app_bar/tabbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/screens/brand/all_brands.dart';
 import 'package:pr_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -67,7 +69,7 @@ class StoreScreen extends StatelessWidget {
                       ///Featured Brands
                       PrSectionHeading(
                         title: 'Featured Brands',
-                        onPressed: () {},
+                        onPressed: () => Get.to(() => const AllBrandsScreen()),
                       ),
                       const SizedBox(
                         height: PrSizes.spaceBtwItems / 1.5,
@@ -76,7 +78,7 @@ class StoreScreen extends StatelessWidget {
                       ///BRand Grid Layout
                       PrGridLayout(
                           itemCount: 4,
-                          mainAxisCount: 80,
+                          mainAxisExtent: 80,
                           itemBuilder: (_, index) {
                             //In backend part we will pass each brans and onPressed event
                             return const PrBrandCard(showBorder: true);

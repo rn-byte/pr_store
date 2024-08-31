@@ -5,11 +5,11 @@ class PrGridLayout extends StatelessWidget {
   const PrGridLayout({
     super.key,
     required this.itemCount,
-    this.mainAxisCount = 278,
+    this.mainAxisExtent = 278,
     required this.itemBuilder,
   });
   final int itemCount;
-  final double? mainAxisCount;
+  final double? mainAxisExtent;
   final Widget? Function(BuildContext, int) itemBuilder;
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class PrGridLayout extends StatelessWidget {
         crossAxisCount: 2,
         crossAxisSpacing: PrSizes.gridViewSpacing,
         mainAxisSpacing: PrSizes.gridViewSpacing,
-        mainAxisExtent: mainAxisCount,
+        mainAxisExtent: mainAxisExtent,
       ),
       itemBuilder: itemBuilder,
     );
