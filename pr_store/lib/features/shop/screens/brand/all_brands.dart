@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/brands/brand_card_widget.dart';
 import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/screens/brand/brand_products.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
 class AllBrandsScreen extends StatelessWidget {
@@ -27,8 +29,10 @@ class AllBrandsScreen extends StatelessWidget {
             PrGridLayout(
               itemCount: 6,
               mainAxisExtent: 80,
-              itemBuilder: (context, index) =>
-                  const PrBrandCard(showBorder: true),
+              itemBuilder: (context, index) => PrBrandCard(
+                showBorder: true,
+                onTap: () => Get.to(() => const BrandProducts()),
+              ),
             )
           ],
         ),
