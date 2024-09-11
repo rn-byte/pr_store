@@ -75,7 +75,7 @@ class StoreScreen extends StatelessWidget {
                         height: PrSizes.spaceBtwItems / 1.5,
                       ),
 
-                      ///BRand Grid Layout
+                      ///Brand Grid Layout
                       PrGridLayout(
                           itemCount: 4,
                           mainAxisExtent: 80,

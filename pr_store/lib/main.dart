@@ -7,8 +7,11 @@ import 'app.dart';
 Future<void> main() async {
 // ...
 
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((FirebaseApp value) => Get.put(AuthenticationRepository()));
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  //.then((FirebaseApp value) => Get.put(AuthenticationRepository()));
 
   runApp(const App());
 }
