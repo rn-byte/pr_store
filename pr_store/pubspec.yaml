@@ -58,10 +58,13 @@ dependencies:
   flutter_native_splash: ^2.4.1
   
 
-  #producr specific
+  #product specific
   readmore: ^3.0.0
   flutter_rating_bar: ^4.0.1
   carousel_slider: ^5.0.0
+
+  #FireBase
+  firebase_core: ^3.4.1
   
 
   

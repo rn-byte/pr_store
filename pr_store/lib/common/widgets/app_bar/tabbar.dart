@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/devices/devices_utility.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 

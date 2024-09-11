@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "406675356131",
+    "project_id": "ecommerce-pr-store",
+    "storage_bucket": "ecommerce-pr-store.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406675356131:android:be14b32e7dc27c333648d6",
+        "android_client_info": {
+          "package_name": "com.prStore.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "406675356131-qb20u6evdg5ejv4rupg7u7bm5tcpf986.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prStore.app",
+            "certificate_hash": "a552641daf9dcbd360b63821410fdeef6a5b0180"
+          }
+        },
+        {
+          "client_id": "406675356131-3tj711q50f7rnpak6u8se6opqp0s0acq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBHJFO6Xl6TKDK5VQRrD7mGjnT1O_894KQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "406675356131-3tj711q50f7rnpak6u8se6opqp0s0acq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "406675356131-iao6sgko0vl57msdme1nng24snscgv4b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.prStore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
