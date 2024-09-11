@@ -75,7 +75,7 @@ class PrDeviceUtils {
     Future.delayed(duration, () => HapticFeedback.vibrate());
   }
 
-  static Future<void> setPrefferedOrientations(
+  static Future<void> setPreferredOrientations(
       List<DeviceOrientation> orientations) async {
     await SystemChrome.setPreferredOrientations(orientations);
   }

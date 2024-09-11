@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pr_store/utils/constants/colors.dart';
+import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/devices/devices_utility.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 
@@ -16,6 +17,7 @@ class PrTabBar extends StatelessWidget implements PreferredSizeWidget {
     return Material(
       color: isDark ? PrColor.black : PrColor.white,
       child: TabBar(
+        padding: EdgeInsets.zero,
         tabs: tabs,
         isScrollable: true,
         tabAlignment: TabAlignment.start,
@@ -27,5 +29,6 @@ class PrTabBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => Size.fromHeight(PrDeviceUtils.getAppBarHeight());
+  Size get preferredSize =>
+      Size.fromHeight(PrDeviceUtils.getAppBarHeight() * 0.858);
 }
