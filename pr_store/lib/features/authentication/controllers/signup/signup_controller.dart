@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
+import 'package:pr_store/utils/popups/loaders.dart';
 import '../../../../utils/helpers/network_manager.dart';
 import '../../../../utils/popups/full_screen_loader.dart';
 
@@ -34,6 +35,10 @@ class SignupController extends GetxController {
       }
 
       /// Form Validation
+      if (!signupFormKey.currentState!.validate()) {
+        PrFullScreenLoader.stopLoading();
+        return;
+      }
 
       /// Privacy Policy check
 
@@ -46,6 +51,8 @@ class SignupController extends GetxController {
       /// move to verify email screen
     } catch (e) {
       ///Show some Generic error to the user
+
+      PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
     } finally {
       /// Remove Loader
     }
