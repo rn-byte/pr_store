@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pr_store/features/authentication/screens/onboarding/onboarding.dart';
+import 'package:pr_store/utils/constants/colors.dart';
 import 'utils/theme/theme.dart';
 
 class App extends StatelessWidget {
@@ -14,7 +14,16 @@ class App extends StatelessWidget {
       title: 'PR-Store',
       theme: PrAppTheme.lightTheme,
       darkTheme: PrAppTheme.darkTheme,
-      home: const OnboardingScreen(),
+
+      ///Showing loader or progress indicator meanwhile Authentication Repository is deciding to show relevant screen
+      home: const Scaffold(
+        backgroundColor: PrColor.primary,
+        body: Center(
+          child: CircularProgressIndicator(
+            color: PrColor.white,
+          ),
+        ),
+      ),
     );
   }
 }
