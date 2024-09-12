@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pr_store/data/repositories/authentication/authentication_repository.dart';
+import 'package:pr_store/data/repositories/users/user_repository.dart';
+import 'package:pr_store/features/authentication/models/user_model.dart';
+import 'package:pr_store/features/authentication/screens/signup/very_email.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
 import '../../../../utils/helpers/network_manager.dart';
@@ -23,7 +27,7 @@ class SignupController extends GetxController {
       GlobalKey<FormState>(); // FormKey For Form Validation
 
   /// ---Sign-up
-  Future<void> signup() async {
+  void signup() async {
     try {
       /// Start Loading
       PrFullScreenLoader.openLoadingDialog(
@@ -32,11 +36,15 @@ class SignupController extends GetxController {
       /// check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
+        //Remove Loader
+        PrFullScreenLoader.stopLoading();
         return;
       }
 
       /// Form Validation
       if (!signupFormKey.currentState!.validate()) {
+        //Remove Loader
+        PrFullScreenLoader.stopLoading();
         return;
       }
 
@@ -51,18 +59,39 @@ class SignupController extends GetxController {
 
       /// Register user in the Firebase authentication and save user data in firebase
 
+      final userCredential = await AuthenticationRepository.instance
+          .registerWithEmailAndPassword(
+              email.text.trim(), password.text.trim());
+
       /// Save authenticated user data in Firebase Fire-store
+      final newUser = UserModel(
+          id: userCredential.user!.uid,
+          firstName: firstName.text.trim(),
+          userName: userName.text.trim(),
+          lastName: lastName.text.trim(),
+          email: email.text.trim(),
+          phoneNumber: phoneNumber.text.trim(),
+          profilePicture: '');
+
+      final userRepository = Get.put(UserRepository());
+      await userRepository.saveUserRecord(newUser);
+
+      //Remove Loader
+      PrFullScreenLoader.stopLoading();
 
       /// show success message
+      PrLoaders.successSnackBar(
+          title: 'Congratulations',
+          message: 'Your account has been created ! Verify Email to continue.');
 
       /// move to verify email screen
+      Get.to(() => const VerifyEmailScreen());
     } catch (e) {
-      ///Show some Generic error to the user
-
-      PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
-    } finally {
-      /// Remove Loader
+      //Remove Loader
       PrFullScreenLoader.stopLoading();
+
+      ///Show some Generic error to the user
+      PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
     }
   }
 }

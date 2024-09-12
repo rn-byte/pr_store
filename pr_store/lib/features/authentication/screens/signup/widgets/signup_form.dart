@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/features/authentication/controllers/signup/signup_controller.dart';
-import 'package:pr_store/utils/validators/valdations.dart';
+import 'package:pr_store/utils/validators/validation.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import 'terms_conditions.dart';
@@ -61,8 +61,9 @@ class SignupForm extends StatelessWidget {
             validator: (value) =>
                 PrValidator.validateEmptyField('Username', value),
             decoration: const InputDecoration(
-                labelText: PrText.username,
-                prefixIcon: Icon(Iconsax.user_edit)),
+              labelText: PrText.username,
+              prefixIcon: Icon(Iconsax.user_edit),
+            ),
           ),
           const SizedBox(
             height: PrSizes.spaceBtwInputFields,
