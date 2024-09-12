@@ -52,6 +52,8 @@ dependencies:
   intl:
   logger:
   url_launcher:
+  lottie: ^3.1.2
+  connectivity_plus: ^6.0.5
 
   
   smooth_page_indicator:
@@ -65,6 +67,7 @@ dependencies:
 
   #FireBase
   firebase_core: ^3.4.1
+  
   
 
   
