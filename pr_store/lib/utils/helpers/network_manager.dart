@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:ffi';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -12,8 +10,9 @@ class NetworkManager extends GetxController {
   static NetworkManager get instance => Get.find();
 
   final Connectivity _connectivity = Connectivity();
-  late StreamSubscription<ConnectivityResult> _connectivitySubscription;
-  final Rx<ConnectivityResult> _connectionStatus = ConnectivityResult.none.obs;
+  late StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  final RxList<ConnectivityResult> _connectionStatus =
+      <ConnectivityResult>[].obs;
 
   /// Initialize the Network Manager and Set up a Stream to Continuously check
   /// the connection status
@@ -27,9 +26,9 @@ class NetworkManager extends GetxController {
 
 // Update the connection status based on changes in connectivity and show a
 //relevant pop up for no internet connection
-  Future<void> _updateConnectionStatus(ConnectivityResult result) async {
+  Future<void> _updateConnectionStatus(List<ConnectivityResult> result) async {
     _connectionStatus.value = result;
-    if (_connectionStatus.value == ConnectivityResult.none) {
+    if (result.contains(ConnectivityResult.none)) {
       PrLoaders.warningSnackBar(title: 'No Internet Connection');
     }
   }
@@ -40,7 +39,7 @@ class NetworkManager extends GetxController {
   Future<bool> isConnected() async {
     try {
       final result = await _connectivity.checkConnectivity();
-      if (result == ConnectivityResult.none) {
+      if (result.any((element) => element == ConnectivityResult.none)) {
         return false;
       } else {
         return true;
