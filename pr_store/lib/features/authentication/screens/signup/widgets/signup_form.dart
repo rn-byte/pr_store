@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/features/authentication/controllers/signup/signup_controller.dart';
 import 'package:pr_store/features/authentication/screens/signup/very_email.dart';
+import 'package:pr_store/utils/validators/valdations.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import 'terms_conditions.dart';
@@ -13,7 +15,9 @@ class SignupForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(SignupController());
     return Form(
+      key: controller.signupFormKey,
       child: Column(
         children: [
           Row(
@@ -21,7 +25,10 @@ class SignupForm extends StatelessWidget {
               //first name
               Expanded(
                 child: TextFormField(
+                  controller: controller.firstName,
                   expands: false,
+                  validator: (value) =>
+                      PrValidator.validateEmptyField('First Name', value),
                   decoration: const InputDecoration(
                       labelText: PrText.firstName,
                       prefixIcon: Icon(Iconsax.user)),
@@ -33,7 +40,10 @@ class SignupForm extends StatelessWidget {
               //last name
               Expanded(
                 child: TextFormField(
+                  controller: controller.lastName,
                   expands: false,
+                  validator: (value) =>
+                      PrValidator.validateEmptyField('Last Name', value),
                   decoration: const InputDecoration(
                       labelText: PrText.lastName,
                       prefixIcon: Icon(Iconsax.user)),
@@ -47,7 +57,10 @@ class SignupForm extends StatelessWidget {
 
           //username
           TextFormField(
+            controller: controller.userName,
             expands: false,
+            validator: (value) =>
+                PrValidator.validateEmptyField('Username', value),
             decoration: const InputDecoration(
                 labelText: PrText.username,
                 prefixIcon: Icon(Iconsax.user_edit)),
@@ -58,7 +71,9 @@ class SignupForm extends StatelessWidget {
 
           //Email
           TextFormField(
+            controller: controller.email,
             expands: false,
+            validator: (value) => PrValidator.validateEmail(value),
             decoration: const InputDecoration(
                 labelText: PrText.email, prefixIcon: Icon(Iconsax.direct)),
           ),
@@ -68,7 +83,9 @@ class SignupForm extends StatelessWidget {
 
           //Phone Number
           TextFormField(
+            controller: controller.phoneNumber,
             expands: false,
+            validator: (value) => PrValidator.validatePhoneNumber(value),
             decoration: const InputDecoration(
                 labelText: PrText.phoneNa, prefixIcon: Icon(Iconsax.call)),
           ),
@@ -78,7 +95,9 @@ class SignupForm extends StatelessWidget {
 
           //Password
           TextFormField(
+            controller: controller.password,
             expands: false,
+            validator: (value) => PrValidator.validatePassword(value),
             decoration: const InputDecoration(
                 labelText: PrText.password,
                 prefixIcon: Icon(Iconsax.password_check),
@@ -86,7 +105,7 @@ class SignupForm extends StatelessWidget {
           ),
           const SizedBox(height: PrSizes.spaceBtwSections),
 
-          ///Terms ans codition checkBox
+          ///Terms ans condition checkBox
           const PrTermsAndCondition(),
 
           const SizedBox(height: PrSizes.spaceBtwSections),
@@ -95,7 +114,7 @@ class SignupForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-                onPressed: () => Get.to(() => const VerifyEmailScreen()),
+                onPressed: () => controller.signup,
                 child: const Text(PrText.createAccount)),
           ),
         ],

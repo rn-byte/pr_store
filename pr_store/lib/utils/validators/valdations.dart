@@ -1,4 +1,12 @@
 class PrValidator {
+  ///Empty field validation
+  static String? validateEmptyField(String? fieldName, String? value) {
+    if (value == null || value.isEmpty) {
+      return '$fieldName is required';
+    }
+    return null;
+  }
+
   static String? validateEmail(String? value) {
     if (value == null || value.isEmpty) {
       return 'Email is Required.';
@@ -20,22 +28,22 @@ class PrValidator {
 
     ///Check for minimum password length
     if (value.length < 6) {
-      return 'Password must be atleast 6 character long.';
+      return 'Password must be at least 6 character long.';
     }
 
     ///Check for UPPERCASE letter
     if (!value.contains(RegExp(r'[A-Z]'))) {
-      return 'Password must contain atleast one Uppercase letter.';
+      return 'Password must contain at least one Uppercase letter.';
     }
 
     ///Check for NUMBER
     if (!value.contains(RegExp(r'[0-9]'))) {
-      return 'Password must contain atleast one Number .';
+      return 'Password must contain at least one Number .';
     }
 
     ///Check for SPECIAL CHARACTERS
     if (!value.contains(RegExp(r'[!@#\$%^&*(),.+"-=[]{}/|<>]'))) {
-      return 'Password must contain atleast one Special Characters .';
+      return 'Password must contain at least one Special Characters .';
     }
     return null;
   }

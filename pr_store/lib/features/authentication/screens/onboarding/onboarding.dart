@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/text_strings.dart';
-import '../../controllers_onboarding/onboarding_controller.dart';
+import '../../controllers/onboarding/onboarding_controller.dart';
 import 'widgets/widgets.dart';
 
 class OnboardingScreen extends StatelessWidget {
