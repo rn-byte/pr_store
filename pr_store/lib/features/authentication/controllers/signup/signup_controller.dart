@@ -9,7 +9,9 @@ class SignupController extends GetxController {
   static SignupController get instance => Get.find();
 
   /// Variable
-  ///Controller for firstName input
+  ///Controller for  input fields
+  final hidePassword = true.obs;
+  final privacyPolicy = false.obs;
   final firstName = TextEditingController();
   final lastName = TextEditingController();
   final userName = TextEditingController();
@@ -25,22 +27,27 @@ class SignupController extends GetxController {
     try {
       /// Start Loading
       PrFullScreenLoader.openLoadingDialog(
-          'We are Processing your information...', PrImage.applePay);
+          'We are Processing your information...', PrImage.docerAnimation);
 
       /// check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
       if (!isConnected) {
-        PrFullScreenLoader.stopLoading();
         return;
       }
 
       /// Form Validation
       if (!signupFormKey.currentState!.validate()) {
-        PrFullScreenLoader.stopLoading();
         return;
       }
 
       /// Privacy Policy check
+
+      if (!privacyPolicy.value) {
+        PrLoaders.warningSnackBar(
+            title: 'Accept Privacy Policy',
+            message:
+                'In Order to create an account, you must have to read and accept the Privacy Policy and Terms of Use.');
+      }
 
       /// Register user in the Firebase authentication and save user data in firebase
 
@@ -55,6 +62,7 @@ class SignupController extends GetxController {
       PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
     } finally {
       /// Remove Loader
+      PrFullScreenLoader.stopLoading();
     }
   }
 }

@@ -93,14 +93,22 @@ class SignupForm extends StatelessWidget {
           ),
 
           //Password
-          TextFormField(
-            controller: controller.password,
-            expands: false,
-            validator: (value) => PrValidator.validatePassword(value),
-            decoration: const InputDecoration(
-                labelText: PrText.password,
-                prefixIcon: Icon(Iconsax.password_check),
-                suffixIcon: Icon(Iconsax.eye_slash)),
+          Obx(
+            () => TextFormField(
+              controller: controller.password,
+              expands: false,
+              obscureText: controller.hidePassword.value,
+              validator: (value) => PrValidator.validatePassword(value),
+              decoration: InputDecoration(
+                  labelText: PrText.password,
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  suffixIcon: IconButton(
+                      onPressed: () => controller.hidePassword.value =
+                          !controller.hidePassword.value,
+                      icon: Icon(controller.hidePassword.value
+                          ? Iconsax.eye_slash
+                          : Iconsax.eye))),
+            ),
           ),
           const SizedBox(height: PrSizes.spaceBtwSections),
 
@@ -113,7 +121,7 @@ class SignupForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-                onPressed: () => controller.signup,
+                onPressed: () => controller.signup(),
                 child: const Text(PrText.createAccount)),
           ),
         ],

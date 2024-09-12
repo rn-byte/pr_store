@@ -13,8 +13,8 @@ class PrValidator {
     }
 
     ///Regular Expression for email validations
-    final emailRegExp =
-        RegExp(r'^.+@[a-zA-Z]+\.{{1}[a-zA-Z]+(\.{0.1}[a-zA-Z]+)$ ');
+    final emailRegExp = RegExp(
+        r'^[a-zA-Z0-9]+([._%+-]?[a-zA-Z0-9]+)*@[a-zA-Z0-9-]+\.[a-zA-Z]{2,}$');
     if (!emailRegExp.hasMatch(value)) {
       return 'Invalid Email Address.';
     }
@@ -42,7 +42,7 @@ class PrValidator {
     }
 
     ///Check for SPECIAL CHARACTERS
-    if (!value.contains(RegExp(r'[!@#\$%^&*(),.+"-=[]{}/|<>]'))) {
+    if (!value.contains(RegExp(r'[!@#\$%^&*(),.+"\-=\[\]{}\/|<>]'))) {
       return 'Password must contain at least one Special Characters .';
     }
     return null;
