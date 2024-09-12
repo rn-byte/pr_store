@@ -22,10 +22,10 @@ class AuthenticationRepository extends GetxController {
   screenRedirect() async {
     ///Local Storage
     ///
-    if (kDebugMode) {
-      print('<-------------Get Storage-AUTHENTICATION----------------->');
-      print(deviceStorage.read('IsFirstTime'));
-    }
+    // if (kDebugMode) {
+    //   print('<-------------Get Storage-AUTHENTICATION----------------->');
+    //   print(deviceStorage.read('IsFirstTime'));
+    // }
     deviceStorage.writeIfNull('IsFirstTime', true);
     deviceStorage.read('IsFirstTime') != true
         ? Get.offAll(() => const LoginScreen())
