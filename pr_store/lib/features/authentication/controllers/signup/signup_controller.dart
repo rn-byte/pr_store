@@ -1,9 +1,7 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
-
+import '../../../../utils/helpers/network_manager.dart';
 import '../../../../utils/popups/full_screen_loader.dart';
 
 class SignupController extends GetxController {
@@ -22,13 +20,18 @@ class SignupController extends GetxController {
       GlobalKey<FormState>(); // FormKey For Form Validation
 
   /// ---Sign-up
-  Future<Void> signup() async {
+  Future<void> signup() async {
     try {
       /// Start Loading
       PrFullScreenLoader.openLoadingDialog(
-          'We are Processing your information...', PrImage.docerAnimation);
+          'We are Processing your information...', PrImage.applePay);
 
       /// check Internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        PrFullScreenLoader.stopLoading();
+        return;
+      }
 
       /// Form Validation
 
