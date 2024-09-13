@@ -45,7 +45,7 @@ class PrFirebaseExceptions implements Exception {
       case 'keychain-error':
         return 'A keychain error occured. Please check the keychain and try again.';
       default:
-        return 'Something Went Wrong';
+        return 'An unexcepted Firebase error occured. Please try again';
     }
   }
 }

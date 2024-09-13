@@ -57,7 +57,7 @@ class PrFirebaseAuthExceptions implements Exception {
       case 'invalid-sender':
         return 'The email template sender is invalid. Please verify the sender\'s email';
       default:
-        return 'Something Went Wrong';
+        return 'An unexcepted Firebase error occured. Please try again';
     }
   }
 }
