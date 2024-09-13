@@ -5,7 +5,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pr_store/features/authentication/screens/login/login.dart';
 import 'package:pr_store/features/authentication/screens/onboarding/onboarding.dart';
-
+import 'package:pr_store/features/authentication/screens/signup/very_email.dart';
+import 'package:pr_store/navigation_menu.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
@@ -27,16 +28,19 @@ class AuthenticationRepository extends GetxController {
 
   /// Function to show relevant screen
   screenRedirect() async {
-    ///Local Storage
-    ///
-    // if (kDebugMode) {
-    //   print('<-------------Get Storage-AUTHENTICATION----------------->');
-    //   print(deviceStorage.read('IsFirstTime'));
-    // }
-    deviceStorage.writeIfNull('IsFirstTime', true);
-    deviceStorage.read('IsFirstTime') != true
-        ? Get.offAll(() => const LoginScreen())
-        : Get.offAll(() => const OnboardingScreen());
+    final user = _auth.currentUser;
+    if (user != null) {
+      if (user.emailVerified) {
+        Get.offAll(() => const NavigationMenu());
+      } else {
+        Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
+      }
+    } else {
+      deviceStorage.writeIfNull('IsFirstTime', true);
+      deviceStorage.read('IsFirstTime') != true
+          ? Get.offAll(() => const LoginScreen())
+          : Get.offAll(() => const OnboardingScreen());
+    }
   }
 
   /*---------------------- Email and password sign-in-------------------- */
@@ -85,5 +89,22 @@ class AuthenticationRepository extends GetxController {
 
   /*----------------------end of Federated identity and social sign-in-------------------- */
   /// [Logout User]- Valid for any Authentication
+  Future<void> logout() async {
+    try {
+      await _auth.signOut();
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw PrFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
+
   /// [ Delete user]- Remove User Auth and Firebase account
 }

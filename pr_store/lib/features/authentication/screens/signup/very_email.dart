@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:pr_store/common/widgets/success_screen/success_screen.dart';
-import 'package:pr_store/features/authentication/screens/login/login.dart';
+import 'package:pr_store/data/repositories/authentication/authentication_repository.dart';
+import 'package:pr_store/features/authentication/controllers/signup/verify_email_controller.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -11,11 +11,14 @@ import 'package:pr_store/utils/constants/text_strings.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 
 class VerifyEmailScreen extends StatelessWidget {
-  const VerifyEmailScreen({super.key});
+  const VerifyEmailScreen({super.key, this.email});
+
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
     final isDark = PrHelper.isDarkMode(context);
+    final controller = Get.put(VerifyEmailController());
     return Scaffold(
       /// The close icon in the appBar is used to log out the user and redirect them to login screen
       /// This approach is taken to handel scenarios where the user enters the registration process
@@ -26,7 +29,7 @@ class VerifyEmailScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-              onPressed: () => Get.offAll(() => const LoginScreen()),
+              onPressed: () => AuthenticationRepository.instance.logout(),
               icon: Icon(
                 CupertinoIcons.clear,
                 color: isDark ? PrColor.light : PrColor.dark,
@@ -60,7 +63,7 @@ class VerifyEmailScreen extends StatelessWidget {
                 height: PrSizes.spaceBtwItems,
               ),
               Text(
-                'pr_online@store.com',
+                email ?? '',
                 style: Theme.of(context).textTheme.titleMedium,
                 textAlign: TextAlign.center,
               ),
@@ -80,12 +83,7 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                    onPressed: () => Get.to(() => SuccessScreen(
-                          image: PrImage.staticSuccessIllustration,
-                          onPressed: () => Get.to(() => const LoginScreen()),
-                          title: PrText.yourAccountCreatedTitle,
-                          subTitle: PrText.yourAccountCreatedSubTitle,
-                        )),
+                    onPressed: () => controller.checkEmailVerificationStatus(),
                     child: const Text(PrText.tContinue)),
               ),
               const SizedBox(
@@ -94,7 +92,8 @@ class VerifyEmailScreen extends StatelessWidget {
               SizedBox(
                 width: double.infinity,
                 child: OutlinedButton(
-                    onPressed: () {}, child: const Text(PrText.resendEmail)),
+                    onPressed: () => controller.sendEmailVerification(),
+                    child: const Text(PrText.resendEmail)),
               ),
             ],
           ),
