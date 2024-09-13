@@ -6,6 +6,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:pr_store/features/authentication/screens/login/login.dart';
 import 'package:pr_store/features/authentication/screens/onboarding/onboarding.dart';
 
+import '../../../utils/exceptions/firebase_auth_exceptions.dart';
+import '../../../utils/exceptions/firebase_exceptions.dart';
+import '../../../utils/exceptions/format_exceptions.dart';
+import '../../../utils/exceptions/platform_exceptions.dart';
+
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
 
@@ -44,13 +49,13 @@ class AuthenticationRepository extends GetxController {
       return await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
-      throw PrFirebaseAuthException(e.code).message;
+      throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {
-      throw PrFirebaseException(e.code).message;
+      throw PrFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {
-      throw const PrFormatException();
+      throw PrFormatExceptions();
     } on PlatformException catch (e) {
-      throw PrPlatformException(e.code).message;
+      throw PrPlatformExceptions(e.code).message;
     } catch (e) {
       throw 'Something went Wrong, Please Try Again!';
     }
@@ -58,6 +63,21 @@ class AuthenticationRepository extends GetxController {
 
   /// [Re-authentication] - Reauthenticate user
   /// [Email Verification] - Mail verification
+  Future<void> sendEmailVerification() async {
+    try {
+      await _auth.currentUser!.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw PrFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
 
   /*---------------------- Federated identity and social sign-in-------------------- */
   ///[Google Authentication] - Google
