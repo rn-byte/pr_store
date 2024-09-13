@@ -53,7 +53,7 @@ class AuthenticationRepository extends GetxController {
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {
-      throw PrFormatExceptions();
+      throw const PrFormatExceptions();
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
@@ -65,13 +65,13 @@ class AuthenticationRepository extends GetxController {
   /// [Email Verification] - Mail verification
   Future<void> sendEmailVerification() async {
     try {
-      await _auth.currentUser!.sendEmailVerification();
+      await _auth.currentUser?.sendEmailVerification();
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {
-      throw PrFormatExceptions();
+      throw const PrFormatExceptions();
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
