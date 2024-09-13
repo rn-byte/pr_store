@@ -23,13 +23,15 @@ class PrFullScreenLoader {
       builder: (_) => PopScope(
         canPop: false, // Disable popping with the back button
         child: Container(
-          color:
-              PrHelper.isDarkMode(Get.context!) ? PrColor.dark : PrColor.white,
+          color: PrHelper.isDarkMode(Get.context!)
+              ? const Color.fromARGB(255, 0, 0, 0)
+              : PrColor.white,
           width: double.infinity,
           height: double.infinity,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(height: 250), // Adjust the Spacing as needed
+              //const SizedBox(height: 200), // Adjust the Spacing as needed
               PrAnimationLoaderWidget(
                 text: text,
                 animation: animation,

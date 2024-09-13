@@ -51,10 +51,12 @@ class SignupController extends GetxController {
       /// Privacy Policy check
 
       if (!privacyPolicy.value) {
+        PrFullScreenLoader.stopLoading();
         PrLoaders.warningSnackBar(
             title: 'Accept Privacy Policy',
             message:
                 'In Order to create an account, you must have to read and accept the Privacy Policy and Terms of Use.');
+        return;
       }
 
       /// Register user in the Firebase authentication and save user data in firebase

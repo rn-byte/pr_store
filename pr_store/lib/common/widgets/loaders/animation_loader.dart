@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
+import 'package:pr_store/utils/helpers/helper.dart';
 
 /// A widget for Displaying an animated loading indicator with optional
 /// text and action button
@@ -38,9 +39,10 @@ class PrAnimationLoaderWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Lottie.asset(animation,
-              width: MediaQuery.of(context).size.width *
-                  0.8), // Display Lottie Animation
+          Lottie.asset(
+            animation,
+            width: MediaQuery.of(context).size.width * 0.8,
+          ), // Display Lottie Animation
           const SizedBox(height: PrSizes.defaultSpace),
           Text(
             text,

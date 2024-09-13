@@ -31,8 +31,7 @@ class PrImage {
       "assets/images/animations/sammy-line-come-back-later.png";
   static const String verifyIllustration =
       "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
-  static const String docerAnimation =
-      "/assets/images/animations/docerAnimation.gif";
+  static const String docerAnimation = "assets/images/animations/docer.json";
 
   /// Category Icons
   static const String sportIcon =
