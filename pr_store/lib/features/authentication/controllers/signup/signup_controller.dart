@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pr_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:pr_store/data/repositories/users/user_repository.dart';
 import 'package:pr_store/features/authentication/models/user_model.dart';
-import 'package:pr_store/features/authentication/screens/signup/very_email.dart';
+import 'package:pr_store/features/authentication/screens/signup/verify_email.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
 import '../../../../utils/helpers/network_manager.dart';
