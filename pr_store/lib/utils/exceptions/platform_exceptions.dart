@@ -25,8 +25,17 @@ class PrPlatformExceptions {
       case 'network-request-failed':
         return 'Network request failed. Please check your internet connection.';
       case 'internal-error':
+        return 'Internal Error. Please try again later';
+
+      case 'invalid-verification-code':
+        return 'Invalid verification code. Please enter a valid code.';
+      case 'invalid-verification-id':
+        return 'Invalid verification ID. Please request a new verification code.';
+      case 'quota-exceeded':
+        return 'Quota exceeded. Please try again later.';
+
       default:
-        return 'An unexcepted Firebase error occured. Please try again';
+        return 'An unexcepted Platform error occured. Please try again';
     }
   }
 }
