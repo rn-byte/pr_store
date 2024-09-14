@@ -34,10 +34,12 @@ class PrFormatExceptions implements Exception {
       case 'invalid-credit-card-format':
         return const PrFormatExceptions(
             'The credit card format is invalid. Please enter a valid credit card number.');
+      case 'invalid-numeric-format':
+        return const PrFormatExceptions(
+            'The input should be valid numeric Format.');
 
       default:
-        return const PrFormatExceptions(
-            'An unexcepted Firebase error occured. Please try again');
+        return const PrFormatExceptions();
     }
   }
 }
