@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -23,14 +24,14 @@ class PrProfileUserTile extends StatelessWidget {
         fit: BoxFit.contain,
       ),
       title: Text(
-        'Pr Store',
+        FirebaseAuth.instance.currentUser!.displayName!,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: PrColor.white),
       ),
       subtitle: Text(
-        'pr_store123@gmail.com',
+        FirebaseAuth.instance.currentUser!.email!,
         style:
             Theme.of(context).textTheme.bodyMedium!.apply(color: PrColor.white),
       ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../common/widgets/app_bar/appbar.dart';
@@ -12,6 +13,7 @@ class PrHomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //final userController = Get.put(UserController());
     return PrAppBar(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +23,7 @@ class PrHomeAppBar extends StatelessWidget {
                   .textTheme
                   .titleMedium!
                   .apply(color: PrColor.grey)),
-          Text(PrText.homeAppbarSubTitle,
+          Text(FirebaseAuth.instance.currentUser!.displayName!,
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall!
