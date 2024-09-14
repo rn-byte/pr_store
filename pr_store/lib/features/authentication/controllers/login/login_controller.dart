@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:pr_store/data/repositories/authentication/authentication_repository.dart';
+import 'package:pr_store/features/personalization/controllers/user_controller.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/helpers/network_manager.dart';
 import 'package:pr_store/utils/popups/full_screen_loader.dart';
@@ -19,6 +20,8 @@ class LoginController extends GetxController {
 
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
+  final userController = Get.put(UserController());
+
   @override
   void onInit() {
     email.text = localStorage.read('REMEMBER_ME_EMAIL') ?? '';
@@ -26,8 +29,8 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  /// Login
-  void emailAndPasswordSignin() async {
+  /// Email and Password sign in
+  Future<void> emailAndPasswordSignin() async {
     try {
       /// Start Loading
       PrFullScreenLoader.openLoadingDialog(
@@ -68,6 +71,39 @@ class LoginController extends GetxController {
 
       /// Show some Generic error to the user
       PrLoaders.errorSnackBar(title: 'Oh Snap !!!', message: e.toString());
+    }
+  }
+
+  /// -- Google Sign-in Authentication
+  Future<void> googleSignIn() async {
+    try {
+      // Start Loading
+      PrFullScreenLoader.openLoadingDialog(
+          'Logging you in ....', PrImage.docerAnimation);
+
+      /// Check Internet connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        PrFullScreenLoader.stopLoading();
+        return;
+      }
+
+      /// Google Authentication
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithGoogle();
+
+      ///Save user Record
+      await userController.saveUserRecord(userCredentials);
+
+      // Remove loader
+      PrFullScreenLoader.stopLoading();
+
+      /// Redirect
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      /// Remove Loader
+      PrFullScreenLoader.stopLoading();
+      PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
     }
   }
 }

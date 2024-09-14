@@ -141,6 +141,7 @@ class AuthenticationRepository extends GetxController {
   /// [Logout User]- Valid for any Authentication
   Future<void> logout() async {
     try {
+      await GoogleSignIn().signOut();
       await _auth.signOut();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
