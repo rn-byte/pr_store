@@ -52,9 +52,12 @@ class UserRepository extends GetxController {
   }
 
   /// Function to update userData in Firesotre
-  Future<void> saveUserRecord(UserModel user) async {
+  Future<void> updateUserDetails(UserModel updatedUser) async {
     try {
-      await _db.collection("Users").doc(user.id).set(user.toJson());
+      await _db
+          .collection("Users")
+          .doc(updatedUser.id)
+          .update(updatedUser.toJson());
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {
