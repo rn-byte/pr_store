@@ -70,9 +70,9 @@ class UserRepository extends GetxController {
   }
 
   /// Update any Field in specific User Collections
-  Future<void> saveUserRecord(UserModel user) async {
+  Future<void> updateSingleField(Map<String, dynamic> json) async {
     try {
-      await _db.collection("Users").doc(user.id).set(user.toJson());
+      await _db.collection("Users").doc().update(json);
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {
@@ -85,9 +85,9 @@ class UserRepository extends GetxController {
   }
 
   /// Function to remove user Data From FireStore
-  Future<void> saveUserRecord(UserModel user) async {
+  Future<void> removeUserRecord(String userID) async {
     try {
-      await _db.collection("Users").doc(user.id).set(user.toJson());
+      await _db.collection("Users").doc(userID).delete();
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
     } on FormatException catch (_) {
