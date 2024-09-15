@@ -10,6 +10,24 @@ class UserController extends GetxController {
 
   final userRepository = Get.put(UserRepository());
 
+  Rx<UserModel> user = UserModel.empty().obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserRecord();
+  }
+
+  /// Fetch User Record
+  Future<void> fetchUserRecord() async {
+    try {
+      final user = await userRepository.fetchUserDetails();
+      this.user(user);
+    } catch (e) {
+      user(UserModel.empty());
+    }
+  }
+
   ///Save User Record from any registration provieder
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
@@ -38,7 +56,7 @@ class UserController extends GetxController {
       PrLoaders.errorSnackBar(
           title: 'Data not Saved',
           message:
-              'Something went wrong while saving your information. You can re-save your data in your profile');
+              'Something went wrong while saving your information. You can re-save your data from your profile');
     }
   }
 }

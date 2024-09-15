@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
 import '../../../../../common/widgets/app_bar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_strings.dart';
+import '../../../../personalization/controllers/user_controller.dart';
 
 class PrHomeAppBar extends StatelessWidget {
   const PrHomeAppBar({
@@ -13,7 +13,7 @@ class PrHomeAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final userController = Get.put(UserController());
+    final userController = Get.put(UserController());
     return PrAppBar(
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -23,11 +23,13 @@ class PrHomeAppBar extends StatelessWidget {
                   .textTheme
                   .titleMedium!
                   .apply(color: PrColor.grey)),
-          Text(FirebaseAuth.instance.currentUser!.displayName!,
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineSmall!
-                  .apply(color: PrColor.white)),
+          Obx(
+            () => Text(userController.user.value.fullName,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineSmall!
+                    .apply(color: PrColor.white)),
+          ),
         ],
       ),
       actions: [
