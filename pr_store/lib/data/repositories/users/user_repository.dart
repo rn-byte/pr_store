@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:pr_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:pr_store/features/authentication/models/user_model.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
@@ -13,6 +14,74 @@ class UserRepository extends GetxController {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   /// Function to Save user Data to Firestore
+  Future<void> saveUserRecord(UserModel user) async {
+    try {
+      await _db.collection("Users").doc(user.id).set(user.toJson());
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
+
+  /// Function to fetch user Details base on userID
+  Future<UserModel> fetchUserDetails() async {
+    try {
+      final documentSnapshot = await _db
+          .collection("Users")
+          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .get();
+      if (documentSnapshot.exists) {
+        return UserModel.fromSnapshot(documentSnapshot);
+      } else {
+        return UserModel.empty();
+      }
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
+
+  /// Function to update userData in Firesotre
+  Future<void> saveUserRecord(UserModel user) async {
+    try {
+      await _db.collection("Users").doc(user.id).set(user.toJson());
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
+
+  /// Update any Field in specific User Collections
+  Future<void> saveUserRecord(UserModel user) async {
+    try {
+      await _db.collection("Users").doc(user.id).set(user.toJson());
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
+
+  /// Function to remove user Data From FireStore
   Future<void> saveUserRecord(UserModel user) async {
     try {
       await _db.collection("Users").doc(user.id).set(user.toJson());
