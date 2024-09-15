@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get/get.dart';
@@ -84,11 +85,27 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  /// [Re-authentication] - Reauthenticate user
   /// [Email Verification] - Mail verification
   Future<void> sendEmailVerification() async {
     try {
       await _auth.currentUser?.sendEmailVerification();
+    } on FirebaseAuthException catch (e) {
+      throw PrFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
+
+  /// [Re-authentication] - Reauthenticate user
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {
@@ -131,6 +148,7 @@ class AuthenticationRepository extends GetxController {
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
+      if (kDebugMode) print('Something went Wrong. $e');
       throw 'Something went Wrong, Please Try Again!';
     }
   }

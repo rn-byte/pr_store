@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import '../popups/loaders.dart';
 
 /// Manages the network connectivity status and provide methods to check and handel connectivity changes
