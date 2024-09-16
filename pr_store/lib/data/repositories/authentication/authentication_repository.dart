@@ -208,7 +208,7 @@ class AuthenticationRepository extends GetxController {
   Future<void> deleteAccount() async {
     try {
       await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
-      await _auth.currentUser!.delete();
+      await _auth.currentUser?.delete();
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
