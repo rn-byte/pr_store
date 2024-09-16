@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/features/personalization/controllers/user/user_controller.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/constants/text_strings.dart';
@@ -13,8 +14,11 @@ class ReAuthUserLoginForm extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Re-Authenticate User'),
+      appBar: const PrAppBar(
+        showBackArrow: true,
+        title: Text(
+          'Re-Authenticate User',
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
