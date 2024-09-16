@@ -146,6 +146,13 @@ class UserController extends GetxController {
         PrFullScreenLoader.stopLoading();
         return;
       }
+
+      await AuthenticationRepository.instance
+          .reAuthenticateWithEmailAndPassword(
+              verifyEmail.text.trim(), verifyPassword.text.trim());
+      await AuthenticationRepository.instance.deleteAccount();
+      PrFullScreenLoader.stopLoading();
+      Get.offAll(() => const LoginScreen());
     } catch (e) {
       PrFullScreenLoader.stopLoading();
       PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
