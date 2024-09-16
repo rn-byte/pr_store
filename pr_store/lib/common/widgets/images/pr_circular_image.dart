@@ -49,9 +49,7 @@ class PrCircularImage extends StatelessWidget {
               )
             : Image(
                 fit: fit,
-                image: isNetworkImage
-                    ? NetworkImage(image)
-                    : AssetImage(image) as ImageProvider,
+                image: AssetImage(image) as ImageProvider,
                 color: overlayColor,
               ),
       ),
