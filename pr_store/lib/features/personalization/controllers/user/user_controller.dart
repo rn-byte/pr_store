@@ -26,6 +26,8 @@ class UserController extends GetxController {
   final verifyPassword = TextEditingController();
   GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
 
+  final imageUploading = false.obs;
+
   @override
   void onInit() {
     super.onInit();
@@ -176,6 +178,7 @@ class UserController extends GetxController {
           maxWidth: 512);
 
       if (image != null) {
+        imageUploading.value = true;
         final imageUrl =
             await userRepository.uploadImage('Users/Image/Profile/', image);
 
@@ -185,6 +188,9 @@ class UserController extends GetxController {
         await userRepository.updateSingleField(json);
 
         user.value.profilePicture = imageUrl;
+        user.refresh();
+
+        //success snackBar
         PrLoaders.successSnackBar(
             title: 'Congratulations!',
             message: 'Your profile picture has been updated.');
@@ -192,6 +198,8 @@ class UserController extends GetxController {
     } catch (e) {
       PrLoaders.errorSnackBar(
           title: 'Oh Snap !', message: 'Something went wrong ! : $e');
+    } finally {
+      imageUploading.value = false;
     }
   }
 }

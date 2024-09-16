@@ -37,21 +37,24 @@ class PrCircularImage extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         color: backgroundColor ?? (isDark ? PrColor.black : PrColor.white),
       ),
-      child: Center(
-        child: isNetworkImage
-            ? CachedNetworkImage(
-                imageUrl: image,
-                fit: fit,
-                color: overlayColor,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    const PrShimmerEffect(width: 55, height: 55),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              )
-            : Image(
-                fit: fit,
-                image: AssetImage(image) as ImageProvider,
-                color: overlayColor,
-              ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(100),
+        child: Center(
+          child: isNetworkImage
+              ? CachedNetworkImage(
+                  imageUrl: image,
+                  fit: BoxFit.fill,
+                  color: overlayColor,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      const PrShimmerEffect(width: 55, height: 55),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                )
+              : Image(
+                  fit: fit,
+                  image: AssetImage(image) as ImageProvider,
+                  color: overlayColor,
+                ),
+        ),
       ),
     );
   }

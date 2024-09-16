@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/images/pr_circular_image.dart';
+import 'package:pr_store/common/widgets/loaders/shimmer.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/personalization/controllers/user/user_controller.dart';
 import 'package:pr_store/features/personalization/screens/profile/widgets/change_name.dart';
@@ -38,14 +39,17 @@ class PrProfileScreen extends StatelessWidget {
                       final networkImage = controller.user.value.profilePicture;
                       final image =
                           networkImage.isNotEmpty ? networkImage : PrImage.user;
-                      return PrCircularImage(
-                        image: image,
-                        height: 80,
-                        width: 80,
-                        fit: BoxFit.contain,
-                        backgroundColor: Colors.transparent,
-                        isNetworkImage: networkImage.isNotEmpty,
-                      );
+                      return controller.imageUploading.value
+                          ? const PrShimmerEffect(
+                              width: 80, height: 80, radius: 80)
+                          : PrCircularImage(
+                              image: image,
+                              height: 80,
+                              width: 80,
+                              fit: BoxFit.contain,
+                              backgroundColor: Colors.transparent,
+                              isNetworkImage: networkImage.isNotEmpty,
+                            );
                     }),
                     TextButton(
                         onPressed: () => controller.uploadUserProfilePicture(),
