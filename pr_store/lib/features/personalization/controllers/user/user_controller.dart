@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/data/repositories/users/user_repository.dart';
+import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
 
 import '../../../authentication/models/user_model.dart';
@@ -69,4 +70,29 @@ class UserController extends GetxController {
               'Something went wrong while saving your information. You can re-save your data from your profile');
     }
   }
+
+  /// Delete Account Warning
+  void deleteAccountWarningPopup() {
+    Get.defaultDialog(
+        contentPadding: const EdgeInsets.all(PrSizes.md),
+        title: 'Delete Account',
+        middleText:
+            'Are you sure you want to delete your account permanently? This action is not reversible and all of your data will be removed permanently.',
+        confirm: ElevatedButton(
+          onPressed: () async => deleteUserAccount(),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.red,
+              side: const BorderSide(color: Colors.red)),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: PrSizes.lg),
+            child: Text('Delete'),
+          ),
+        ),
+        cancel: OutlinedButton(
+            onPressed: () => Navigator.of(Get.overlayContext!).pop(),
+            child: const Text('Cancel')));
+  }
+
+  /// Delete User Account
+  void deleteUserAccount() {}
 }
