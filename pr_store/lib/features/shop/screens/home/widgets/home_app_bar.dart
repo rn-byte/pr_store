@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pr_store/features/shop/screens/home/widgets/shimmer.dart';
+import 'package:pr_store/common/widgets/loaders/shimmer.dart';
 import '../../../../../common/widgets/app_bar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_strings.dart';
-import '../../../../personalization/controllers/user_controller.dart';
+import '../../../../personalization/controllers/user/user_controller.dart';
 
 class PrHomeAppBar extends StatelessWidget {
   const PrHomeAppBar({

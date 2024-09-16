@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/images/pr_circular_image.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
-import 'package:pr_store/features/personalization/controllers/user_controller.dart';
+import 'package:pr_store/features/personalization/controllers/user/user_controller.dart';
+import 'package:pr_store/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
 import '../../../../utils/constants/image_strings.dart';
@@ -63,7 +65,7 @@ class PrProfileScreen extends StatelessWidget {
               PrProfileMenu(
                   title: 'Name',
                   value: controller.user.value.fullName,
-                  onPressed: () {}),
+                  onPressed: () => Get.to(() => const ChangeName())),
               PrProfileMenu(
                   title: 'Username',
                   value: controller.user.value.userName,

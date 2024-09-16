@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:pr_store/features/personalization/controllers/user_controller.dart';
+import 'package:pr_store/features/personalization/controllers/user/user_controller.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../images/pr_circular_image.dart';

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:pr_store/data/repositories/users/user_repository.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
 
-import '../../authentication/models/user_model.dart';
+import '../../../authentication/models/user_model.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
