@@ -34,15 +34,21 @@ class PrProfileScreen extends StatelessWidget {
               Center(
                 child: Column(
                   children: [
-                    const PrCircularImage(
-                      image: PrImage.user,
-                      height: 80,
-                      width: 80,
-                      fit: BoxFit.contain,
-                      backgroundColor: Colors.transparent,
-                    ),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final image =
+                          networkImage.isNotEmpty ? networkImage : PrImage.user;
+                      return PrCircularImage(
+                        image: image,
+                        height: 80,
+                        width: 80,
+                        fit: BoxFit.contain,
+                        backgroundColor: Colors.transparent,
+                        isNetworkImage: networkImage.isNotEmpty,
+                      );
+                    }),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () => controller.uploadUserProfilePicture(),
                         child: Text('Change Profile Picture',
                             style: Theme.of(context).textTheme.labelLarge))
                   ],
@@ -62,12 +68,11 @@ class PrProfileScreen extends StatelessWidget {
                   title: 'Profile Information', showActionButton: false),
               const SizedBox(height: PrSizes.spaceBtwItems),
 
-              Obx(
-                () => PrProfileMenu(
-                    title: 'Name',
-                    value: controller.user.value.fullName,
-                    onPressed: () => Get.to(() => const ChangeName())),
-              ),
+              PrProfileMenu(
+                  title: 'Name',
+                  value: controller.user.value.fullName,
+                  onPressed: () => Get.to(() => const ChangeName())),
+
               PrProfileMenu(
                   title: 'Username',
                   value: controller.user.value.userName,

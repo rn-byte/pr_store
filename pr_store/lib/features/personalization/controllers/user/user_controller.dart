@@ -47,26 +47,33 @@ class UserController extends GetxController {
   ///Save User Record from any registration provieder
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        /// Convert name to First and last name
-        final nameParts =
-            UserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      /// First update the Rx user and then check if user data is already stored. if not, then store new data
+      await fetchUserRecord();
 
-        /// Map Data
-        final user = UserModel(
-          id: userCredentials.user!.uid,
-          firstName: nameParts[0],
-          userName: username,
-          lastName: nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
-          email: userCredentials.user!.email ?? '',
-          phoneNumber: userCredentials.user!.phoneNumber ?? '',
-          profilePicture: userCredentials.user!.photoURL ?? '',
-        );
+      /// If no record already stored
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          /// Convert name to First and last name
+          final nameParts =
+              UserModel.nameParts(userCredentials.user!.displayName ?? '');
+          final username = UserModel.generateUsername(
+              userCredentials.user!.displayName ?? '');
 
-        /// save user data
-        await userRepository.saveUserRecord(user);
+          /// Map Data
+          final user = UserModel(
+            id: userCredentials.user!.uid,
+            firstName: nameParts[0],
+            userName: username,
+            lastName:
+                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            email: userCredentials.user!.email ?? '',
+            phoneNumber: userCredentials.user!.phoneNumber ?? '',
+            profilePicture: userCredentials.user!.photoURL ?? '',
+          );
+
+          /// save user data
+          await userRepository.saveUserRecord(user);
+        }
       }
     } catch (e) {
       PrLoaders.errorSnackBar(
@@ -157,4 +164,7 @@ class UserController extends GetxController {
       PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
     }
   }
+
+  /// Upload Profile Image
+  uploadUserProfilePicture() async {}
 }

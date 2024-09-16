@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pr_store/common/widgets/loaders/shimmer.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
@@ -35,12 +37,23 @@ class PrCircularImage extends StatelessWidget {
         borderRadius: BorderRadius.circular(100),
         color: backgroundColor ?? (isDark ? PrColor.black : PrColor.white),
       ),
-      child: Image(
-        fit: fit,
-        image: isNetworkImage
-            ? NetworkImage(image)
-            : AssetImage(image) as ImageProvider,
-        color: overlayColor,
+      child: Center(
+        child: isNetworkImage
+            ? CachedNetworkImage(
+                imageUrl: image,
+                fit: fit,
+                color: overlayColor,
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    const PrShimmerEffect(width: 55, height: 55),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              )
+            : Image(
+                fit: fit,
+                image: isNetworkImage
+                    ? NetworkImage(image)
+                    : AssetImage(image) as ImageProvider,
+                color: overlayColor,
+              ),
       ),
     );
   }
