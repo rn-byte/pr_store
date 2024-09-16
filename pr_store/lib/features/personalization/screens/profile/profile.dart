@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/images/pr_circular_image.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/personalization/controllers/user_controller.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
 import '../../../../utils/constants/image_strings.dart';
@@ -13,6 +14,7 @@ class PrProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: PrAppBar(
         title:
@@ -58,9 +60,14 @@ class PrProfileScreen extends StatelessWidget {
                   title: 'Profile Information', showActionButton: false),
               const SizedBox(height: PrSizes.spaceBtwItems),
 
-              PrProfileMenu(title: 'Name', value: 'Pr Store', onPressed: () {}),
               PrProfileMenu(
-                  title: 'Username', value: 'pr_store', onPressed: () {}),
+                  title: 'Name',
+                  value: controller.user.value.fullName,
+                  onPressed: () {}),
+              PrProfileMenu(
+                  title: 'Username',
+                  value: controller.user.value.userName,
+                  onPressed: () {}),
 
               const SizedBox(height: PrSizes.spaceBtwItems),
               const Divider(),
@@ -77,17 +84,17 @@ class PrProfileScreen extends StatelessWidget {
               PrProfileMenu(
                 onPressed: () {},
                 title: 'User ID',
-                value: '2212',
+                value: controller.user.value.id,
                 icon: Iconsax.copy,
               ),
               PrProfileMenu(
                   onPressed: () {},
                   title: 'Email',
-                  value: 'pr_store123@gmail.com'),
+                  value: controller.user.value.email),
               PrProfileMenu(
                   onPressed: () {},
                   title: 'Phone Number',
-                  value: '+977 9814858508'),
+                  value: controller.user.value.phoneNumber),
               PrProfileMenu(
                   onPressed: () {},
                   title: 'Date of Birth',

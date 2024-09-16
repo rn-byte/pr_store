@@ -1,6 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/features/personalization/controllers/user_controller.dart';
 
 import '../../../../utils/constants/colors.dart';
 import '../../images/pr_circular_image.dart';
@@ -14,6 +14,7 @@ class PrProfileUserTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return ListTile(
       leading: const PrCircularImage(
         backgroundColor: Colors.transparent,
@@ -24,14 +25,14 @@ class PrProfileUserTile extends StatelessWidget {
         fit: BoxFit.contain,
       ),
       title: Text(
-        FirebaseAuth.instance.currentUser!.displayName!,
+        controller.user.value.fullName,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: PrColor.white),
       ),
       subtitle: Text(
-        FirebaseAuth.instance.currentUser!.email!,
+        controller.user.value.email,
         style:
             Theme.of(context).textTheme.bodyMedium!.apply(color: PrColor.white),
       ),
