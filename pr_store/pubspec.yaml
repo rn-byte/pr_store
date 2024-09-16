@@ -54,6 +54,7 @@ dependencies:
   url_launcher:
   lottie: ^3.1.2
   connectivity_plus: ^6.0.5
+  shimmer: ^3.0.0
 
   
   smooth_page_indicator:
@@ -72,6 +73,7 @@ dependencies:
 
   #GOOGLE_SIGN_IN_DEPENDENCY
   google_sign_in: ^6.2.1
+  
   
   
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pr_store/features/shop/screens/home/widgets/shimmer.dart';
 import '../../../../../common/widgets/app_bar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
@@ -23,13 +24,17 @@ class PrHomeAppBar extends StatelessWidget {
                   .textTheme
                   .titleMedium!
                   .apply(color: PrColor.grey)),
-          Obx(
-            () => Text(userController.user.value.fullName,
-                style: Theme.of(context)
-                    .textTheme
-                    .headlineSmall!
-                    .apply(color: PrColor.white)),
-          ),
+          Obx(() {
+            if (userController.profileLoading.value) {
+              return const PrShimmerEffect(width: 80, height: 15);
+            } else {
+              return Text(userController.user.value.fullName,
+                  style: Theme.of(context)
+                      .textTheme
+                      .headlineSmall!
+                      .apply(color: PrColor.white));
+            }
+          })
         ],
       ),
       actions: [
