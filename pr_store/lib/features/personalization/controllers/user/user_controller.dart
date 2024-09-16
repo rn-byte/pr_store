@@ -9,7 +9,6 @@ import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/popups/full_screen_loader.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
-
 import '../../../../utils/helpers/network_manager.dart';
 import '../../../authentication/models/user_model.dart';
 

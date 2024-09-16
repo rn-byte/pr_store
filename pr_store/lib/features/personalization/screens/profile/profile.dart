@@ -111,7 +111,7 @@ class PrProfileScreen extends StatelessWidget {
               ),
               Center(
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () => controller.deleteAccountWarningPopup(),
                   child: Text('Close Account',
                       style: Theme.of(context)
                           .textTheme

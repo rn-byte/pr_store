@@ -46,8 +46,8 @@ class ReAuthUserLoginForm extends StatelessWidget {
                             onPressed: () => controller.hidePassword.value =
                                 !controller.hidePassword.value,
                             icon: Icon(controller.hidePassword.value
-                                ? Iconsax.eye_slash
-                                : Iconsax.eye)),
+                                ? Iconsax.eye
+                                : Iconsax.eye_slash)),
                       ),
                     ),
                   ),
