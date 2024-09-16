@@ -62,10 +62,12 @@ class PrProfileScreen extends StatelessWidget {
                   title: 'Profile Information', showActionButton: false),
               const SizedBox(height: PrSizes.spaceBtwItems),
 
-              PrProfileMenu(
-                  title: 'Name',
-                  value: controller.user.value.fullName,
-                  onPressed: () => Get.to(() => const ChangeName())),
+              Obx(
+                () => PrProfileMenu(
+                    title: 'Name',
+                    value: controller.user.value.fullName,
+                    onPressed: () => Get.to(() => const ChangeName())),
+              ),
               PrProfileMenu(
                   title: 'Username',
                   value: controller.user.value.userName,

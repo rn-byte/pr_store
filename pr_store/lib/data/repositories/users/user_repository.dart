@@ -101,4 +101,6 @@ class UserRepository extends GetxController {
       throw 'Something went Wrong, Please Try Again!';
     }
   }
+
+  /// Upload Image
 }
