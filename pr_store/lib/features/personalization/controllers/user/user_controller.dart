@@ -1,10 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pr_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:pr_store/data/repositories/users/user_repository.dart';
+import 'package:pr_store/features/authentication/screens/login/login.dart';
+import 'package:pr_store/features/personalization/screens/profile/widgets/re_authenticate_user_login_form.dart';
+import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
+import 'package:pr_store/utils/popups/full_screen_loader.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
 
+import '../../../../utils/helpers/network_manager.dart';
 import '../../../authentication/models/user_model.dart';
 
 class UserController extends GetxController {
@@ -94,5 +100,55 @@ class UserController extends GetxController {
   }
 
   /// Delete User Account
-  void deleteUserAccount() {}
+  void deleteUserAccount() async {
+    try {
+      /// start Loading
+      PrFullScreenLoader.openLoadingDialog(
+          'Processing..', PrImage.docerAnimation);
+
+      /// First Re-authenticate User
+      final auth = AuthenticationRepository.instance;
+      final provider =
+          auth.authUser!.providerData.map((e) => e.providerId).first;
+      if (provider.isNotEmpty) {
+        /// Re verify auth email
+        if (provider == 'google.com') {
+          await auth.signInWithGoogle();
+          await auth.deleteAccount();
+          PrFullScreenLoader.stopLoading();
+          Get.offAll(() => const LoginScreen());
+        } else if (provider == 'password') {
+          PrFullScreenLoader.stopLoading();
+          Get.to(() => const ReAuthUserLoginForm());
+        }
+      }
+    } catch (e) {
+      PrFullScreenLoader.stopLoading();
+      PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
+    }
+  }
+
+  /// Re- authenticate before deleting
+  Future<void> reAuthEmailAndPassUser() async {
+    try {
+      PrFullScreenLoader.openLoadingDialog(
+          'Processing... ', PrImage.docerAnimation);
+
+      /// Check Internet connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        PrFullScreenLoader.stopLoading();
+        return;
+      }
+
+      ///Re-auth FormKey
+      if (!reAuthFormKey.currentState!.validate()) {
+        PrFullScreenLoader.stopLoading();
+        return;
+      }
+    } catch (e) {
+      PrFullScreenLoader.stopLoading();
+      PrLoaders.errorSnackBar(title: 'Oh Snap !', message: e.toString());
+    }
+  }
 }

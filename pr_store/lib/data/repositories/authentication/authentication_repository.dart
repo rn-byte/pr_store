@@ -105,10 +105,35 @@ class AuthenticationRepository extends GetxController {
     }
   }
 
-  /// [Re-authentication] - Reauthenticate user
+  /// [password-reset]- Password Rest// Forgot Password
   Future<void> sendPasswordResetEmail(String email) async {
     try {
       await _auth.sendPasswordResetEmail(email: email);
+    } on FirebaseAuthException catch (e) {
+      throw PrFirebaseAuthExceptions(e.code).message;
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on FormatException catch (_) {
+      throw const PrFormatExceptions();
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went Wrong, Please Try Again!';
+    }
+  }
+
+  /// [Re-authentication] - Reauthenticate user
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      //create a credentials
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+
+      /// Re-Authenticate
+      await _auth.currentUser!.reauthenticateWithCredential(credential);
+
+      ///
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {

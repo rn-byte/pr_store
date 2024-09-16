@@ -39,9 +39,16 @@ class ReAuthUserLoginForm extends StatelessWidget {
                       controller: controller.verifyPassword,
                       validator: (value) =>
                           PrValidator.validateEmptyField('Password', value),
-                      decoration: const InputDecoration(
-                          prefixIcon: Icon(Iconsax.password_check),
-                          labelText: PrText.email),
+                      decoration: InputDecoration(
+                        prefixIcon: const Icon(Iconsax.password_check),
+                        labelText: PrText.password,
+                        suffixIcon: IconButton(
+                            onPressed: () => controller.hidePassword.value =
+                                !controller.hidePassword.value,
+                            icon: Icon(controller.hidePassword.value
+                                ? Iconsax.eye_slash
+                                : Iconsax.eye)),
+                      ),
                     ),
                   ),
                   const SizedBox(height: PrSizes.spaceBtwSections),
@@ -50,7 +57,8 @@ class ReAuthUserLoginForm extends StatelessWidget {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Verify')),
+                        onPressed: () => controller.reAuthEmailAndPassUser(),
+                        child: const Text('Verify')),
                   )
                 ],
               )),
