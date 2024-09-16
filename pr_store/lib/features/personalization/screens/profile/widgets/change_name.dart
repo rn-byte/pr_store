@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/features/personalization/controllers/profile/update_name_controller.dart';
@@ -11,7 +12,7 @@ class ChangeName extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = UpdateNameController.instance;
+    final controller = Get.put(UpdateNameController());
     return Scaffold(
       /// Custom AppBar
       appBar: PrAppBar(

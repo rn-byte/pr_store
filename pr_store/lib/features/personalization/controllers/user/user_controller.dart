@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/data/repositories/users/user_repository.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
@@ -12,6 +13,11 @@ class UserController extends GetxController {
 
   Rx<UserModel> user = UserModel.empty().obs;
   final profileLoading = false.obs;
+
+  final hidePassword = false.obs;
+  final verifyEmail = TextEditingController();
+  final verifyPassword = TextEditingController();
+  GlobalKey<FormState> reAuthFormKey = GlobalKey<FormState>();
 
   @override
   void onInit() {
