@@ -45,7 +45,7 @@ class CategoryModel {
         isFeatured: data['IsFeatured'] ?? false,
       );
     } else {
-      return empty();
+      return CategoryModel.empty();
     }
   }
 }
