@@ -32,8 +32,10 @@ class CategoryController extends GetxController {
       allCategories.assignAll(categories);
 
       /// filter featured categories  *Assigning parent category
-      featuredCategories.assignAll(allCategories.where(
-          (category) => category.isFeatured && category.parentId.isEmpty));
+      featuredCategories.assignAll(allCategories
+          .where((category) => category.isFeatured && category.parentId.isEmpty)
+          .take(8)
+          .toList());
     } catch (e) {
       PrLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {

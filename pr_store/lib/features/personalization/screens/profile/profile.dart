@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/images/pr_circular_image.dart';
-import 'package:pr_store/common/widgets/loaders/shimmer.dart';
+import 'package:pr_store/common/widgets/shimmers/shimmer.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/personalization/controllers/user/user_controller.dart';
 import 'package:pr_store/features/personalization/screens/profile/widgets/change_name.dart';

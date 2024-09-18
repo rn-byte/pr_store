@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pr_store/common/widgets/loaders/shimmer.dart';
+import 'package:pr_store/common/widgets/shimmers/shimmer.dart';
 import '../../../../../common/widgets/app_bar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
 import '../../../../../utils/constants/colors.dart';
