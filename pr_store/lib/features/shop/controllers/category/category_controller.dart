@@ -40,6 +40,7 @@ class CategoryController extends GetxController {
       PrLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {
       /// remove loading
+      isLoading.value = false;
     }
   }
 }

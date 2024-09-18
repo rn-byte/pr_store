@@ -43,7 +43,7 @@ class PrCircularImage extends StatelessWidget {
           child: isNetworkImage
               ? CachedNetworkImage(
                   imageUrl: image,
-                  fit: BoxFit.fill,
+                  fit: fit,
                   color: overlayColor,
                   progressIndicatorBuilder: (context, url, downloadProgress) =>
                       const PrShimmerEffect(width: 55, height: 55),
