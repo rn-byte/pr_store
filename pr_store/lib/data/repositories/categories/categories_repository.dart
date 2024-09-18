@@ -31,4 +31,21 @@ class CategoriesRepository extends GetxController {
 
   /// Get Sub Categories
   /// upload categories to cloud firebase
+  Future<List<CategoryModel>> uploadDummyData(
+      List<CategoryModel> categories) async {
+    try {
+      // getting all the categories
+      final snapshot = await _db.collection('categories').get();
+      final list = snapshot.docs
+          .map((document) => CategoryModel.fromSnapshot(document))
+          .toList();
+      return list;
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please Try Again !';
+    }
+  }
 }
