@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/models/category_model.dart';
 
 import '../../../../../common/widgets/brands/brand_show_case.dart';
 import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class PrCategoryTab extends StatelessWidget {
-  const PrCategoryTab({super.key});
+  const PrCategoryTab({super.key, required this.category});
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +24,7 @@ class PrCategoryTab extends StatelessWidget {
             children: [
               ///------Brands-------///
               const PrBrandShowcase(
-                images: [
-                  PrImage.productImage1,
-                  PrImage.productImage2,
-                  PrImage.productImage3
-                ],
+                images: [PrImage.productImage1, PrImage.productImage2, PrImage.productImage3],
               ),
               const SizedBox(
                 height: PrSizes.spaceBtwItems,
@@ -40,9 +38,7 @@ class PrCategoryTab extends StatelessWidget {
               const SizedBox(
                 height: PrSizes.spaceBtwItems,
               ),
-              PrGridLayout(
-                  itemCount: 4,
-                  itemBuilder: (_, index) => const PrProductCardVertical()),
+              PrGridLayout(itemCount: 4, itemBuilder: (_, index) => const PrProductCardVertical()),
               const SizedBox(
                 height: PrSizes.spaceBtwSections,
               )
