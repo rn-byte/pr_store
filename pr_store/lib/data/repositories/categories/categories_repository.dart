@@ -32,8 +32,7 @@ class CategoriesRepository extends GetxController {
 
   /// Get Sub Categories
   /// upload categories to cloud firebase
-  Future<List<CategoryModel>> uploadDummyData(
-      List<CategoryModel> categories) async {
+  Future<void> uploadDummyData(List<CategoryModel> categories) async {
     try {
       /// Upload all categories along with their image
       final storage = Get.put(PrFirebaseStorageService());
@@ -49,6 +48,12 @@ class CategoriesRepository extends GetxController {
 
         /// Assign url to Category.image attribute
         category.image = url;
+
+        /// Store category in Firestore
+        await _db
+            .collection('categories')
+            .doc(category.id)
+            .set(category.toJson());
       }
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;

@@ -43,7 +43,7 @@ class PrFirebaseStorageService extends GetxController {
       } else if (e is PlatformException) {
         throw 'Platform Exception : ${e.message}';
       } else {
-        throw 'Error uploading Image Data : $e';
+        throw 'Something went wrong. Please try again !';
       }
     }
   }
@@ -65,7 +65,7 @@ class PrFirebaseStorageService extends GetxController {
       } else if (e is PlatformException) {
         throw 'Platform Exception : ${e.message}';
       } else {
-        throw 'Error uploading Image Data : $e';
+        throw 'Something went wrong. Please try again !';
       }
     }
   }
