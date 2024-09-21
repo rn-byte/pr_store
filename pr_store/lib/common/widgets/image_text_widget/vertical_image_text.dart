@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pr_store/common/widgets/images/pr_circular_image.dart';
-
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper.dart';
@@ -65,10 +64,7 @@ class PrVerticalImageText extends StatelessWidget {
               width: 55,
               child: Text(
                 title,
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium!
-                    .copyWith(color: textColor),
+                style: Theme.of(context).textTheme.labelMedium!.copyWith(color: textColor),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 textAlign: TextAlign.center,

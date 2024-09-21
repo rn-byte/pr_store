@@ -5,7 +5,7 @@ import 'package:pr_store/utils/theme/custom_themes/checkbox_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/chip_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/elevated_button_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/outlined_button_theme.dart';
-import 'package:pr_store/utils/theme/custom_themes/text_filed_theme.dart';
+import 'package:pr_store/utils/theme/custom_themes/text_field_theme.dart';
 import 'package:pr_store/utils/theme/custom_themes/text_theme.dart';
 
 class PrAppTheme {

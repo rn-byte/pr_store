@@ -15,25 +15,26 @@ class PrCategoryShimmer extends StatelessWidget {
     return SizedBox(
       height: 80,
       child: ListView.separated(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (_, __) {
-            return const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                /// Image
-                PrShimmerEffect(width: 55, height: 55, radius: 55),
-                SizedBox(height: PrSizes.spaceBtwItems / 2),
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (_, __) {
+          return const Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              /// Image
+              PrShimmerEffect(width: 55, height: 55, radius: 55),
+              SizedBox(height: PrSizes.spaceBtwItems / 2),
 
-                /// Text
-                PrShimmerEffect(width: 55, height: 8),
-              ],
-            );
-          },
-          separatorBuilder: (_, __) => const SizedBox(
-                width: PrSizes.spaceBtwItems,
-              ),
-          itemCount: itemCount),
+              /// Text
+              PrShimmerEffect(width: 55, height: 8),
+            ],
+          );
+        },
+        separatorBuilder: (_, __) => const SizedBox(
+          width: PrSizes.spaceBtwItems,
+        ),
+        itemCount: itemCount,
+      ),
     );
   }
 }
