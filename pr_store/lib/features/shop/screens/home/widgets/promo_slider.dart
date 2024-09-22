@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pr_store/common/widgets/shimmers/shimmer.dart';
 import 'package:pr_store/features/shop/controllers/banner/banner_controller.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import '../../../../../common/widgets/custom_shapes/containers/circular_container.dart';
@@ -18,44 +19,56 @@ class PrPromoSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(BannerController());
 
-    return Column(
-      children: [
-        CarouselSlider(
-          options: CarouselOptions(
-            viewportFraction: 1,
-            onPageChanged: (index, reason) => controller.updatePageIndicator(index),
-          ),
-          items: controller.banners
-              .map((banner) => PrRoundedImage(
-                    imageUrl: banner.imageUrl,
-                    height: 150,
-                    width: 400,
-                    fit: BoxFit.fill,
-                    isNetworkImage: true,
-                    onPressed: () {},
-                    backgroundColor: Colors.transparent,
-                  ))
-              .toList(),
-        ),
-        const SizedBox(
-          height: PrSizes.spaceBtwItems,
-        ),
-        Obx(
-          () => Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    return Obx(
+      () {
+        ///Loader
+        if (controller.isLoading.value) const PrShimmerEffect(width: double.infinity, height: 190);
+
+        /// No Data found
+        if (controller.banners.isEmpty) {
+          return const Center(child: Text('No data Found !'));
+        } else {
+          return Column(
             children: [
-              for (int i = 0; i < controller.banners.length; i++)
-                PrCircularContainer(
-                    height: 4,
-                    width: 20,
-                    margin: const EdgeInsets.only(right: 10),
-                    backgroundColor: controller.carouselCurrentIndex.value == i
-                        ? PrColor.primary
-                        : PrColor.grey),
+              CarouselSlider(
+                options: CarouselOptions(
+                  viewportFraction: 1,
+                  onPageChanged: (index, reason) => controller.updatePageIndicator(index),
+                ),
+                items: controller.banners
+                    .map((banner) => PrRoundedImage(
+                          imageUrl: banner.imageUrl,
+                          height: 150,
+                          width: 400,
+                          fit: BoxFit.fill,
+                          isNetworkImage: true,
+                          onPressed: () => Get.toNamed(banner.targetScreen),
+                          backgroundColor: Colors.transparent,
+                        ))
+                    .toList(),
+              ),
+              const SizedBox(
+                height: PrSizes.spaceBtwItems,
+              ),
+              Obx(
+                () => Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    for (int i = 0; i < controller.banners.length; i++)
+                      PrCircularContainer(
+                          height: 4,
+                          width: 20,
+                          margin: const EdgeInsets.only(right: 10),
+                          backgroundColor: controller.carouselCurrentIndex.value == i
+                              ? PrColor.primary
+                              : PrColor.grey),
+                  ],
+                ),
+              ),
             ],
-          ),
-        ),
-      ],
+          );
+        }
+      },
     );
   }
 }
