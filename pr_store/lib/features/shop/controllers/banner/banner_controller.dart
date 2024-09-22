@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:pr_store/data/repositories/categories/categories_repository.dart';
-import 'package:pr_store/features/shop/models/category_model.dart';
+import 'package:pr_store/data/repositories/banner/banner_repository.dart';
+import 'package:pr_store/features/shop/models/banner_models.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
 
 class BannerController extends GetxController {
@@ -9,9 +9,7 @@ class BannerController extends GetxController {
 
   final isLoading = false.obs;
 
-  final _categoriesRepository = Get.put(CategoriesRepository());
-  RxList<CategoryModel> allCategories = <CategoryModel>[].obs;
-  RxList<CategoryModel> featuredCategories = <CategoryModel>[].obs;
+  RxList<BannerModels> banners = <BannerModels>[].obs;
 
   /// update page Navigational dots
   void updatePageIndicator(index) {
@@ -24,17 +22,12 @@ class BannerController extends GetxController {
       /// Show loader while loading categories
       isLoading.value = true;
 
-      /// Fetch categories from data sources(Firebase,API etc.)
-      final categories = await _categoriesRepository.getAllCategories();
+      /// Fetch banner
+      final bannerRepo = Get.put(BannerRepository());
+      final banners = await bannerRepo.fetchBanners();
 
-      /// update the categories list
-      allCategories.assignAll(categories);
-
-      /// Filter featured categories
-      featuredCategories.assignAll(allCategories
-          .where((category) => category.isFeatured && category.parentId.isEmpty)
-          .take(8)
-          .toList());
+      /// Assigning banner
+      this.banners.assignAll(banners);
     } catch (e) {
       PrLoaders.errorSnackBar(title: "Oh Snap !", message: e.toString());
     } finally {
