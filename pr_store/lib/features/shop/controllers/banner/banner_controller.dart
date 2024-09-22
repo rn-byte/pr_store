@@ -5,15 +5,21 @@ import 'package:pr_store/utils/popups/loaders.dart';
 
 class BannerController extends GetxController {
   /// Variables
-  final carouselCurrehtIndex = 0.obs;
+  final carouselCurrentIndex = 0.obs;
 
   final isLoading = false.obs;
 
   RxList<BannerModels> banners = <BannerModels>[].obs;
 
+  @override
+  void onInit() {
+    fetchBanners();
+    super.onInit();
+  }
+
   /// update page Navigational dots
   void updatePageIndicator(index) {
-    carouselCurrehtIndex.value = index;
+    carouselCurrentIndex.value = index;
   }
 
   /// Fetch banner

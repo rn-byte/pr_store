@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:pr_store/features/shop/screens/all_products/all_products.dart';
 import 'package:pr_store/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
@@ -66,15 +65,16 @@ class HomeScreen extends StatelessWidget {
 
             ///Body
             Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: PrSizes.defaultSpace),
+                padding: const EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace),
                 child: Column(
                   children: [
-                    const PrPromoSlider(banners: [
-                      PrImage.promoBanner1,
-                      PrImage.promoBanner2,
-                      PrImage.promoBanner3
-                    ]),
+                    const PrPromoSlider(
+                        //   banners: [
+                        //   PrImage.promoBanner1,
+                        //   PrImage.promoBanner2,
+                        //   PrImage.promoBanner3
+                        // ]
+                        ),
 
                     const SizedBox(
                       height: PrSizes.spaceBtwSections,
@@ -92,8 +92,7 @@ class HomeScreen extends StatelessWidget {
                     ///-------------POPULAR PRODUCTS------------------///
                     PrGridLayout(
                       itemCount: 4,
-                      itemBuilder: (context, index) =>
-                          const PrProductCardVertical(),
+                      itemBuilder: (context, index) => const PrProductCardVertical(),
                     ),
                   ],
                 )),
