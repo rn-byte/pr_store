@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pr_store/common/widgets/images/pr_circular_image.dart';
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
-import '../../../utils/helpers/helper.dart';
 
 class PrVerticalImageText extends StatelessWidget {
   const PrVerticalImageText({
@@ -22,7 +21,7 @@ class PrVerticalImageText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = PrHelper.isDarkMode(context);
+    //final isDark = PrHelper.isDarkMode(context);
     return GestureDetector(
       onTap: onTap,
       child: Padding(
@@ -36,7 +35,7 @@ class PrVerticalImageText extends StatelessWidget {
               padding: PrSizes.sm * 1.4,
               isNetworkImage: isNetworkImage,
               backgroundColor: backgroundColor,
-              overlayColor: isDark ? PrColor.light : PrColor.dark,
+              //overlayColor: isDark ? PrColor.dark : PrColor.light,
             ),
             // Container(
             //   height: 56,
