@@ -3,6 +3,7 @@ import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/models/category_model.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 
 import '../../../../../common/widgets/brands/brand_show_case.dart';
 import '../../../../../utils/constants/image_strings.dart';
@@ -38,7 +39,11 @@ class PrCategoryTab extends StatelessWidget {
               const SizedBox(
                 height: PrSizes.spaceBtwItems,
               ),
-              PrGridLayout(itemCount: 4, itemBuilder: (_, index) => const PrProductCardVertical()),
+              PrGridLayout(
+                  itemCount: 4,
+                  itemBuilder: (_, index) => PrProductCardVertical(
+                        product: ProductModel.empty(),
+                      )),
               const SizedBox(
                 height: PrSizes.spaceBtwSections,
               )

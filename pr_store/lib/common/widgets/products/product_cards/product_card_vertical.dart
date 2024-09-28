@@ -8,6 +8,7 @@ import 'package:pr_store/features/shop/controllers/product/product_controller.da
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/product_details/produt_detail.dart';
 import 'package:pr_store/utils/constants/colors.dart';
+import 'package:pr_store/utils/constants/enum.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import '../../icons/pr_circular_icon.dart';
@@ -24,6 +25,8 @@ class PrProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+
     final isDark = PrHelper.isDarkMode(context);
     return GestureDetector(
       onTap: () => Get.to(() => PrProdutDetailScreen(product: product)),
@@ -47,7 +50,11 @@ class PrProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   ///--------Thumbnail--------------///
-                  PrRoundedImage(imageUrl: product.thumbnail, applyImageRadius: true),
+                  PrRoundedImage(
+                    imageUrl: product.thumbnail,
+                    applyImageRadius: true,
+                    isNetworkImage: true,
+                  ),
 
                   //Sale Tag
                   Positioned(
@@ -58,7 +65,7 @@ class PrProductCardVertical extends StatelessWidget {
                       padding:
                           const EdgeInsets.symmetric(horizontal: PrSizes.sm, vertical: PrSizes.xs),
                       child: Text(
-                        '25%',
+                        '$salePercentage%',
                         style: Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
                       ),
                     ),
@@ -101,19 +108,39 @@ class PrProductCardVertical extends StatelessWidget {
               ),
             ),
             const Spacer(),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //price
-                Padding(
-                  padding: EdgeInsets.only(left: PrSizes.sm),
-                  child: PrProductPriceText(
-                    price: '4999',
+                Flexible(
+                  child: Column(
+                    children: [
+                      if (product.productType == ProductType.single.toString() &&
+                          product.salePrice > 0)
+                        Padding(
+                          padding: const EdgeInsets.only(left: PrSizes.sm),
+                          child: Text(
+                            product.price.toString(),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium!
+                                .apply(decoration: TextDecoration.lineThrough),
+                          ),
+                        ),
+
+                      /// Price, show sale price as main price if sale exist
+                      Padding(
+                        padding: const EdgeInsets.only(left: PrSizes.sm),
+                        child: PrProductPriceText(
+                          price: controller.getProductPrice(product),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
 
                 ///add to cart button
-                PrAddToCartButton()
+                const PrAddToCartButton()
               ],
             )
           ],

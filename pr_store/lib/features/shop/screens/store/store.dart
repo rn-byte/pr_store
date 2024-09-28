@@ -7,6 +7,7 @@ import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/controllers/category/category_controller.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/brand/all_brands.dart';
 import 'package:pr_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:pr_store/utils/constants/colors.dart';
@@ -71,7 +72,9 @@ class StoreScreen extends StatelessWidget {
                       ///Featured Brands
                       PrSectionHeading(
                         title: 'Featured Brands',
-                        onPressed: () => Get.to(() => const AllBrandsScreen()),
+                        onPressed: () => Get.to(() => AllBrandsScreen(
+                              product: ProductModel.empty(),
+                            )),
                       ),
                       const SizedBox(
                         height: PrSizes.spaceBtwItems / 1.5,

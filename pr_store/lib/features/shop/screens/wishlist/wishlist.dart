@@ -5,6 +5,7 @@ import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/icons/pr_circular_icon.dart';
 import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/home/home.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
@@ -34,7 +35,9 @@ class FavouriteScreen extends StatelessWidget {
             children: [
               PrGridLayout(
                   itemCount: 8,
-                  itemBuilder: (_, index) => const PrProductCardVertical())
+                  itemBuilder: (_, index) => PrProductCardVertical(
+                        product: ProductModel.empty(),
+                      ))
             ],
           ),
         ),

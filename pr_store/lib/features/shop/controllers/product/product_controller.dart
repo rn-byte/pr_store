@@ -69,4 +69,18 @@ class ProductController extends GetxController {
       }
     }
   }
+
+  /// Calculate discount percentage
+  String? calculateSalePercentage(double originalPrice, double? salePrice) {
+    if (salePrice == null || salePrice <= 0.0) null;
+    if (originalPrice <= 0) null;
+
+    double percentage = ((originalPrice - salePrice!) / originalPrice) * 100;
+    return percentage.toStringAsFixed(0);
+  }
+
+  /// Check Product Stock status
+  String getProductStockStatus(int stock) {
+    return stock > 0 ? 'In Stock' : 'Out of Stock';
+  }
 }
