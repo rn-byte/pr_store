@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/product_review/product_reviews.dart';
 import 'package:pr_store/features/shop/screens/product_details/widgets/bottom_add_to_cart.dart';
 import 'package:pr_store/features/shop/screens/product_details/widgets/product_attributes.dart';
@@ -12,7 +13,9 @@ import 'widgets/product_detail_image_slider.dart';
 import 'widgets/rating_share_widget.dart';
 
 class PrProdutDetailScreen extends StatelessWidget {
-  const PrProdutDetailScreen({super.key});
+  const PrProdutDetailScreen({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +49,7 @@ class PrProdutDetailScreen extends StatelessWidget {
                   ///--checkout button
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(
-                        onPressed: () {}, child: const Text('Checkout')),
+                    child: ElevatedButton(onPressed: () {}, child: const Text('Checkout')),
                   ),
                   const SizedBox(height: PrSizes.spaceBtwSections),
 
@@ -63,10 +65,8 @@ class PrProdutDetailScreen extends StatelessWidget {
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show More',
                     trimExpandedText: '  Less',
-                    moreStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle:
-                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   ///---review

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pr_store/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:pr_store/features/shop/controllers/product/product_controller.dart';
 import 'package:pr_store/features/shop/screens/all_products/all_products.dart';
 import 'package:pr_store/features/shop/screens/home/widgets/home_app_bar.dart';
@@ -93,8 +94,18 @@ class HomeScreen extends StatelessWidget {
 
                     ///-------------POPULAR PRODUCTS------------------///
                     Obx(() {
+                      if (controller.isLoading.value) const PrVerticalProductShimmer();
+                      if (controller.featuredProduct.isEmpty) {
+                        return Center(
+                            child: Text('No Data Found !',
+                                style: Theme.of(context).textTheme.bodyMedium));
+                      }
                       return PrGridLayout(
-                          itemCount: 4, itemBuilder: (_, index) => const PrProductCardVertical());
+                        itemCount: controller.featuredProduct.length,
+                        itemBuilder: (_, index) => PrProductCardVertical(
+                          product: controller.featuredProduct[index],
+                        ),
+                      );
                     })
                   ],
                 )),

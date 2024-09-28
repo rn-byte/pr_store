@@ -16,3 +16,5 @@ enum PaymentMethods {
   khalti,
   esewa
 }
+
+enum ProductType { single, variable }

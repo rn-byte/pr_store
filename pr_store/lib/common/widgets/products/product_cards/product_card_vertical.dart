@@ -4,9 +4,10 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/styles/shadows.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
+import 'package:pr_store/features/shop/controllers/product/product_controller.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/product_details/produt_detail.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import '../../icons/pr_circular_icon.dart';
@@ -16,13 +17,16 @@ import '../../texts/product_title_text.dart';
 import '../cart/add_to_cart_button.dart';
 
 class PrProductCardVertical extends StatelessWidget {
-  const PrProductCardVertical({super.key});
+  const PrProductCardVertical({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
     final isDark = PrHelper.isDarkMode(context);
     return GestureDetector(
-      onTap: () => Get.to(() => const PrProdutDetailScreen()),
+      onTap: () => Get.to(() => PrProdutDetailScreen(product: product)),
       child: Container(
         width: 180,
         padding: const EdgeInsets.all(1),
@@ -43,8 +47,7 @@ class PrProductCardVertical extends StatelessWidget {
               child: Stack(
                 children: [
                   ///--------Thumbnail--------------///
-                  const PrRoundedImage(
-                      imageUrl: PrImage.productImage1, applyImageRadius: true),
+                  PrRoundedImage(imageUrl: product.thumbnail, applyImageRadius: true),
 
                   //Sale Tag
                   Positioned(
@@ -52,14 +55,11 @@ class PrProductCardVertical extends StatelessWidget {
                     child: PrRoundedContainer(
                       radius: PrSizes.sm,
                       backgroundColor: PrColor.secondary.withOpacity(0.8),
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: PrSizes.sm, vertical: PrSizes.xs),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: PrSizes.sm, vertical: PrSizes.xs),
                       child: Text(
                         '25%',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelLarge!
-                            .apply(color: PrColor.black),
+                        style: Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
                       ),
                     ),
                   ),
@@ -81,21 +81,21 @@ class PrProductCardVertical extends StatelessWidget {
             ),
 
             ///-------Details--------------------///
-            const Padding(
-              padding: EdgeInsets.only(left: PrSizes.sm),
+            Padding(
+              padding: const EdgeInsets.only(left: PrSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   PrProductTitleText(
-                    title: 'Nike Air Force Shoes',
+                    title: product.title,
                     smallSize: true,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: PrSizes.spaceBtwItems / 2,
                   ),
                   //brand name
                   PrBrandTitleWithVerifiedIcon(
-                    title: 'Nike',
+                    title: product.brand!.name,
                   ),
                 ],
               ),

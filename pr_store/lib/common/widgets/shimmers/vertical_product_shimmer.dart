@@ -17,16 +17,19 @@ class PrVerticalProductShimmer extends StatelessWidget {
       itemCount: itemCount,
       itemBuilder: (_, __) => const SizedBox(
         width: 180,
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          /// Image
-          PrShimmerEffect(width: 180, height: 180),
-          SizedBox(height: PrSizes.spaceBtwItems),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// Image
+            PrShimmerEffect(width: 180, height: 180),
+            SizedBox(height: PrSizes.spaceBtwItems),
 
-          /// Text
-          PrShimmerEffect(width: 110, height: 15),
-          PrShimmerEffect(width: 160, height: 15),
-          SizedBox(height: PrSizes.spaceBtwItems / 2),
-        ]),
+            /// Text
+            PrShimmerEffect(width: 110, height: 15),
+            PrShimmerEffect(width: 160, height: 15),
+            SizedBox(height: PrSizes.spaceBtwItems / 2),
+          ],
+        ),
       ),
     );
   }

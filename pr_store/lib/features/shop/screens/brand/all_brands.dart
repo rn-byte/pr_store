@@ -7,8 +7,11 @@ import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/screens/brand/brand_products.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
+import '../../models/product_model.dart';
+
 class AllBrandsScreen extends StatelessWidget {
-  const AllBrandsScreen({super.key});
+  const AllBrandsScreen({super.key, required this.product});
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +34,9 @@ class AllBrandsScreen extends StatelessWidget {
               mainAxisExtent: 80,
               itemBuilder: (context, index) => PrBrandCard(
                 showBorder: true,
-                onTap: () => Get.to(() => const BrandProducts()),
+                onTap: () => Get.to(() => BrandProducts(
+                      product: product,
+                    )),
               ),
             )
           ],
