@@ -42,14 +42,14 @@ class ProductVariationModel {
     final data = document;
     if (data.isEmpty) ProductVariationModel.empty();
     return ProductVariationModel(
-      id: data['Id'],
-      sku: data['SKU'],
-      image: data['Image'],
+      id: data['Id'] ?? '',
+      sku: data['SKU'] ?? '',
+      image: data['Image'] ?? '',
       description: data['Description'],
-      price: data['Price'],
-      salePrice: data['SalePrice'],
-      stock: data['Stock'],
-      attributeValues: data['AttributeValues'],
+      price: double.parse((data['Price'] ?? 0.0).toString()),
+      salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
+      stock: data['Stock'] ?? 0,
+      attributeValues: Map<String, String>.from(data['AttributeValues']),
     );
   }
 }
