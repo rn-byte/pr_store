@@ -51,7 +51,7 @@ class ProductModel {
       'Title': title,
       'Stock': stock,
       'Price': price,
-      'Image': images ?? [],
+      'Images': images ?? [],
       'Thumbnail': thumbnail,
       'SalePrice': salePrice,
       'IsFeatured': isFeatured,
@@ -68,18 +68,18 @@ class ProductModel {
 
   /// Map json orientied document snapshot from firebase to model
   factory ProductModel.fromSnapshot(DocumentSnapshot<Map<String, dynamic>> document) {
-    if (document.data() == null) ProductModel.empty();
+    if (document.data() == null) return ProductModel.empty();
     final data = document.data()!;
     return ProductModel(
       id: document.id,
       sku: data['SKU'],
       stock: data['Stock'] ?? 0,
       isFeatured: data['IsFeatured'] ?? false,
-      price: double.parse((data['Price'] ?? 0.0).toString()),
-      salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
+      price: double.tryParse((data['Price']).toString()) ?? 0.0,
+      salePrice: double.tryParse((data['SalePrice']).toString()) ?? 0.0,
       title: data['Title'],
       thumbnail: data['Thumbnail'] ?? '',
-      categoryId: data['CategotyId'] ?? '',
+      categoryId: data['CategoryId'] ?? '',
       description: data['Description'],
       productType: data['ProductType'] ?? '',
       brand: BrandModel.fromJson(data['Brand']),
@@ -93,30 +93,30 @@ class ProductModel {
     );
   }
 
-  /// Map Json Orientied Document snapshot from firebase to model
-  //TODO  Need to UPDATE THIS
-  factory ProductModel.fromQuerySnapshot(QueryDocumentSnapshot<Object?> document) {
-    final data = document.data() as Map<String, dynamic>;
-    return ProductModel(
-      id: document.id,
-      sku: data['SKU'],
-      stock: data['Stock'] ?? 0,
-      isFeatured: data['IsFeatured'] ?? false,
-      price: double.parse((data['Price'] ?? 0.0).toString()),
-      salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
-      title: data['Title'],
-      thumbnail: data['Thumbnail'] ?? '',
-      categoryId: data['CategotyId'] ?? '',
-      description: data['Description'],
-      productType: data['ProductType'] ?? '',
-      brand: BrandModel.fromJson(data['Brand']),
-      images: data['Images'] != null ? List<String>.from(data['Images']) : [],
-      productAttributes: (data['ProductAttributes'] as List<dynamic>)
-          .map((e) => ProductAttributeModel.fromJson(e))
-          .toList(),
-      productVariations: (data['ProductVariations'] as List<dynamic>)
-          .map((e) => ProductVariationModel.fromJson(e))
-          .toList(),
-    );
-  }
+  // /// Map Json Orientied Document snapshot from firebase to model
+  // //TODO  Need to UPDATE THIS
+  // factory ProductModel.fromQuerySnapshot(QueryDocumentSnapshot<Object?> document) {
+  //   final data = document.data() as Map<String, dynamic>;
+  //   return ProductModel(
+  //     id: document.id,
+  //     sku: data['SKU'],
+  //     stock: data['Stock'] ?? 0,
+  //     isFeatured: data['IsFeatured'] ?? false,
+  //     price: double.parse((data['Price'] ?? 0.0).toString()),
+  //     salePrice: double.parse((data['SalePrice'] ?? 0.0).toString()),
+  //     title: data['Title'],
+  //     thumbnail: data['Thumbnail'] ?? '',
+  //     categoryId: data['CategotyId'] ?? '',
+  //     description: data['Description'],
+  //     productType: data['ProductType'] ?? '',
+  //     brand: BrandModel.fromJson(data['Brand']),
+  //     images: data['Images'] != null ? List<String>.from(data['Images']) : [],
+  //     productAttributes: (data['ProductAttributes'] as List<dynamic>)
+  //         .map((e) => ProductAttributeModel.fromJson(e))
+  //         .toList(),
+  //     productVariations: (data['ProductVariations'] as List<dynamic>)
+  //         .map((e) => ProductVariationModel.fromJson(e))
+  //         .toList(),
+  //   );
+  // }
 }

@@ -20,13 +20,19 @@ class ProductRepository extends GetxController {
     try {
       final snapshot =
           await _db.collection('Products').where('IsFeatured', isEqualTo: true).limit(4).get();
+
+      for (var doc in snapshot.docs) {
+        print(doc.data()); // Log the data to check if fields are correct
+      }
+
       return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
-      throw 'Something went wrong. Please try Again !';
+      print('${e.toString()}');
+      throw 'Something went wrong. Please try Again !! : ${e.toString()}';
     }
   }
 
