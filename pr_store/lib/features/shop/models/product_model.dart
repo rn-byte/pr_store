@@ -9,7 +9,7 @@ class ProductModel {
   String? sku;
   double price;
   String title;
-  DateTime? date;
+  //DateTime? date;
   double salePrice;
   String thumbnail;
   bool? isFeatured;
@@ -27,7 +27,7 @@ class ProductModel {
     this.sku,
     required this.price,
     required this.title,
-    this.date,
+    // this.date,
     this.salePrice = 0.0,
     required this.thumbnail,
     this.isFeatured,
@@ -72,15 +72,15 @@ class ProductModel {
     final data = document.data()!;
     return ProductModel(
       id: document.id,
-      sku: data['SKU'],
+      sku: data['SKU'] ?? '',
       stock: data['Stock'] ?? 0,
       isFeatured: data['IsFeatured'] ?? false,
       price: double.tryParse((data['Price']).toString()) ?? 0.0,
       salePrice: double.tryParse((data['SalePrice']).toString()) ?? 0.0,
-      title: data['Title'],
+      title: data['Title'] ?? '',
       thumbnail: data['Thumbnail'] ?? '',
       categoryId: data['CategoryId'] ?? '',
-      description: data['Description'],
+      description: data['Description'] ?? '',
       productType: data['ProductType'] ?? '',
       brand: BrandModel.fromJson(data['Brand']),
       images: data['Images'] != null ? List<String>.from(data['Images']) : [],

@@ -40,7 +40,7 @@ class ProductVariationModel {
   /// Mapping json orientied document snapshot from firebase to Model
   factory ProductVariationModel.fromJson(Map<String, dynamic> document) {
     final data = document;
-    if (data.isEmpty) ProductVariationModel.empty();
+    if (data.isEmpty) return ProductVariationModel.empty();
     return ProductVariationModel(
       id: data['Id'] ?? '',
       sku: data['SKU'] ?? '',

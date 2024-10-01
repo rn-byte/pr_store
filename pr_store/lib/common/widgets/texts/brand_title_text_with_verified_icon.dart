@@ -36,8 +36,7 @@ class PrBrandTitleWithVerifiedIcon extends StatelessWidget {
           ),
         ),
         const SizedBox(width: PrSizes.xs),
-        const Icon(Iconsax.verify5,
-            color: PrColor.primary, size: PrSizes.iconXs)
+        const Icon(Iconsax.verify5, color: PrColor.primary, size: PrSizes.iconXs)
       ],
     );
   }

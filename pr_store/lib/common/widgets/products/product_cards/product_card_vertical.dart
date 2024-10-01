@@ -34,11 +34,14 @@ class PrProductCardVertical extends StatelessWidget {
         width: 180,
         padding: const EdgeInsets.all(1),
         decoration: BoxDecoration(
-          boxShadow: [PrShadowsStyle.verticalProductShadow],
+          boxShadow: [
+            PrShadowsStyle.verticalProductShadow,
+          ],
           borderRadius: BorderRadius.circular(PrSizes.productImageRadius),
           color: isDark ? PrColor.darkerGrey : PrColor.white,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ///-------Thumbnail,,,WishListButton,,, Discount Tag-------------///
             PrRoundedContainer(

@@ -35,10 +35,10 @@ class BrandModel {
 
     /// Mapping json Record to the model
     return BrandModel(
-      id: data['ID'],
+      id: data['ID'] ?? '',
       name: data['Name'] ?? '',
       image: data['Image'] ?? '',
-      productsCount: data['ProductCount'] ?? '',
+      productsCount: data['ProductCount'] ?? 0,
       isFeatured: data['IsFeatured'] ?? false,
     );
   }
