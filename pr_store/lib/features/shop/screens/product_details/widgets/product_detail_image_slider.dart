@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -12,7 +13,9 @@ import '../../../../../utils/helpers/helper.dart';
 class PrProductImageSlider extends StatelessWidget {
   const PrProductImageSlider({
     super.key,
+    required this.product,
   });
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {

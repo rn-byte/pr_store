@@ -9,7 +9,6 @@ import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/product_details/produt_detail.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/enum.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import '../../icons/pr_circular_icon.dart';
@@ -55,9 +54,11 @@ class PrProductCardVertical extends StatelessWidget {
                 children: [
                   ///--------Thumbnail--------------///
                   PrRoundedImage(
+                    height: 180,
                     imageUrl: product.thumbnail,
                     applyImageRadius: true,
-                    isNetworkImage: false,
+                    isNetworkImage: true,
+                    fit: BoxFit.fill,
                   ),
 
                   //Sale Tag

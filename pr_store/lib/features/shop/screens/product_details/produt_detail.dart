@@ -25,7 +25,7 @@ class PrProdutDetailScreen extends StatelessWidget {
         child: Column(
           children: [
             /// 1. ------- Product Image Slider-------
-            const PrProductImageSlider(),
+            PrProductImageSlider(product: product),
 
             /// 2. ------- Product Details------------
             Padding(
