@@ -1,8 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
+import 'package:pr_store/features/shop/controllers/product/images_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
@@ -20,22 +23,30 @@ class PrProductImageSlider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = PrHelper.isDarkMode(context);
+    final controller = Get.put(ImagesController());
+    final images = controller.getAllProductImages(product);
+
     return PrCurvedEdgeWidget(
       child: Container(
         color: isDark ? PrColor.darkGrey : PrColor.light,
         child: Stack(
           children: [
             /// Main Large Image
-            const SizedBox(
+            SizedBox(
               height: 400,
               child: Padding(
-                padding: EdgeInsets.all(PrSizes.productImageRadius * 2),
-                child: Center(
-                    child: Image(
-                  image: AssetImage(
-                    PrImage.productImage1,
-                  ),
-                )),
+                padding: const EdgeInsets.all(PrSizes.productImageRadius * 2),
+                child: Center(child: Obx(() {
+                  final image = controller.selectedProductImage.value;
+                  return CachedNetworkImage(
+                    imageUrl: image,
+                    progressIndicatorBuilder: (_, __, downloadProgress) =>
+                        CircularProgressIndicator(
+                      value: downloadProgress.progress,
+                      color: PrColor.primary,
+                    ),
+                  );
+                })),
               ),
             ),
 
@@ -55,11 +66,11 @@ class PrProductImageSlider extends StatelessWidget {
                         backgroundColor: isDark ? PrColor.dark : PrColor.white,
                         border: Border.all(color: PrColor.primary),
                         padding: const EdgeInsets.all(PrSizes.sm),
-                        imageUrl: PrImage.productImage1),
+                        imageUrl: images[index]),
                     separatorBuilder: (_, __) => const SizedBox(
                           width: PrSizes.spaceBtwItems,
                         ),
-                    itemCount: 6),
+                    itemCount: images.length),
               ),
             ),
             const PrAppBar(
