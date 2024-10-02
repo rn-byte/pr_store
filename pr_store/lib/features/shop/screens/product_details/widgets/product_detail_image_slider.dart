@@ -8,7 +8,6 @@ import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
 import 'package:pr_store/features/shop/controllers/product/images_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
 import '../../../../../utils/helpers/helper.dart';
@@ -38,12 +37,15 @@ class PrProductImageSlider extends StatelessWidget {
                 padding: const EdgeInsets.all(PrSizes.productImageRadius * 2),
                 child: Center(child: Obx(() {
                   final image = controller.selectedProductImage.value;
-                  return CachedNetworkImage(
-                    imageUrl: image,
-                    progressIndicatorBuilder: (_, __, downloadProgress) =>
-                        CircularProgressIndicator(
-                      value: downloadProgress.progress,
-                      color: PrColor.primary,
+                  return GestureDetector(
+                    onDoubleTap: () => controller.showEnlargedImage(image),
+                    child: CachedNetworkImage(
+                      imageUrl: image,
+                      progressIndicatorBuilder: (_, __, downloadProgress) =>
+                          CircularProgressIndicator(
+                        value: downloadProgress.progress,
+                        color: PrColor.primary,
+                      ),
                     ),
                   );
                 })),
@@ -56,17 +58,26 @@ class PrProductImageSlider extends StatelessWidget {
               bottom: 30,
               left: PrSizes.defaultSpace,
               child: SizedBox(
-                height: 80,
+                height: 70,
                 child: ListView.separated(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    itemBuilder: (_, index) => PrRoundedImage(
-                        width: 80,
-                        backgroundColor: isDark ? PrColor.dark : PrColor.white,
-                        border: Border.all(color: PrColor.primary),
-                        padding: const EdgeInsets.all(PrSizes.sm),
-                        imageUrl: images[index]),
+                    itemBuilder: (_, index) => Obx(() {
+                          final imageSelected =
+                              controller.selectedProductImage.value == images[index];
+                          return PrRoundedImage(
+                            isNetworkImage: true,
+                            width: 70,
+                            fit: BoxFit.fill,
+                            backgroundColor: isDark ? PrColor.dark : PrColor.white,
+                            border: Border.all(
+                                color: imageSelected ? PrColor.primary : Colors.transparent),
+                            padding: const EdgeInsets.all(PrSizes.sm),
+                            imageUrl: images[index],
+                            onPressed: () => controller.selectedProductImage.value = images[index],
+                          );
+                        }),
                     separatorBuilder: (_, __) => const SizedBox(
                           width: PrSizes.spaceBtwItems,
                         ),

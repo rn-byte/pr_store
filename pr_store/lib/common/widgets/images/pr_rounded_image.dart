@@ -1,4 +1,6 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:pr_store/common/widgets/shimmers/shimmer.dart';
 
 import '../../../utils/constants/sizes.dart';
 
@@ -43,12 +45,20 @@ class PrRoundedImage extends StatelessWidget {
             color: backgroundColor,
             borderRadius: BorderRadius.circular(borderRadius)),
         child: ClipRRect(
-          borderRadius: applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
-          child: Image(
-            fit: fit,
-            image: isNetworkImage ? NetworkImage(imageUrl) : AssetImage(imageUrl) as ImageProvider,
-          ),
-        ),
+            borderRadius:
+                applyImageRadius ? BorderRadius.circular(borderRadius) : BorderRadius.zero,
+            child: isNetworkImage
+                ? CachedNetworkImage(
+                    imageUrl: imageUrl,
+                    fit: fit,
+                    progressIndicatorBuilder: (context, url, progress) =>
+                        PrShimmerEffect(width: width ?? double.infinity, height: height ?? 158),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                  )
+                : Image(
+                    image: AssetImage(imageUrl),
+                    fit: fit,
+                  )),
       ),
     );
   }
