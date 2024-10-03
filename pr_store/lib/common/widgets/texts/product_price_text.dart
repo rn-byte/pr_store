@@ -19,10 +19,14 @@ class PrProductPriceText extends StatelessWidget {
     return Text(
       currencySign + price,
       style: isLarge
-          ? Theme.of(context).textTheme.headlineMedium!.apply(
-              decoration: lineThrough ? TextDecoration.lineThrough : null)
-          : Theme.of(context).textTheme.titleLarge!.apply(
-              decoration: lineThrough ? TextDecoration.lineThrough : null),
+          ? Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .apply(decoration: lineThrough ? TextDecoration.lineThrough : null)
+          : Theme.of(context)
+              .textTheme
+              .titleLarge!
+              .apply(decoration: lineThrough ? TextDecoration.lineThrough : null),
       maxLines: maxLines,
       overflow: TextOverflow.ellipsis,
     );

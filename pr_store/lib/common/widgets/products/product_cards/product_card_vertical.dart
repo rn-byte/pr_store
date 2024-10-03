@@ -44,48 +44,51 @@ class PrProductCardVertical extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ///-------Thumbnail,,,WishListButton,,, Discount Tag-------------///
-            PrRoundedContainer(
-              height: 180,
-              padding: const EdgeInsets.all(
-                PrSizes.sm,
-              ),
-              backgroundColor: isDark ? PrColor.dark : PrColor.light,
-              child: Stack(
-                children: [
-                  ///--------Thumbnail--------------///
-                  PrRoundedImage(
-                    height: 180,
-                    imageUrl: product.thumbnail,
-                    applyImageRadius: true,
-                    isNetworkImage: true,
-                    fit: BoxFit.fill,
-                  ),
+            Center(
+              child: PrRoundedContainer(
+                height: 180,
+                padding: const EdgeInsets.all(
+                  PrSizes.sm,
+                ),
+                backgroundColor: isDark ? PrColor.dark : PrColor.light,
+                child: Stack(
+                  children: [
+                    ///--------Thumbnail--------------///
+                    PrRoundedImage(
+                      height: 180,
+                      imageUrl: product.thumbnail,
+                      applyImageRadius: true,
+                      isNetworkImage: true,
+                      fit: BoxFit.fill,
+                    ),
 
-                  //Sale Tag
-                  Positioned(
-                    top: 10,
-                    child: PrRoundedContainer(
-                      radius: PrSizes.sm,
-                      backgroundColor: PrColor.secondary.withOpacity(0.8),
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: PrSizes.sm, vertical: PrSizes.xs),
-                      child: Text(
-                        '$salePercentage%',
-                        style: Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                    //Sale Tag
+                    Positioned(
+                      top: 10,
+                      child: PrRoundedContainer(
+                        radius: PrSizes.sm,
+                        backgroundColor: PrColor.secondary.withOpacity(0.8),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: PrSizes.sm, vertical: PrSizes.xs),
+                        child: Text(
+                          '$salePercentage%',
+                          style:
+                              Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                        ),
                       ),
                     ),
-                  ),
 
-                  ///-------Fav ICon Button-----------///
-                  const Positioned(
-                    top: 0,
-                    right: 0,
-                    child: PrCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
+                    ///-------Fav ICon Button-----------///
+                    const Positioned(
+                      top: 0,
+                      right: 0,
+                      child: PrCircularIcon(
+                        icon: Iconsax.heart5,
+                        color: Colors.red,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             const SizedBox(

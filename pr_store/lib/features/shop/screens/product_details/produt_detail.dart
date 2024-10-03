@@ -40,7 +40,7 @@ class PrProdutDetailScreen extends StatelessWidget {
                   const PrRatingAndShare(),
 
                   ///---- Price, Title, Stock and brand
-                  const PrProductMetadata(),
+                  PrProductMetadata(product: product),
 
                   ///---Attributes
                   const PrProductAttributes(),

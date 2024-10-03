@@ -69,50 +69,51 @@ class HomeScreen extends StatelessWidget {
 
             ///Body
             Padding(
-                padding: const EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace),
-                child: Column(
-                  children: [
-                    const PrPromoSlider(
-                        //   banners: [
-                        //   PrImage.promoBanner1,
-                        //   PrImage.promoBanner2,
-                        //   PrImage.promoBanner3
-                        // ]
-                        ),
+              padding: const EdgeInsets.symmetric(horizontal: PrSizes.defaultSpace),
+              child: Column(
+                children: [
+                  const PrPromoSlider(
+                      //   banners: [
+                      //   PrImage.promoBanner1,
+                      //   PrImage.promoBanner2,
+                      //   PrImage.promoBanner3
+                      // ]
+                      ),
 
-                    const SizedBox(
-                      height: PrSizes.spaceBtwSections,
-                    ),
+                  const SizedBox(
+                    height: PrSizes.spaceBtwSections,
+                  ),
 
-                    ///Heading
-                    PrSectionHeading(
-                      title: 'Popular Products',
-                      onPressed: () => Get.to(() => AllProducts(
-                            product: ProductModel.empty(),
-                          )),
-                    ),
-                    const SizedBox(
-                      height: PrSizes.spaceBtwItems,
-                    ),
+                  ///Heading
+                  PrSectionHeading(
+                    title: 'Popular Products',
+                    onPressed: () => Get.to(() => AllProducts(
+                          product: ProductModel.empty(),
+                        )),
+                  ),
+                  const SizedBox(
+                    height: PrSizes.spaceBtwItems,
+                  ),
 
-                    ///-------------POPULAR PRODUCTS------------------///
-                    Obx(() {
-                      //print('DEBUG : ${controller.featuredProduct.length}');
-                      if (controller.isLoading.value) return const PrVerticalProductShimmer();
-                      if (controller.featuredProduct.isEmpty) {
-                        return Center(
-                            child: Text('No Data Found !',
-                                style: Theme.of(context).textTheme.bodyMedium));
-                      }
-                      return PrGridLayout(
-                        itemCount: controller.featuredProduct.length,
-                        itemBuilder: (_, index) => PrProductCardVertical(
-                          product: controller.featuredProduct[index],
-                        ),
-                      );
-                    })
-                  ],
-                )),
+                  ///-------------POPULAR PRODUCTS------------------///
+                  Obx(() {
+                    //print('DEBUG : ${controller.featuredProduct.length}');
+                    if (controller.isLoading.value) return const PrVerticalProductShimmer();
+                    if (controller.featuredProduct.isEmpty) {
+                      return Center(
+                          child: Text('No Data Found !',
+                              style: Theme.of(context).textTheme.bodyMedium));
+                    }
+                    return PrGridLayout(
+                      itemCount: controller.featuredProduct.length,
+                      itemBuilder: (_, index) => PrProductCardVertical(
+                        product: controller.featuredProduct[index],
+                      ),
+                    );
+                  })
+                ],
+              ),
+            ),
           ],
         ),
       ),
