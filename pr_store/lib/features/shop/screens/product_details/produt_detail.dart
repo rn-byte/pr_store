@@ -7,6 +7,7 @@ import 'package:pr_store/features/shop/screens/product_review/product_reviews.da
 import 'package:pr_store/features/shop/screens/product_details/widgets/bottom_add_to_cart.dart';
 import 'package:pr_store/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:pr_store/features/shop/screens/product_details/widgets/product_metadata.dart';
+import 'package:pr_store/utils/constants/enum.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:readmore/readmore.dart';
 import 'widgets/product_detail_image_slider.dart';
@@ -43,8 +44,10 @@ class PrProdutDetailScreen extends StatelessWidget {
                   PrProductMetadata(product: product),
 
                   ///---Attributes
-                  PrProductAttributes(product: product),
-                  const SizedBox(height: PrSizes.spaceBtwSections),
+                  if (product.productType == ProductType.variable.toString())
+                    PrProductAttributes(product: product),
+                  if (product.productType == ProductType.variable.toString())
+                    const SizedBox(height: PrSizes.spaceBtwSections),
 
                   ///--checkout button
                   SizedBox(
@@ -59,14 +62,14 @@ class PrProdutDetailScreen extends StatelessWidget {
                     showActionButton: false,
                   ),
                   const SizedBox(height: PrSizes.spaceBtwItems),
-                  const ReadMoreText(
-                    'Elevate your performance with the Nike Red and Black Running Shoe, designed for athletes and style enthusiasts alike. This sleek, two-tone shoe combines vibrant red with bold black accents, making a statement on the track and the streets.',
+                  ReadMoreText(
+                    product.description ?? '',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show More',
                     trimExpandedText: '  Less',
-                    moreStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   ///---review

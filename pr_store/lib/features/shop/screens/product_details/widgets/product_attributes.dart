@@ -24,6 +24,7 @@ class PrProductAttributes extends StatelessWidget {
           padding: const EdgeInsets.all(PrSizes.md),
           backgroundColor: isDark ? PrColor.darkerGrey : PrColor.grey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               /// TItle ,Price and stock status
               Row(
@@ -92,45 +93,50 @@ class PrProductAttributes extends StatelessWidget {
         ///Attributes
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            //Colors
-            const PrSectionHeading(
-              title: 'Colors',
-              showActionButton: false,
-            ),
-            const SizedBox(height: PrSizes.spaceBtwItems / 2),
-            Wrap(
-              spacing: 8,
-              children: [
-                PrChoiceChip(text: 'green', selected: false, onSelected: (value) {}),
-                PrChoiceChip(text: 'red', selected: true, onSelected: (value) {}),
-                PrChoiceChip(text: 'blue', selected: false, onSelected: (value) {}),
-                PrChoiceChip(text: 'orange', selected: false, onSelected: (value) {}),
-              ],
-            ),
-          ],
+          children: product.productAttributes!
+              .map(
+                (attribute) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    //Colors
+                    PrSectionHeading(
+                      title: attribute.name ?? '',
+                      showActionButton: false,
+                    ),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    Wrap(
+                      spacing: 8,
+                      children: attribute.values!
+                          .map((values) =>
+                              PrChoiceChip(text: values, selected: false, onSelected: (value) {}))
+                          .toList(),
+                    ),
+                  ],
+                ),
+              )
+              .toList(),
         ),
 
         ///Sizes
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const PrSectionHeading(
-              title: 'Sizes',
-              showActionButton: false,
-            ),
-            const SizedBox(height: PrSizes.spaceBtwItems / 2),
-            Wrap(
-              spacing: 8,
-              children: [
-                PrChoiceChip(text: '40', selected: false, onSelected: (value) {}),
-                PrChoiceChip(text: '41', selected: false, onSelected: (value) {}),
-                PrChoiceChip(text: '42', selected: true, onSelected: (value) {}),
-                PrChoiceChip(text: '43', selected: false, onSelected: (value) {}),
-              ],
-            )
-          ],
-        )
+        // Column(
+        //   crossAxisAlignment: CrossAxisAlignment.start,
+        //   children: [
+        //     const PrSectionHeading(
+        //       title: 'Sizes',
+        //       showActionButton: false,
+        //     ),
+        //     const SizedBox(height: PrSizes.spaceBtwItems / 2),
+        //     Wrap(
+        //       spacing: 8,
+        //       children: [
+        //         PrChoiceChip(text: '40', selected: false, onSelected: (value) {}),
+        //         PrChoiceChip(text: '41', selected: false, onSelected: (value) {}),
+        //         PrChoiceChip(text: '42', selected: true, onSelected: (value) {}),
+        //         PrChoiceChip(text: '43', selected: false, onSelected: (value) {}),
+        //       ],
+        //     )
+        //   ],
+        // )
       ],
     );
   }
