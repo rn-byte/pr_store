@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/texts/product_price_text.dart';
 import 'package:pr_store/common/widgets/texts/product_title_text.dart';
@@ -16,7 +17,7 @@ class PrProductAttributes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = VariationsController.instance;
+    final controller = Get.put(VariationsController());
     final isDark = PrHelper.isDarkMode(context);
 
     return Column(
@@ -108,12 +109,31 @@ class PrProductAttributes extends StatelessWidget {
                       showActionButton: false,
                     ),
                     const SizedBox(height: PrSizes.spaceBtwItems / 2),
-                    Wrap(
-                      spacing: 8,
-                      children: attribute.values!
-                          .map((values) =>
-                              PrChoiceChip(text: values, selected: false, onSelected: (value) {}))
-                          .toList(),
+                    Obx(
+                      () => Wrap(
+                        spacing: 8,
+                        children: attribute.values!.map((attributeValues) {
+                          final isSelected =
+                              controller.selectedAttributes[attribute.name] == attributeValues;
+
+                          final available = controller
+                              .getAttributesAvailabilityInVariation(
+                                  product.productVariations!, attribute.name!)
+                              .contains(attributeValues);
+
+                          return PrChoiceChip(
+                              text: attributeValues,
+                              selected: isSelected,
+                              onSelected: available
+                                  ? (selected) {
+                                      if (selected && available) {
+                                        controller.onAttributeSelected(
+                                            product, attribute.name ?? '', attributeValues);
+                                      }
+                                    }
+                                  : null);
+                        }).toList(),
+                      ),
                     ),
                   ],
                 ),
