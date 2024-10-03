@@ -43,7 +43,7 @@ class PrProdutDetailScreen extends StatelessWidget {
                   PrProductMetadata(product: product),
 
                   ///---Attributes
-                  const PrProductAttributes(),
+                  PrProductAttributes(product: product),
                   const SizedBox(height: PrSizes.spaceBtwSections),
 
                   ///--checkout button

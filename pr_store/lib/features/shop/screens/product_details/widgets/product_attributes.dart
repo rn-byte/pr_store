@@ -3,18 +3,20 @@ import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_contain
 import 'package:pr_store/common/widgets/texts/product_price_text.dart';
 import 'package:pr_store/common/widgets/texts/product_title_text.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
-
 import '../../../../../common/widgets/chips/choice_chips.dart';
 
 class PrProductAttributes extends StatelessWidget {
-  const PrProductAttributes({super.key});
+  const PrProductAttributes({super.key, required this.product});
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
     final isDark = PrHelper.isDarkMode(context);
+
     return Column(
       children: [
         /// Selected attribute Pricing and Description
@@ -78,8 +80,7 @@ class PrProductAttributes extends StatelessWidget {
 
               ///Variation description
               const PrProductTitleText(
-                title:
-                    'This is the description of the product and it can go upto max 4 lines',
+                title: 'This is the description of the product and it can go upto max 4 lines',
                 smallSize: true,
                 maxLines: 4,
               )
@@ -101,14 +102,10 @@ class PrProductAttributes extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: [
-                PrChoiceChip(
-                    text: 'green', selected: false, onSelected: (value) {}),
-                PrChoiceChip(
-                    text: 'red', selected: true, onSelected: (value) {}),
-                PrChoiceChip(
-                    text: 'blue', selected: false, onSelected: (value) {}),
-                PrChoiceChip(
-                    text: 'orange', selected: false, onSelected: (value) {}),
+                PrChoiceChip(text: 'green', selected: false, onSelected: (value) {}),
+                PrChoiceChip(text: 'red', selected: true, onSelected: (value) {}),
+                PrChoiceChip(text: 'blue', selected: false, onSelected: (value) {}),
+                PrChoiceChip(text: 'orange', selected: false, onSelected: (value) {}),
               ],
             ),
           ],
@@ -126,14 +123,10 @@ class PrProductAttributes extends StatelessWidget {
             Wrap(
               spacing: 8,
               children: [
-                PrChoiceChip(
-                    text: '40', selected: false, onSelected: (value) {}),
-                PrChoiceChip(
-                    text: '41', selected: false, onSelected: (value) {}),
-                PrChoiceChip(
-                    text: '42', selected: true, onSelected: (value) {}),
-                PrChoiceChip(
-                    text: '43', selected: false, onSelected: (value) {}),
+                PrChoiceChip(text: '40', selected: false, onSelected: (value) {}),
+                PrChoiceChip(text: '41', selected: false, onSelected: (value) {}),
+                PrChoiceChip(text: '42', selected: true, onSelected: (value) {}),
+                PrChoiceChip(text: '43', selected: false, onSelected: (value) {}),
               ],
             )
           ],

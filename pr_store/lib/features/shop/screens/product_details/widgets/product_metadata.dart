@@ -6,7 +6,6 @@ import 'package:pr_store/common/widgets/texts/product_title_text.dart';
 import 'package:pr_store/features/shop/controllers/product/product_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/utils/constants/enum.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import '../../../../../common/widgets/custom_shapes/containers/rounded_container.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -89,7 +88,8 @@ class PrProductMetadata extends StatelessWidget {
         Row(
           children: [
             PrCircularImage(
-              image: PrImage.nike,
+              isNetworkImage: true,
+              image: product.brand != null ? product.brand!.image : '',
               height: 32,
               width: 32,
               backgroundColor: Colors.transparent,
@@ -97,7 +97,7 @@ class PrProductMetadata extends StatelessWidget {
             ),
             const SizedBox(width: PrSizes.spaceBtwItems * 0.5),
             PrBrandTitleWithVerifiedIcon(
-              title: product.brand!.name,
+              title: product.brand != null ? product.brand!.name : '',
               brandTextSize: TextSizes.medium,
             )
           ],
