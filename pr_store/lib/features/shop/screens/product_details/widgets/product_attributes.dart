@@ -87,8 +87,8 @@ class PrProductAttributes extends StatelessWidget {
                   ),
 
                   ///Variation description
-                  const PrProductTitleText(
-                    title: 'This is the description of the product and it can go upto max 4 lines',
+                  PrProductTitleText(
+                    title: controller.selectedVariation.value.description ?? '',
                     smallSize: true,
                     maxLines: 4,
                   )
