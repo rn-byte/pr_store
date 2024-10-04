@@ -16,12 +16,16 @@ class PrSortableProducts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(AllProductController());
+    controller.assignProducts(products);
     return Column(
       children: [
         /// DropDown
         DropdownButtonFormField(
           decoration: const InputDecoration(prefixIcon: Icon(Iconsax.sort)),
-          onChanged: (value) {},
+          value: controller.selectedSortOption.value,
+          onChanged: (value) {
+            controller.sortProducts(value!);
+          },
           items: ['Name', 'Higher Price', 'Lower Price', 'Sale', 'Newest', 'Popularity']
               .map((option) => DropdownMenuItem(value: option, child: Text(option)))
               .toList(),
@@ -31,7 +35,7 @@ class PrSortableProducts extends StatelessWidget {
         /// Products
         Obx(
           () => PrGridLayout(
-              itemCount: 6,
+              itemCount: controller.products.length,
               itemBuilder: (_, index) => PrProductCardVertical(
                     product: controller.products[index],
                   )),

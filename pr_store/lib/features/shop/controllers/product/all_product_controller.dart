@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/data/repositories/product/product_repository.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
-
 import '../../models/product_model.dart';
 
 class AllProductController extends GetxController {
@@ -57,5 +56,11 @@ class AllProductController extends GetxController {
         products.sort((a, b) => a.title.compareTo(b.title));
         break;
     }
+  }
+
+  void assignProducts(List<ProductModel> products) {
+    /// Assign product to the 'products' list
+    this.products.assignAll(products);
+    sortProducts('Name');
   }
 }
