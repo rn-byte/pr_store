@@ -22,7 +22,7 @@ class ProductRepository extends GetxController {
           await _db.collection('Products').where('IsFeatured', isEqualTo: true).limit(4).get();
 
       // for (var doc in snapshot.docs) {
-      //    // Log the data to check if fields are correct
+      //     Log the data to check if fields are correct
       // }
 
       return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
@@ -32,6 +32,22 @@ class ProductRepository extends GetxController {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
       //print('${e.toString()}');
+      throw 'Something went wrong. Please try Again !!}';
+    }
+  }
+
+  /// Get product based on brand
+  Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
+    try {
+      final querySnapshot = await query.get();
+      final List<ProductModel> productList =
+          querySnapshot.docs.map((doc) => ProductModel.fromQuerySnapshot(doc)).toList();
+      return productList;
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
       throw 'Something went wrong. Please try Again !!}';
     }
   }

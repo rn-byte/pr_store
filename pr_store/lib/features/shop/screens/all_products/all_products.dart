@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
@@ -19,11 +20,17 @@ class AllProducts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(AllPro)
     return Scaffold(
       appBar: PrAppBar(title: Text(title), showBackArrow: true),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(PrSizes.defaultSpace),
-        child: PrSortableProducts(),
+        child: FutureBuilder<Object>(
+          future: futureMethod??,
+          builder: (context, snapshot) {
+            return const PrSortableProducts();
+          }
+        ),
       ),
     );
   }
