@@ -11,7 +11,6 @@ import '../../../../common/widgets/custom_shapes/containers/search_container.dar
 import '../../../../common/widgets/layouts/grid_layout/grid_layout.dart';
 import '../../../../common/widgets/products/product_cards/product_card_vertical.dart';
 import '../../../../common/widgets/texts/section_heading.dart';
-import '../../models/product_model.dart';
 import 'widgets/home_categories.dart';
 import 'widgets/promo_slider.dart';
 
@@ -87,7 +86,14 @@ class HomeScreen extends StatelessWidget {
                   ///Heading
                   PrSectionHeading(
                     title: 'Popular Products',
-                    onPressed: () => Get.to(() => AllProducts()),
+                    onPressed: () => Get.to(() => AllProducts(
+                          title: 'Popular Products',
+                          // query: FirebaseFirestore.instance
+                          //     .collection('Porducts')
+                          //     .where('IsFeatured', isEqualTo: true)
+                          //     .limit(6),
+                          futureMethod: controller.fetchAllFeaturedProduct(),
+                        )),
                   ),
                   const SizedBox(
                     height: PrSizes.spaceBtwItems,

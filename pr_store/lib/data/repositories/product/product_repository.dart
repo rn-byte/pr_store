@@ -36,6 +36,26 @@ class ProductRepository extends GetxController {
     }
   }
 
+  /// Get All Featured products
+  Future<List<ProductModel>> getAllFeaturedProducts() async {
+    try {
+      final snapshot = await _db.collection('Products').where('IsFeatured', isEqualTo: true).get();
+
+      // for (var doc in snapshot.docs) {
+      //     Log the data to check if fields are correct
+      // }
+
+      return snapshot.docs.map((e) => ProductModel.fromSnapshot(e)).toList();
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      //print('${e.toString()}');
+      throw 'Something went wrong. Please try Again !!}';
+    }
+  }
+
   /// Get product based on brand
   Future<List<ProductModel>> fetchProductsByQuery(Query query) async {
     try {
