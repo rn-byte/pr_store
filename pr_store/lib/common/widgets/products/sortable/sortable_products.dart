@@ -8,9 +8,7 @@ import '../product_cards/product_card_vertical.dart';
 class PrSortableProducts extends StatelessWidget {
   const PrSortableProducts({
     super.key,
-    required this.product,
   });
-  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +28,7 @@ class PrSortableProducts extends StatelessWidget {
         PrGridLayout(
             itemCount: 6,
             itemBuilder: (_, index) => PrProductCardVertical(
-                  product: product,
+                  product: ProductModel.empty(),
                 ))
       ],
     );

@@ -87,9 +87,7 @@ class HomeScreen extends StatelessWidget {
                   ///Heading
                   PrSectionHeading(
                     title: 'Popular Products',
-                    onPressed: () => Get.to(() => AllProducts(
-                          product: ProductModel.empty(),
-                        )),
+                    onPressed: () => Get.to(() => AllProducts()),
                   ),
                   const SizedBox(
                     height: PrSizes.spaceBtwItems,
