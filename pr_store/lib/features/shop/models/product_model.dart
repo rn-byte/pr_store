@@ -9,7 +9,7 @@ class ProductModel {
   String? sku;
   double price;
   String title;
-  //DateTime? date;
+  DateTime? date;
   double salePrice;
   String thumbnail;
   bool? isFeatured;
@@ -27,7 +27,7 @@ class ProductModel {
     this.sku,
     required this.price,
     required this.title,
-    // this.date,
+    this.date,
     this.salePrice = 0.0,
     required this.thumbnail,
     this.isFeatured,
