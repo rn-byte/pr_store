@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pr_store/features/shop/models/brand_model.dart';
 
+import '../../../utils/constants/colors.dart';
 import '../custom_shapes/containers/rounded_container.dart';
 import '../images/pr_circular_image.dart';
 import '../texts/brand_title_text_with_verified_icon.dart';
-import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/enum.dart';
 import '../../../utils/constants/sizes.dart';
 import '../../../utils/helpers/helper.dart';
@@ -41,7 +41,7 @@ class PrBrandCard extends StatelessWidget {
                 isNetworkImage: true,
                 image: brand.image,
                 backgroundColor: Colors.transparent,
-                //overlayColor: isDark ? PrColor.white : PrColor.black,
+                overlayColor: isDark ? PrColor.white : PrColor.black,
               ),
             ),
             const SizedBox(width: PrSizes.spaceBtwItems / 2),

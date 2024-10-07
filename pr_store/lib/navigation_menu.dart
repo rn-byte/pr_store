@@ -18,15 +18,12 @@ class NavigationMenu extends StatelessWidget {
     return Scaffold(
       bottomNavigationBar: Obx(
         () => NavigationBar(
-          height: 80,
+          height: 65,
           elevation: 0,
           backgroundColor: isDark ? PrColor.dark : PrColor.light,
-          indicatorColor: isDark
-              ? PrColor.white.withOpacity(0.1)
-              : PrColor.black.withOpacity(0.1),
+          indicatorColor: isDark ? PrColor.white.withOpacity(0.1) : PrColor.black.withOpacity(0.1),
           selectedIndex: controller.selectedIndex.value,
-          onDestinationSelected: (index) =>
-              controller.selectedIndex.value = index,
+          onDestinationSelected: (index) => controller.selectedIndex.value = index,
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
             NavigationDestination(icon: Icon(Iconsax.shop), label: 'Shop'),

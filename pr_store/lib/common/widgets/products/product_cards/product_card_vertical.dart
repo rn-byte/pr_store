@@ -63,22 +63,23 @@ class PrProductCardVertical extends StatelessWidget {
                     ),
 
                     //Sale Tag
-                    Positioned(
-                      top: 10,
-                      child: PrRoundedContainer(
-                        radius: PrSizes.sm,
-                        backgroundColor: PrColor.secondary.withOpacity(0.8),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: PrSizes.sm, vertical: PrSizes.xs),
-                        child: Text(
-                          '$salePercentage%',
-                          style:
-                              Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                    if (salePercentage != null)
+                      Positioned(
+                        top: 10,
+                        child: PrRoundedContainer(
+                          radius: PrSizes.sm,
+                          backgroundColor: PrColor.secondary.withOpacity(0.8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: PrSizes.sm, vertical: PrSizes.xs),
+                          child: Text(
+                            '$salePercentage%',
+                            style:
+                                Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                          ),
                         ),
                       ),
-                    ),
 
-                    ///-------Fav ICon Button-----------///
+                    ///-------Fav Icon Button-----------///
                     const Positioned(
                       top: 0,
                       right: 0,

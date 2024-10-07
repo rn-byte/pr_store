@@ -26,6 +26,7 @@ class PrVerticalProductShimmer extends StatelessWidget {
 
             /// Text
             PrShimmerEffect(width: 110, height: 15),
+            SizedBox(height: PrSizes.spaceBtwItems / 2),
             PrShimmerEffect(width: 160, height: 15),
             SizedBox(height: PrSizes.spaceBtwItems / 2),
           ],

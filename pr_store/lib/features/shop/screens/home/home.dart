@@ -114,7 +114,8 @@ class HomeScreen extends StatelessWidget {
                         product: controller.featuredProduct[index],
                       ),
                     );
-                  })
+                  }),
+                  const SizedBox(height: PrSizes.spaceBtwItems),
                 ],
               ),
             ),
