@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:pr_store/features/shop/models/brand_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
@@ -24,16 +25,17 @@ class PrBrandShowcase extends StatelessWidget {
         children: [
           ///-----Brand with Product Count-----///
 
-          const PrBrandCard(showBorder: false),
+          PrBrandCard(
+            showBorder: false,
+            brand: BrandModel.empty(),
+          ),
           const SizedBox(
             height: PrSizes.spaceBtwItems,
           ),
 
           ///-----Brand Top 3 Product image----///
           Row(
-            children: images
-                .map((image) => brandTopProductImageWidget(image, context))
-                .toList(),
+            children: images.map((image) => brandTopProductImageWidget(image, context)).toList(),
           )
         ],
       ),
@@ -45,8 +47,7 @@ Widget brandTopProductImageWidget(String image, context) {
   return Expanded(
       child: PrRoundedContainer(
     height: 100,
-    backgroundColor:
-        PrHelper.isDarkMode(context) ? PrColor.dark : PrColor.light,
+    backgroundColor: PrHelper.isDarkMode(context) ? PrColor.dark : PrColor.light,
     margin: const EdgeInsets.all(PrSizes.sm),
     padding: const EdgeInsets.all(PrSizes.md),
     child: Image(image: AssetImage(image)),

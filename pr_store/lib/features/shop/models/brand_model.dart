@@ -18,7 +18,7 @@ class BrandModel {
   });
 
   /// Empty Hepler function
-  static BrandModel empty() => BrandModel(id: '', name: '', image: '');
+  static BrandModel empty() => BrandModel(id: '', name: '', image: '', productsCount: 0);
 
   /// Converting model to toJson
   toJson() {

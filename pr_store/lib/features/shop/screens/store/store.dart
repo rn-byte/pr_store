@@ -5,11 +5,12 @@ import 'package:pr_store/common/widgets/app_bar/tabbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/search_container.dart';
 import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/cart/cart_menu_icon.dart';
+import 'package:pr_store/common/widgets/shimmers/brand_shimmer.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/controllers/brand/brand_controller.dart';
 import 'package:pr_store/features/shop/controllers/category/category_controller.dart';
-import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/brand/all_brands.dart';
+import 'package:pr_store/features/shop/screens/brand/brand_products.dart';
 import 'package:pr_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -74,9 +75,7 @@ class StoreScreen extends StatelessWidget {
                       ///Featured Brands
                       PrSectionHeading(
                         title: 'Featured Brands',
-                        onPressed: () => Get.to(() => AllBrandsScreen(
-                              product: ProductModel.empty(),
-                            )),
+                        onPressed: () => Get.to(() => const AllBrandsScreen()),
                       ),
                       const SizedBox(
                         height: PrSizes.spaceBtwItems / 1.5,
@@ -84,12 +83,31 @@ class StoreScreen extends StatelessWidget {
 
                       ///Brand Grid Layout
                       Obx(() {
+                        if (brandController.isLoading.value) return const PrBrandShimmer();
+
+                        if (brandController.featuredBrands.isEmpty) {
+                          return Center(
+                            child: Text(
+                              'No Data Found !',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium!
+                                  .apply(color: PrColor.white),
+                            ),
+                          );
+                        }
                         return PrGridLayout(
-                            itemCount: 4,
+                            itemCount: brandController.featuredBrands.length,
                             mainAxisExtent: 80,
                             itemBuilder: (_, index) {
-                              //In backend part we will pass each brans and onPressed event
-                              return const PrBrandCard(showBorder: true);
+                              // //In backend part we will pass each brans and onPressed event
+                              final brand = brandController.featuredBrands[index];
+
+                              return PrBrandCard(
+                                showBorder: true,
+                                brand: brand,
+                                onTap: () => Get.to(() => BrandProducts(brand: brand)),
+                              );
                             });
                       }),
                     ],
