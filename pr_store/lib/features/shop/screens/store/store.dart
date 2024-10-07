@@ -6,6 +6,7 @@ import 'package:pr_store/common/widgets/custom_shapes/containers/search_containe
 import 'package:pr_store/common/widgets/layouts/grid_layout/grid_layout.dart';
 import 'package:pr_store/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/shop/controllers/brand/brand_controller.dart';
 import 'package:pr_store/features/shop/controllers/category/category_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/brand/all_brands.dart';
@@ -22,6 +23,7 @@ class StoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = PrHelper.isDarkMode(context);
     final categories = CategoryController.instance.featuredCategories;
+    final brandController = Get.put(BrandController());
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
@@ -81,13 +83,15 @@ class StoreScreen extends StatelessWidget {
                       ),
 
                       ///Brand Grid Layout
-                      PrGridLayout(
-                          itemCount: 4,
-                          mainAxisExtent: 80,
-                          itemBuilder: (_, index) {
-                            //In backend part we will pass each brans and onPressed event
-                            return const PrBrandCard(showBorder: true);
-                          }),
+                      Obx(() {
+                        return PrGridLayout(
+                            itemCount: 4,
+                            mainAxisExtent: 80,
+                            itemBuilder: (_, index) {
+                              //In backend part we will pass each brans and onPressed event
+                              return const PrBrandCard(showBorder: true);
+                            });
+                      }),
                     ],
                   ),
                 ),
