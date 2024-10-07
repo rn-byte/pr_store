@@ -25,6 +25,10 @@ class BrandController extends GetxController {
     try {
       /// Show loader while loading Brand
       isLoading.value = true;
+      final brands = await brandRepository.getAllBrands();
+
+      allBrands.assignAll(brands);
+      featuredBrands.assignAll(allBrands.where((brand) => brand.isFeatured ?? false).take(4));
     } catch (e) {
       PrLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     } finally {
