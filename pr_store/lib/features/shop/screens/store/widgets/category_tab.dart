@@ -3,12 +3,10 @@ import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/controllers/product/product_controller.dart';
 import 'package:pr_store/features/shop/models/category_model.dart';
-
-import '../../../../../common/widgets/brands/brand_show_case.dart';
+import 'package:pr_store/features/shop/screens/store/widgets/category_brand.dart';
 import '../../../../../common/widgets/layouts/grid_layout/grid_layout.dart';
 import '../../../../../common/widgets/products/product_cards/product_card_vertical.dart';
 import '../../../../../common/widgets/shimmers/vertical_product_shimmer.dart';
-import '../../../../../utils/constants/image_strings.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class PrCategoryTab extends StatelessWidget {
@@ -27,12 +25,8 @@ class PrCategoryTab extends StatelessWidget {
           child: Column(
             children: [
               ///------Brands-------///
-              const PrBrandShowcase(
-                images: [PrImage.productImage1, PrImage.productImage2, PrImage.productImage3],
-              ),
-              const PrBrandShowcase(
-                images: [PrImage.productImage1, PrImage.productImage2, PrImage.productImage3],
-              ),
+              CategoryBrand(category: category),
+
               const SizedBox(
                 height: PrSizes.spaceBtwItems,
               ),
