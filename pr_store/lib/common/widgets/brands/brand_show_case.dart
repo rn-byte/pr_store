@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
+import 'package:pr_store/common/widgets/shimmers/shimmer.dart';
 import 'package:pr_store/features/shop/models/brand_model.dart';
 import 'package:pr_store/features/shop/screens/brand/brand_products.dart';
 import 'package:pr_store/utils/constants/colors.dart';
@@ -57,6 +59,12 @@ Widget brandTopProductImageWidget(String image, context) {
     backgroundColor: PrHelper.isDarkMode(context) ? PrColor.dark : PrColor.light,
     margin: const EdgeInsets.all(PrSizes.sm),
     padding: const EdgeInsets.all(PrSizes.md),
-    child: Image(image: AssetImage(image)),
+    child: CachedNetworkImage(
+      fit: BoxFit.contain,
+      imageUrl: image,
+      progressIndicatorBuilder: (context, url, progress) =>
+          const PrShimmerEffect(width: 100, height: 100),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
+    ),
   ));
 }

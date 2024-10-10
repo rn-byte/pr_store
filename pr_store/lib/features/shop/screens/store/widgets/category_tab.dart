@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
-import 'package:pr_store/features/shop/controllers/product/product_controller.dart';
+import 'package:pr_store/features/shop/controllers/category/category_controller.dart';
 import 'package:pr_store/features/shop/models/category_model.dart';
+import 'package:pr_store/features/shop/screens/all_products/all_products.dart';
 import 'package:pr_store/features/shop/screens/store/widgets/category_brand.dart';
 import '../../../../../common/widgets/layouts/grid_layout/grid_layout.dart';
 import '../../../../../common/widgets/products/product_cards/product_card_vertical.dart';
 import '../../../../../common/widgets/shimmers/vertical_product_shimmer.dart';
 import '../../../../../utils/constants/sizes.dart';
+import '../../../../../utils/helpers/cloud_helper_functions.dart';
 
 class PrCategoryTab extends StatelessWidget {
   const PrCategoryTab({super.key, required this.category});
@@ -15,7 +17,7 @@ class PrCategoryTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(ProductController());
+    final controller = CategoryController.instance;
     return ListView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -32,31 +34,35 @@ class PrCategoryTab extends StatelessWidget {
               ),
 
               ///------Products-----///
-              PrSectionHeading(
-                title: 'You might also like',
-                onPressed: () {},
-              ),
-              const SizedBox(
-                height: PrSizes.spaceBtwItems,
-              ),
-              Obx(() {
-                //print('DEBUG : ${controller.featuredProduct.length}');
-                if (controller.isLoading.value) return const PrVerticalProductShimmer();
-                if (controller.featuredProduct.isEmpty) {
-                  return Center(
-                      child:
-                          Text('No Data Found !', style: Theme.of(context).textTheme.bodyMedium));
-                }
-                return PrGridLayout(
-                  itemCount: controller.featuredProduct.length,
-                  itemBuilder: (_, index) => PrProductCardVertical(
-                    product: controller.featuredProduct[index],
-                  ),
-                );
-              }),
-              const SizedBox(
-                height: PrSizes.spaceBtwSections,
-              )
+              FutureBuilder(
+                  future: controller.getCategoryProducts(categoryId: category.id),
+                  builder: (context, snapshot) {
+                    /// Handel Loader, No data or Error Message
+                    final response = PrCloudHelperFunctions.checkMultiRecordState(
+                        snapshot: snapshot, loader: const PrVerticalProductShimmer());
+                    if (response != null) return response;
+
+                    final products = snapshot.data!;
+                    return Column(
+                      children: [
+                        PrSectionHeading(
+                          title: 'You might also like',
+                          onPressed: () => Get.to(() => AllProducts(
+                                title: category.name,
+                                futureMethod: controller.getCategoryProducts(
+                                    categoryId: category.id, limit: -1),
+                              )),
+                        ),
+                        const SizedBox(height: PrSizes.spaceBtwItems),
+                        PrGridLayout(
+                          itemCount: products.length,
+                          itemBuilder: (_, index) => PrProductCardVertical(
+                            product: products[index],
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
             ],
           ),
         )
