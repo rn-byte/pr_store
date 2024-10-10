@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/features/shop/models/brand_model.dart';
+import 'package:pr_store/features/shop/screens/brand/brand_products.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
@@ -10,34 +12,39 @@ class PrBrandShowcase extends StatelessWidget {
   const PrBrandShowcase({
     super.key,
     required this.images,
+    required this.brand,
   });
+  final BrandModel brand;
   final List<String> images;
 
   @override
   Widget build(BuildContext context) {
-    return PrRoundedContainer(
-      showBorder: true,
-      borderColor: PrColor.darkGrey,
-      backgroundColor: Colors.transparent,
-      padding: const EdgeInsets.all(PrSizes.md),
-      margin: const EdgeInsets.only(bottom: PrSizes.spaceBtwItems),
-      child: Column(
-        children: [
-          ///-----Brand with Product Count-----///
+    return InkWell(
+      onTap: () => Get.to(() => BrandProducts(brand: brand)),
+      child: PrRoundedContainer(
+        showBorder: true,
+        borderColor: PrColor.darkGrey,
+        backgroundColor: Colors.transparent,
+        padding: const EdgeInsets.all(PrSizes.md),
+        margin: const EdgeInsets.only(bottom: PrSizes.spaceBtwItems),
+        child: Column(
+          children: [
+            ///-----Brand with Product Count-----///
 
-          PrBrandCard(
-            showBorder: false,
-            brand: BrandModel.empty(),
-          ),
-          const SizedBox(
-            height: PrSizes.spaceBtwItems,
-          ),
+            PrBrandCard(
+              showBorder: false,
+              brand: brand,
+            ),
+            const SizedBox(
+              height: PrSizes.spaceBtwItems,
+            ),
 
-          ///-----Brand Top 3 Product image----///
-          Row(
-            children: images.map((image) => brandTopProductImageWidget(image, context)).toList(),
-          )
-        ],
+            ///-----Brand Top 3 Product image----///
+            Row(
+              children: images.map((image) => brandTopProductImageWidget(image, context)).toList(),
+            )
+          ],
+        ),
       ),
     );
   }

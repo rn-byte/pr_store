@@ -36,7 +36,7 @@ class BrandProducts extends StatelessWidget {
             const SizedBox(height: PrSizes.spaceBtwSections),
 
             FutureBuilder(
-              future: controller.getBrandProducts(brand.id),
+              future: controller.getBrandProducts(brandId: brand.id),
               builder: (context, snapshot) {
                 /// Handle loader, no record, Or Error message
                 const loader = PrVerticalProductShimmer();
