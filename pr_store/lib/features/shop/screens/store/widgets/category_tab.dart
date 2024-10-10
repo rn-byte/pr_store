@@ -30,6 +30,9 @@ class PrCategoryTab extends StatelessWidget {
               const PrBrandShowcase(
                 images: [PrImage.productImage1, PrImage.productImage2, PrImage.productImage3],
               ),
+              const PrBrandShowcase(
+                images: [PrImage.productImage1, PrImage.productImage2, PrImage.productImage3],
+              ),
               const SizedBox(
                 height: PrSizes.spaceBtwItems,
               ),
