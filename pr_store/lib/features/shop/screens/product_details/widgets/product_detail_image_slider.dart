@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/app_bar/appbar.dart';
 import 'package:pr_store/common/widgets/custom_shapes/curved_edges/curved_edges_widget.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
+import 'package:pr_store/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:pr_store/features/shop/controllers/product/images_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
@@ -87,9 +87,8 @@ class PrProductImageSlider extends StatelessWidget {
             const PrAppBar(
               showBackArrow: true,
               actions: [
-                Icon(
-                  Iconsax.heart5,
-                  color: Colors.red,
+                PrFavouriteIcon(
+                  backgroundColor: Colors.transparent,
                 )
               ],
             )

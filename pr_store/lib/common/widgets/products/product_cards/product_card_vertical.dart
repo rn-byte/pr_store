@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/styles/shadows.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
+import 'package:pr_store/common/widgets/products/favourite_icon/favourite_icon.dart';
 import 'package:pr_store/features/shop/controllers/product/product_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/product_details/produt_detail.dart';
@@ -11,7 +11,6 @@ import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/enum.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
-import '../../icons/pr_circular_icon.dart';
 import '../../texts/brand_title_text_with_verified_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
@@ -83,10 +82,7 @@ class PrProductCardVertical extends StatelessWidget {
                     const Positioned(
                       top: 0,
                       right: 0,
-                      child: PrCircularIcon(
-                        icon: Iconsax.heart5,
-                        color: Colors.red,
-                      ),
+                      child: PrFavouriteIcon(),
                     ),
                   ],
                 ),
