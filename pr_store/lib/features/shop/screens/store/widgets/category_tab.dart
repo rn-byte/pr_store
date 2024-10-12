@@ -40,9 +40,12 @@ class PrCategoryTab extends StatelessWidget {
                     /// Handel Loader, No data or Error Message
                     final response = PrCloudHelperFunctions.checkMultiRecordState(
                         snapshot: snapshot, loader: const PrVerticalProductShimmer());
+
                     if (response != null) return response;
 
+                    ///Record Found
                     final products = snapshot.data!;
+
                     return Column(
                       children: [
                         PrSectionHeading(

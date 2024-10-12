@@ -99,16 +99,16 @@ class ProductRepository extends GetxController {
     try {
       /// Query to get all document where productId matches the  provided categoryId and fetch limited or unlimited data base on limit
       QuerySnapshot productCategoryQuery = limit == -1
-          ? await _db.collection('ProductCategory').where('categoryId', isEqualTo: categoryId).get()
+          ? await _db.collection('ProductCategory').where('CategoryId', isEqualTo: categoryId).get()
           : await _db
               .collection('ProductCategory')
-              .where('categoryId', isEqualTo: categoryId)
+              .where('CategoryId', isEqualTo: categoryId)
               .limit(limit)
               .get();
 
       /// Extract productId from the documents
       List<String> productIds =
-          productCategoryQuery.docs.map((doc) => doc['productId'] as String).toList();
+          productCategoryQuery.docs.map((doc) => doc['ProductId'] as String).toList();
 
       /// Query to get all the document where brandId is in the list of brandIds, FieldPath.documentId to query document in collections
       final productQuery =
