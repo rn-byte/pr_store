@@ -79,10 +79,12 @@ class PrProductCardVertical extends StatelessWidget {
                       ),
 
                     ///-------Fav Icon Button-----------///
-                    const Positioned(
+                    Positioned(
                       top: 0,
                       right: 0,
-                      child: PrFavouriteIcon(),
+                      child: PrFavouriteIcon(
+                        productId: product.id,
+                      ),
                     ),
                   ],
                 ),

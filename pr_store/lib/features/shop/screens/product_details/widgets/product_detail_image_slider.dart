@@ -84,11 +84,12 @@ class PrProductImageSlider extends StatelessWidget {
                     itemCount: images.length),
               ),
             ),
-            const PrAppBar(
+            PrAppBar(
               showBackArrow: true,
               actions: [
                 PrFavouriteIcon(
                   backgroundColor: Colors.transparent,
+                  productId: product.id,
                 )
               ],
             )
