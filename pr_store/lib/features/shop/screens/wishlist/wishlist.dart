@@ -8,7 +8,6 @@ import 'package:pr_store/common/widgets/loaders/animation_loader.dart';
 import 'package:pr_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:pr_store/common/widgets/shimmers/vertical_product_shimmer.dart';
 import 'package:pr_store/features/shop/controllers/favourite/favourite_controller.dart';
-import 'package:pr_store/features/shop/screens/home/home.dart';
 import 'package:pr_store/navigation_menu.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -30,7 +29,7 @@ class FavouriteScreen extends StatelessWidget {
           PrCircularIcon(
             backgroundColor: Colors.transparent,
             icon: Iconsax.add,
-            onPressed: () => Get.to(const HomeScreen()),
+            onPressed: () => Get.offAll(() => const NavigationMenu()),
           ),
         ],
       ),
@@ -49,7 +48,7 @@ class FavouriteScreen extends StatelessWidget {
                         animation: PrImage.pencilAnimation,
                         showAction: true,
                         actionText: "Let's add some.",
-                        onActionPressed: () => Get.off(() => const NavigationMenu()),
+                        onActionPressed: () => Get.offAll(() => const NavigationMenu()),
                       );
 
                       const loader = PrVerticalProductShimmer(itemCount: 6);

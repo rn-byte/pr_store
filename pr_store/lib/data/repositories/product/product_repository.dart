@@ -72,9 +72,16 @@ class ProductRepository extends GetxController {
     }
   }
 
-  /// Get product based on brand
-  Future<List<ProductModel>> getFavouriteProducts(List<String> productIds) async {
+  /// Get product based on wishlist
+  Future<List<ProductModel>> getFavouriteProducts(List<String>? productIds) async {
     try {
+      // Check if productIds is null or empty
+      if (productIds == null || productIds.isEmpty) {
+        // Return an empty list if there are no product IDs
+        return [];
+      }
+
+      // Perform Firestore query if productIds is not empty
       final snapshot =
           await _db.collection('Products').where(FieldPath.documentId, whereIn: productIds).get();
       return snapshot.docs
@@ -85,7 +92,8 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
-      throw 'Something went wrong. Please try Again !!}';
+      print('Exception:=>${e.toString()}');
+      throw 'Something went wrong. Please try Again !!';
     }
   }
 
@@ -106,7 +114,7 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
-      throw 'Something went wrong. Please try Again !!}';
+      throw 'Something went wrong. Please try Again !!';
     }
   }
 
@@ -141,7 +149,7 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
-      throw 'Something went wrong. Please try Again !!}';
+      throw 'Something went wrong. Please try Again !!';
     }
   }
 
