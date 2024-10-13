@@ -10,6 +10,7 @@ import 'package:pr_store/features/authentication/screens/login/login.dart';
 import 'package:pr_store/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:pr_store/features/authentication/screens/signup/verify_email.dart';
 import 'package:pr_store/navigation_menu.dart';
+import 'package:pr_store/utils/local_storage/storage_utility.dart';
 import '../../../utils/exceptions/firebase_auth_exceptions.dart';
 import '../../../utils/exceptions/firebase_exceptions.dart';
 import '../../../utils/exceptions/format_exceptions.dart';
@@ -37,6 +38,9 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
+        ///Initilize User specific Storage
+        await PrLocalStorage.init(user.uid);
+
         Get.offAll(() => const NavigationMenu());
       } else {
         Get.offAll(() => VerifyEmailScreen(email: _auth.currentUser?.email));
@@ -52,11 +56,9 @@ class AuthenticationRepository extends GetxController {
   /*---------------------- Email and password sign-in-------------------- */
 
   /// [Email Authentication] - sign-in
-  Future<UserCredential> loginWithEmailAndPassword(
-      String email, String password) async {
+  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
     try {
-      return await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+      return await _auth.signInWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {
@@ -71,11 +73,9 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [Email Authentication] - Register
-  Future<UserCredential> registerWithEmailAndPassword(
-      String email, String password) async {
+  Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
     try {
-      return await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      return await _auth.createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {
@@ -124,12 +124,10 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [Re-authentication] - Reauthenticate user
-  Future<void> reAuthenticateWithEmailAndPassword(
-      String email, String password) async {
+  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async {
     try {
       //create a credentials
-      AuthCredential credential =
-          EmailAuthProvider.credential(email: email, password: password);
+      AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
 
       /// Re-Authenticate
       await _auth.currentUser!.reauthenticateWithCredential(credential);
@@ -156,8 +154,7 @@ class AuthenticationRepository extends GetxController {
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
       /// Obtain the Auth Details from the Request
-      final GoogleSignInAuthentication? googleAuth =
-          await userAccount?.authentication;
+      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
 
       ///Create a new Credentials
       final credentials = GoogleAuthProvider.credential(

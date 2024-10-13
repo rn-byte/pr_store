@@ -44,7 +44,7 @@ dependencies:
 
   #StateManagement_________________________
   get:
-  get_storage:
+  
 
 
  #utility package
@@ -76,6 +76,9 @@ dependencies:
 
   #GOOGLE_SIGN_IN_DEPENDENCY
   google_sign_in: ^6.2.1
+  
+  #For local Storage
+  get_storage:
   
   
   

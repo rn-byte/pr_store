@@ -1,13 +1,28 @@
 import 'package:get_storage/get_storage.dart';
 
 class PrLocalStorage {
-  static final PrLocalStorage _instance = PrLocalStorage._internal();
-  factory PrLocalStorage() {
-    return _instance;
-  }
+  // static final PrLocalStorage _instance = PrLocalStorage._internal();
+
+  late final GetStorage _storage;
+
+  /// Singleton Instance
+  static PrLocalStorage? _instance;
+
   PrLocalStorage._internal();
 
-  final _storage = GetStorage();
+  factory PrLocalStorage.instance() {
+    _instance ??= PrLocalStorage._internal();
+    return _instance!;
+  }
+
+  /// To assign or handle userbase storage
+  static Future<void> init(String bucketName) async {
+    await GetStorage.init(bucketName);
+
+    /// Creating instance
+    _instance = PrLocalStorage._internal();
+    _instance!._storage = GetStorage(bucketName);
+  }
 
   ///Generic method to SAVE data
   Future<void> saveData<T>(String key, T value) async {
