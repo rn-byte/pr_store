@@ -3,19 +3,25 @@ import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_contain
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
 import 'package:pr_store/common/widgets/products/cart/add_to_cart_button.dart';
 import 'package:pr_store/common/widgets/products/favourite_icon/favourite_icon.dart';
+import 'package:pr_store/common/widgets/products/price/product_price.dart';
 import 'package:pr_store/common/widgets/texts/brand_title_text_with_verified_icon.dart';
-import 'package:pr_store/common/widgets/texts/product_price_text.dart';
 import 'package:pr_store/common/widgets/texts/product_title_text.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
+import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
+import '../../../../features/shop/controllers/product/product_controller.dart';
 import '../../../../utils/constants/colors.dart';
 import '../../../../utils/constants/sizes.dart';
 
 class PrProductCardHorizontal extends StatelessWidget {
-  const PrProductCardHorizontal({super.key});
+  const PrProductCardHorizontal({super.key, required this.product});
+
+  final ProductModel product;
 
   @override
   Widget build(BuildContext context) {
+    final controller = ProductController.instance;
+    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+
     final isDark = PrHelper.isDarkMode(context);
     return Container(
       width: 310,
@@ -35,36 +41,38 @@ class PrProductCardHorizontal extends StatelessWidget {
             child: Stack(
               children: [
                 /// Thumbnail Image
-                const SizedBox(
+                SizedBox(
                   height: 120,
                   width: 120,
                   child: PrRoundedImage(
-                    imageUrl: PrImage.productImage6,
+                    imageUrl: product.thumbnail,
                     applyImageRadius: true,
+                    isNetworkImage: true,
                   ),
                 ),
 
                 //Sale Tag
-                Positioned(
-                  top: 10,
-                  child: PrRoundedContainer(
-                    radius: PrSizes.sm,
-                    backgroundColor: PrColor.secondary.withOpacity(0.8),
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: PrSizes.sm, vertical: PrSizes.xs),
-                    child: Text(
-                      '25%',
-                      style: Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                if (salePercentage != null)
+                  Positioned(
+                    top: 10,
+                    child: PrRoundedContainer(
+                      radius: PrSizes.sm,
+                      backgroundColor: PrColor.secondary.withOpacity(0.8),
+                      padding:
+                          const EdgeInsets.symmetric(horizontal: PrSizes.sm, vertical: PrSizes.xs),
+                      child: Text(
+                        '$salePercentage%',
+                        style: Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                      ),
                     ),
                   ),
-                ),
 
                 ///-------Fav ICon Button-----------///
-                const Positioned(
+                Positioned(
                   top: 0,
                   right: 0,
                   child: PrFavouriteIcon(
-                    productId: '',
+                    productId: product.id,
                   ),
                 )
               ],
@@ -72,30 +80,30 @@ class PrProductCardHorizontal extends StatelessWidget {
           ),
 
           /// Details
-          const SizedBox(
+          SizedBox(
             width: 172,
             child: Padding(
-              padding: EdgeInsets.only(top: PrSizes.sm, left: PrSizes.sm),
+              padding: const EdgeInsets.only(top: PrSizes.sm, left: PrSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      PrProductTitleText(title: 'Green Nike Half Sleeves Shirt', smallSize: true),
-                      SizedBox(height: PrSizes.spaceBtwItems / 2),
-                      PrBrandTitleWithVerifiedIcon(title: 'Nike')
+                      PrProductTitleText(title: product.title, smallSize: true),
+                      const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                      PrBrandTitleWithVerifiedIcon(title: product.brand!.name)
                     ],
                   ),
-                  Spacer(),
+                  const Spacer(),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       /// Pricing
-                      Flexible(child: PrProductPriceText(price: '256.0')),
+                      PrProductPrice(product: product),
 
                       /// Add to Cart Button
-                      PrAddToCartButton()
+                      const PrAddToCartButton()
                     ],
                   )
                 ],

@@ -4,15 +4,14 @@ import 'package:pr_store/common/styles/shadows.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
 import 'package:pr_store/common/widgets/products/favourite_icon/favourite_icon.dart';
+import 'package:pr_store/common/widgets/products/price/product_price.dart';
 import 'package:pr_store/features/shop/controllers/product/product_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/screens/product_details/produt_detail.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/enum.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import '../../texts/brand_title_text_with_verified_icon.dart';
-import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 import '../cart/add_to_cart_button.dart';
 
@@ -119,32 +118,7 @@ class PrProductCardVertical extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 //price
-                Flexible(
-                  child: Column(
-                    children: [
-                      if (product.productType == ProductType.single.toString() &&
-                          product.salePrice > 0)
-                        Padding(
-                          padding: const EdgeInsets.only(left: PrSizes.sm),
-                          child: Text(
-                            product.price.toString(),
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium!
-                                .apply(decoration: TextDecoration.lineThrough),
-                          ),
-                        ),
-
-                      /// Price, show sale price as main price if sale exist
-                      Padding(
-                        padding: const EdgeInsets.only(left: PrSizes.sm),
-                        child: PrProductPriceText(
-                          price: controller.getProductPrice(product),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                PrProductPrice(product: product),
 
                 ///add to cart button
                 const PrAddToCartButton()

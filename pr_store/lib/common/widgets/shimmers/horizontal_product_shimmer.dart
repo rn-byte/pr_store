@@ -6,7 +6,7 @@ import '../../../utils/constants/sizes.dart';
 class PrHorizontalProductShimmer extends StatelessWidget {
   const PrHorizontalProductShimmer({
     super.key,
-    this.itemCount = 1,
+    this.itemCount = 4,
   });
 
   final int itemCount;
@@ -29,7 +29,17 @@ class PrHorizontalProductShimmer extends StatelessWidget {
 
             /// Text
             Column(
-              children: [],
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(height: PrSizes.spaceBtwItems / 2),
+                PrShimmerEffect(width: 160, height: 15),
+                SizedBox(height: PrSizes.spaceBtwItems / 2),
+                PrShimmerEffect(width: 110, height: 15),
+                SizedBox(height: PrSizes.spaceBtwItems / 2),
+                PrShimmerEffect(width: 80, height: 15),
+                Spacer(),
+              ],
             )
           ],
         ),
