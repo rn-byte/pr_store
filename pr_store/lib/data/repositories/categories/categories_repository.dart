@@ -17,9 +17,7 @@ class CategoriesRepository extends GetxController {
     try {
       // getting all the categories
       final snapshot = await _db.collection('categories').get();
-      final list = snapshot.docs
-          .map((document) => CategoryModel.fromSnapshot(document))
-          .toList();
+      final list = snapshot.docs.map((document) => CategoryModel.fromSnapshot(document)).toList();
       return list;
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
@@ -31,6 +29,22 @@ class CategoriesRepository extends GetxController {
   }
 
   /// Get Sub Categories
+  Future<List<CategoryModel>> getSubCategories(String categoryId) async {
+    try {
+      // getting all the categories
+      final snapshot =
+          await _db.collection('categories').where('ParentId', isEqualTo: categoryId).get();
+      final result = snapshot.docs.map((e) => CategoryModel.fromSnapshot(e)).toList();
+      return result;
+    } on FirebaseException catch (e) {
+      throw PrFirebaseExceptions(e.code).message;
+    } on PlatformException catch (e) {
+      throw PrPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please Try Again !';
+    }
+  }
+
   /// upload categories to cloud firebase
   Future<void> uploadDummyData(List<CategoryModel> categories) async {
     try {
@@ -43,17 +57,13 @@ class CategoriesRepository extends GetxController {
         final file = await storage.getImageDataFromAssets(category.image);
 
         /// upload image and get it url
-        final url =
-            await storage.uploadImageData('Categories', file, category.name);
+        final url = await storage.uploadImageData('Categories', file, category.name);
 
         /// Assign url to Category.image attribute
         category.image = url;
 
         /// Store category in Firestore
-        await _db
-            .collection('categories')
-            .doc(category.id)
-            .set(category.toJson());
+        await _db.collection('categories').doc(category.id).set(category.toJson());
       }
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;

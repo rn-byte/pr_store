@@ -92,7 +92,7 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw PrPlatformExceptions(e.code).message;
     } catch (e) {
-      print('Exception:=>${e.toString()}');
+      //print('Exception:=>${e.toString()}');
       throw 'Something went wrong. Please try Again !!';
     }
   }

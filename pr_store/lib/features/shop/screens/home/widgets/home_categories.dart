@@ -23,10 +23,7 @@ class PrHomeCategories extends StatelessWidget {
         return Center(
           child: Text(
             'No Data Found !',
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium!
-                .apply(color: PrColor.white),
+            style: Theme.of(context).textTheme.bodyMedium!.apply(color: PrColor.white),
           ),
         );
       }
@@ -41,7 +38,7 @@ class PrHomeCategories extends StatelessWidget {
             return PrVerticalImageText(
               image: category.image,
               title: category.name,
-              onTap: () => Get.to(() => const SubCategoriesScreen()),
+              onTap: () => Get.to(() => SubCategoriesScreen(category: category)),
             );
           },
         ),
