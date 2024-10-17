@@ -23,4 +23,19 @@ class AddressRepository extends GetxController {
       throw 'Something went wrong while fetching Address Information. Try again later!';
     }
   }
+
+  /// Clear the 'selected' field for all addresss
+  Future<void> updateSelectedField(String addressId, bool selected) async {
+    try {
+      final userId = AuthenticationRepository.instance.authUser!.uid;
+      await _db
+          .collection('Users')
+          .doc(userId)
+          .collection('Addresses')
+          .doc(addressId)
+          .update({'SelectedAddress': selected});
+    } catch (e) {
+      throw 'Unable to update your address selection. Try again later.';
+    }
+  }
 }
