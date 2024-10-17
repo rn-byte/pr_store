@@ -56,7 +56,7 @@ class PrSingleAddress extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'PR Store',
+                    address.name,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.titleLarge,
@@ -64,16 +64,16 @@ class PrSingleAddress extends StatelessWidget {
                   const SizedBox(
                     height: PrSizes.sm / 2,
                   ),
-                  const Text(
-                    '+977 9807805496',
+                  Text(
+                    address.formattedPhoneNo,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(
                     height: PrSizes.sm / 2,
                   ),
-                  const Text(
-                    '4480 Kumaripati-20, Purnachandi, Lalitpur, Nepal',
+                  Text(
+                    address.toString(),
                     softWrap: true,
                   ),
                 ],

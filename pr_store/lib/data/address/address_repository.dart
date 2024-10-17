@@ -38,4 +38,16 @@ class AddressRepository extends GetxController {
       throw 'Unable to update your address selection. Try again later.';
     }
   }
+
+  /// Save new user address
+  Future<String> addAddress(AddressModel address) async {
+    try {
+      final userId = AuthenticationRepository.instance.authUser!.uid;
+      final currentAddress =
+          await _db.collection('Users').doc(userId).collection('Addresses').add(address.toJson());
+      return currentAddress.id;
+    } catch (e) {
+      throw 'Something Went wrong while saving Address Information. Try Again Later !.';
+    }
+  }
 }

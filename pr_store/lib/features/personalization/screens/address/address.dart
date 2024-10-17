@@ -32,24 +32,29 @@ class UserAddressScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(PrSizes.defaultSpace),
-        child: FutureBuilder(
-            future: controller.getAllUserAddress(),
-            builder: (context, snapshot) {
-              /// Helper Function,Handel Loader, No record,or Error message
-              final response = PrCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
-              if (response != null) return response;
+        child: Obx(
+          () => FutureBuilder(
 
-              /// User address found
-              final addresses = snapshot.data!;
-              return ListView.builder(
-                shrinkWrap: true,
-                itemCount: addresses.length,
-                itemBuilder: (_, index) => PrSingleAddress(
-                  address: addresses[index],
-                  onTap: () => controller.selectAddress(addresses[index]),
-                ),
-              );
-            }),
+              /// Use to trigger refresh
+              key: Key(controller.refreshData.value.toString()),
+              future: controller.getAllUserAddress(),
+              builder: (context, snapshot) {
+                /// Helper Function,Handel Loader, No record,or Error message
+                final response = PrCloudHelperFunctions.checkMultiRecordState(snapshot: snapshot);
+                if (response != null) return response;
+
+                /// User address found
+                final addresses = snapshot.data!;
+                return ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: addresses.length,
+                  itemBuilder: (_, index) => PrSingleAddress(
+                    address: addresses[index],
+                    onTap: () => controller.selectAddress(addresses[index]),
+                  ),
+                );
+              }),
+        ),
       ),
     );
   }
