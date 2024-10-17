@@ -7,7 +7,6 @@ import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/controllers/category/category_controller.dart';
 import 'package:pr_store/features/shop/models/category_model.dart';
 import 'package:pr_store/features/shop/screens/all_products/all_products.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/cloud_helper_functions.dart';
 
@@ -30,10 +29,11 @@ class SubCategoriesScreen extends StatelessWidget {
         child: Column(
           children: [
             //Banner
-            const PrRoundedImage(
-                imageUrl: PrImage.promoBanner1,
+            PrRoundedImage(
+                imageUrl: category.image,
                 width: double.infinity,
                 height: 150,
+                isNetworkImage: true,
                 applyImageRadius: true),
             const SizedBox(height: PrSizes.spaceBtwSections),
 
