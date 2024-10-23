@@ -29,11 +29,13 @@ if (flutterVersionName == null) {
 android {
     namespace = "com.example.pr_store"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
+    // ndkVersion = flutter.ndkVersion
+    ndkVersion = "25.1.8937393"
+
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     defaultConfig {
@@ -41,7 +43,12 @@ android {
         applicationId = "com.example.pr_store"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdk = flutter.minSdkVersion
+        //minSdk = flutter.minSdkVersion
+        //minSdk 23
+
+        compileSdk 34
+        minSdkVersion 23 //flutter.minSdkVersion
+        targetSdkVersion 34//flutter.targetSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
@@ -49,7 +56,7 @@ android {
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
+            //////.TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
         }
