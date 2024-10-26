@@ -40,12 +40,14 @@ class CartController extends GetxController {
       }
     } else {
       if (product.stock < 1) {
-        PrLoaders.warningSnackBar(title: 'Oh Snap !', message: 'Selected Product is out of Stock.');
+        PrLoaders.warningSnackBar(
+            title: 'Oh Snap !', message: 'Selected Product is out of Stock.');
       }
     }
 
     /// convert the product model to cartModel with the given quantity
-    final selectedCartItem = convertToCartItem(product, productQuantityInCart.value);
+    final selectedCartItem =
+        convertToCartItem(product, productQuantityInCart.value);
 
     /// check if already added in cart
     int index = cartItems.indexWhere((cartItem) =>
@@ -115,5 +117,14 @@ class CartController extends GetxController {
   void saveCartItems() {
     final cartItemStrings = cartItems.map((item) => item.toJson()).toList();
     PrLocalStorage.instance().saveData('cartItems', cartItemStrings);
+  }
+
+  void loadCartItems() {
+    final cartItemsStrings =
+        PrLocalStorage.instance().readData<List<dynamic>>('cartItems');
+    if (cartItemsStrings != null) {
+      cartItems.assignAll(cartItemsStrings
+          .map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
+    }
   }
 }
