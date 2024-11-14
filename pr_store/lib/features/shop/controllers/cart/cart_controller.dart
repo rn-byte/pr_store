@@ -125,6 +125,22 @@ class CartController extends GetxController {
     if (cartItemsStrings != null) {
       cartItems.assignAll(cartItemsStrings
           .map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
+      updateCartTotals();
     }
+  }
+
+  int getProductQuantityInCart(String productId) {
+    final foundItem = cartItems
+        .where((item) => item.productId == productId)
+        .fold(0, (previousValue, element) => previousValue + element.quantity);
+    return foundItem;
+  }
+
+  int getVariationQuantityInCart(String productId, String variationId) {
+    final foundItem = cartItems.firstWhere(
+      (item) => item.productId == productId && item.variationId == variationId,
+      orElse: () => CartItemModel.empty(),
+    );
+    return foundItem.quantity;
   }
 }
