@@ -143,4 +143,10 @@ class CartController extends GetxController {
     );
     return foundItem.quantity;
   }
+
+  void clearCart() {
+    productQuantityInCart.value = 0;
+    cartItems.clear();
+    updateCart();
+  }
 }
