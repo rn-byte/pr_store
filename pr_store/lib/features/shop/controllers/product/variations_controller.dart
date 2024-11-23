@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pr_store/features/shop/controllers/cart/cart_controller.dart';
 import 'package:pr_store/features/shop/controllers/product/images_controller.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
 import 'package:pr_store/features/shop/models/product_variations_model.dart';
@@ -9,24 +10,36 @@ class VariationsController extends GetxController {
   /// Variables
   RxMap selectedAttributes = {}.obs;
   RxString variationStockStatus = ''.obs;
-  Rx<ProductVariationModel> selectedVariation = ProductVariationModel.empty().obs;
+  Rx<ProductVariationModel> selectedVariation =
+      ProductVariationModel.empty().obs;
 
   /// Select Attribute, and Variations
-  void onAttributeSelected(ProductModel product, attributeName, attributeValue) {
+  void onAttributeSelected(
+      ProductModel product, attributeName, attributeValue) {
     /// When attribute is selected we will add that attributes to the selectedAttribute
-    final selectedAttributes = Map<String, dynamic>.from(this.selectedAttributes);
+    final selectedAttributes =
+        Map<String, dynamic>.from(this.selectedAttributes);
 
     /// this local and global 'selectedAttributes' helps to compare value
     selectedAttributes[attributeName] = attributeValue;
     this.selectedAttributes[attributeName] = attributeValue;
 
     final selectedVariation = product.productVariations!.firstWhere(
-        (variation) => _isSameAttributeValues(variation.attributeValues, selectedAttributes),
+        (variation) => _isSameAttributeValues(
+            variation.attributeValues, selectedAttributes),
         orElse: () => ProductVariationModel.empty());
 
     ///show the selected variation image as the main image
     if (selectedVariation.image.isNotEmpty) {
-      ImagesController.instance.selectedProductImage.value = selectedVariation.image;
+      ImagesController.instance.selectedProductImage.value =
+          selectedVariation.image;
+    }
+
+    /// show selected variation quantity already in cart
+    if (selectedVariation.id.isNotEmpty) {
+      final cartController = CartController.instance;
+      cartController.productQuantityInCart.value = cartController
+          .getVariationQuantityInCart(product.id, selectedVariation.id);
     }
 
     /// Assign the selected varitaion
@@ -37,8 +50,8 @@ class VariationsController extends GetxController {
   }
 
   ///  check if selected attributes matches any variation attributes
-  bool _isSameAttributeValues(
-      Map<String, dynamic> variationAttributes, Map<String, dynamic> selectedAttributes) {
+  bool _isSameAttributeValues(Map<String, dynamic> variationAttributes,
+      Map<String, dynamic> selectedAttributes) {
     /// If selectedAttributes contains 3 attributes and current variation contains 2 then return
     if (variationAttributes.length != selectedAttributes.length) return false;
 
@@ -79,7 +92,8 @@ class VariationsController extends GetxController {
 
   /// Check product variations Stock Status
   void getProductVariationStockStatus() {
-    variationStockStatus.value = selectedVariation.value.stock > 0 ? 'In Stock' : 'Out of Stock';
+    variationStockStatus.value =
+        selectedVariation.value.stock > 0 ? 'In Stock' : 'Out of Stock';
   }
 
   /// Reset selected attributes when switching products
