@@ -4,6 +4,8 @@ import 'package:lottie/lottie.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
+import '../../../utils/helpers/helper.dart';
+
 /// A widget for Displaying an animated loading indicator with optional
 /// text and action button
 class PrAnimationLoaderWidget extends StatelessWidget {
@@ -48,19 +50,20 @@ class PrAnimationLoaderWidget extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
-          const SizedBox(height: PrSizes.defaultSpace),
+          const SizedBox(height: PrSizes.defaultSpace * 1.5),
           showAction
               ? SizedBox(
                   width: 250,
                   child: OutlinedButton(
-                      onPressed: onActionPressed,
-                      child: Text(
-                        actionText!,
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .apply(color: PrColor.light),
-                      )),
+                    onPressed: onActionPressed,
+                    child: Text(
+                      actionText!,
+                      style: Theme.of(context).textTheme.bodyMedium!.apply(
+                          color: PrHelper.isDarkMode(context)
+                              ? PrColor.white
+                              : PrColor.dark),
+                    ),
+                  ),
                 )
               : const SizedBox(),
         ],

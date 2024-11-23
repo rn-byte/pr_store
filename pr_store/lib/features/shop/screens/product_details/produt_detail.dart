@@ -21,7 +21,9 @@ class PrProdutDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: const PrBottomAddToCart(),
+      bottomSheet: PrBottomAddToCart(
+        product: product,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -52,7 +54,8 @@ class PrProdutDetailScreen extends StatelessWidget {
                   ///--checkout button
                   SizedBox(
                     width: double.infinity,
-                    child: ElevatedButton(onPressed: () {}, child: const Text('Checkout')),
+                    child: ElevatedButton(
+                        onPressed: () {}, child: const Text('Checkout')),
                   ),
                   const SizedBox(height: PrSizes.spaceBtwSections),
 
@@ -68,8 +71,10 @@ class PrProdutDetailScreen extends StatelessWidget {
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show More',
                     trimExpandedText: '  Less',
-                    moreStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: const TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   ///---review

@@ -61,7 +61,7 @@ class CartController extends GetxController {
 
     if (index >= 0) {
       /// This quantity is already added or updated/Removed from the design (Cart)
-      cartItems[index].quantity == selectedCartItem.quantity;
+      cartItems[index].quantity = selectedCartItem.quantity;
     } else {
       cartItems.add(selectedCartItem);
     }
@@ -114,6 +114,24 @@ class CartController extends GetxController {
       },
       onCancel: () => Get.back(),
     );
+  }
+
+  ///  Initialize already added item count in the cart
+  void updateAlreadyAddedProductCount(ProductModel product) {
+    /// if product has no variation then calculate cartEntries and display total number
+    /// Else make default entries to zero and show cart entries when variation is selected
+    if (product.productType == ProductType.single.toString()) {
+      productQuantityInCart.value = getProductQuantityInCart(product.id);
+    } else {
+      /// Get selected variation if any....
+      final variationId = variationController.selectedVariation.value.id;
+      if (variationId.isNotEmpty) {
+        productQuantityInCart.value =
+            getVariationQuantityInCart(product.id, variationId);
+      } else {
+        productQuantityInCart.value = 0;
+      }
+    }
   }
 
   /// This Function converts product model to cart model
