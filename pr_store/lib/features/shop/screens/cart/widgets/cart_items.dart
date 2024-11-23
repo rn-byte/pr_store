@@ -34,7 +34,7 @@ class PrCartItems extends StatelessWidget {
               if (showAddRemoveButton)
                 const SizedBox(height: PrSizes.spaceBtwItems),
               if (showAddRemoveButton)
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     /// Extra Space
@@ -43,10 +43,15 @@ class PrCartItems extends StatelessWidget {
                         SizedBox(width: 70),
 
                         /// Add Remove Button
-                        PrProductQuantityWithAddRemoveButton(),
+                        PrProductQuantityWithAddRemoveButton(
+                          quantity: item.quantity,
+                          add: () => cartController.addOneToCart(item),
+                          remove: () => cartController.removeOneFromCart(item),
+                        ),
                       ],
                     ),
-                    PrProductPriceText(price: '4999')
+                    PrProductPriceText(
+                        price: (item.price * item.quantity).toStringAsFixed(1))
                   ],
                 )
             ],

@@ -24,7 +24,7 @@ class CartScreen extends StatelessWidget {
       body: Obx(() {
         /// Nothing found Widget
         final emptyWidget = PrAnimationLoaderWidget(
-          text: 'Whoops!, Cart is empty. ',
+          text: 'Whoops!, Cart is Empty. ',
           animation: PrImage.cartAnimation,
           showAction: true,
           actionText: "Let's Fill it.",
@@ -50,7 +50,8 @@ class CartScreen extends StatelessWidget {
         padding: const EdgeInsets.all(PrSizes.defaultSpace),
         child: ElevatedButton(
             onPressed: () => Get.to(() => const CheckoutScreen()),
-            child: const Text('Checkout Rs. 4999')),
+            child: Obx(
+                () => Text('Checkout Rs. ${controller.totalCartPrice.value}'))),
       ),
     );
   }

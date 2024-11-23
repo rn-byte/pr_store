@@ -8,7 +8,13 @@ import '../../../../utils/helpers/helper.dart';
 class PrProductQuantityWithAddRemoveButton extends StatelessWidget {
   const PrProductQuantityWithAddRemoveButton({
     super.key,
+    required this.quantity,
+    this.add,
+    this.remove,
   });
+
+  final int quantity;
+  final VoidCallback? add, remove;
 
   @override
   Widget build(BuildContext context) {
@@ -23,17 +29,20 @@ class PrProductQuantityWithAddRemoveButton extends StatelessWidget {
           size: PrSizes.md,
           color: isDark ? PrColor.white : PrColor.black,
           backgroundColor: isDark ? PrColor.darkerGrey : PrColor.light,
+          onPressed: remove,
         ),
         const SizedBox(width: PrSizes.spaceBtwItems),
-        Text('2', style: Theme.of(context).textTheme.titleSmall),
+        Text(quantity.toString(),
+            style: Theme.of(context).textTheme.titleSmall),
         const SizedBox(width: PrSizes.spaceBtwItems),
-        const PrCircularIcon(
+        PrCircularIcon(
           icon: Iconsax.add,
           width: 32,
           height: 32,
           size: PrSizes.md,
           color: PrColor.white,
           backgroundColor: PrColor.primary,
+          onPressed: add,
         ),
       ],
     );
