@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pr_store/common/widgets/images/pr_rounded_image.dart';
 import 'package:pr_store/common/widgets/texts/brand_title_text_with_verified_icon.dart';
 import 'package:pr_store/common/widgets/texts/product_title_text.dart';
+import 'package:pr_store/features/shop/models/cart_item_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -10,7 +11,10 @@ import 'package:pr_store/utils/helpers/helper.dart';
 class PrCartItem extends StatelessWidget {
   const PrCartItem({
     super.key,
+    required this.cartItem,
   });
+
+  final CartItemModel cartItem;
 
   @override
   Widget build(BuildContext context) {

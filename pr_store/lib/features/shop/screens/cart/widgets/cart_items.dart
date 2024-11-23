@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/texts/product_price_text.dart';
+import 'package:pr_store/features/shop/controllers/cart/cart_controller.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 
 import '../../../../../common/widgets/products/cart/add_remove_button.dart';
@@ -14,34 +16,42 @@ class PrCartItems extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: 3,
-      separatorBuilder: (_, __) => const SizedBox(
-        height: PrSizes.spaceBtwSections,
-      ),
-      itemBuilder: (_, index) => Column(
-        children: [
-          const PrCartItem(),
-          if (showAddRemoveButton)
-            const SizedBox(height: PrSizes.spaceBtwItems),
-          if (showAddRemoveButton)
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                /// Extra Space
-                Row(
+    final cartController = CartController.instance;
+    return Obx(
+      () => ListView.separated(
+        shrinkWrap: true,
+        itemCount: cartController.cartItems.length,
+        separatorBuilder: (_, __) => const SizedBox(
+          height: PrSizes.spaceBtwSections,
+        ),
+        itemBuilder: (_, index) => Obx(() {
+          final item = cartController.cartItems[index];
+          return Column(
+            children: [
+              PrCartItem(
+                cartItem: item,
+              ),
+              if (showAddRemoveButton)
+                const SizedBox(height: PrSizes.spaceBtwItems),
+              if (showAddRemoveButton)
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(width: 70),
+                    /// Extra Space
+                    Row(
+                      children: [
+                        SizedBox(width: 70),
 
-                    /// Add Remove Button
-                    PrProductQuantityWithAddRemoveButton(),
+                        /// Add Remove Button
+                        PrProductQuantityWithAddRemoveButton(),
+                      ],
+                    ),
+                    PrProductPriceText(price: '4999')
                   ],
-                ),
-                PrProductPriceText(price: '4999')
-              ],
-            )
-        ],
+                )
+            ],
+          );
+        }),
       ),
     );
   }
