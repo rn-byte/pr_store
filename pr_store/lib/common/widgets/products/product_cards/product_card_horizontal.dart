@@ -20,7 +20,8 @@ class PrProductCardHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage =
+        controller.calculateSalePercentage(product.price, product.salePrice);
 
     final isDark = PrHelper.isDarkMode(context);
     return Container(
@@ -58,11 +59,14 @@ class PrProductCardHorizontal extends StatelessWidget {
                     child: PrRoundedContainer(
                       radius: PrSizes.sm,
                       backgroundColor: PrColor.secondary.withOpacity(0.8),
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: PrSizes.sm, vertical: PrSizes.xs),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: PrSizes.sm, vertical: PrSizes.xs),
                       child: Text(
                         '$salePercentage%',
-                        style: Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelLarge!
+                            .apply(color: PrColor.black),
                       ),
                     ),
                   ),
@@ -103,7 +107,7 @@ class PrProductCardHorizontal extends StatelessWidget {
                       PrProductPrice(product: product),
 
                       /// Add to Cart Button
-                      const PrAddToCartButton()
+                      PrAddToCartButton(product: product)
                     ],
                   )
                 ],

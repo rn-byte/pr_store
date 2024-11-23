@@ -23,7 +23,8 @@ class PrProductCardVertical extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = ProductController.instance;
-    final salePercentage = controller.calculateSalePercentage(product.price, product.salePrice);
+    final salePercentage =
+        controller.calculateSalePercentage(product.price, product.salePrice);
 
     final isDark = PrHelper.isDarkMode(context);
     return GestureDetector(
@@ -71,8 +72,10 @@ class PrProductCardVertical extends StatelessWidget {
                               horizontal: PrSizes.sm, vertical: PrSizes.xs),
                           child: Text(
                             '$salePercentage%',
-                            style:
-                                Theme.of(context).textTheme.labelLarge!.apply(color: PrColor.black),
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelLarge!
+                                .apply(color: PrColor.black),
                           ),
                         ),
                       ),
@@ -121,7 +124,7 @@ class PrProductCardVertical extends StatelessWidget {
                 PrProductPrice(product: product),
 
                 ///add to cart button
-                const PrAddToCartButton()
+                PrAddToCartButton(product: product)
               ],
             )
           ],

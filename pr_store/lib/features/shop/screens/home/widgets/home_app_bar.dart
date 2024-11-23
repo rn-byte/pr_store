@@ -39,8 +39,8 @@ class PrHomeAppBar extends StatelessWidget {
       ),
       actions: [
         PrCartCounterIcon(
-          onPressed: () {},
           iconColor: PrColor.white,
+          onPressed: () {},
         ),
       ],
     );

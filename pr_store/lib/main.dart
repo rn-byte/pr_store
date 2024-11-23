@@ -10,9 +10,10 @@ import 'app.dart';
 Future<void> main() async {
 // ...
 // Widget Binding
-  final WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
 
-  /// Get-X Local Storage
+  /// Get-X Local Storag\
   await GetStorage.init();
 
   /// Await splash until other items load

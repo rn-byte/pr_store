@@ -83,7 +83,9 @@ class StoreScreen extends StatelessWidget {
 
                       ///Brand Grid Layout
                       Obx(() {
-                        if (brandController.isLoading.value) return const PrBrandShimmer();
+                        if (brandController.isLoading.value) {
+                          return const PrBrandShimmer();
+                        }
 
                         if (brandController.featuredBrands.isEmpty) {
                           return Center(
@@ -101,12 +103,14 @@ class StoreScreen extends StatelessWidget {
                             mainAxisExtent: 80,
                             itemBuilder: (_, index) {
                               // //In backend part we will pass each brans and onPressed event
-                              final brand = brandController.featuredBrands[index];
+                              final brand =
+                                  brandController.featuredBrands[index];
 
                               return PrBrandCard(
                                 showBorder: true,
                                 brand: brand,
-                                onTap: () => Get.to(() => BrandProducts(brand: brand)),
+                                onTap: () =>
+                                    Get.to(() => BrandProducts(brand: brand)),
                               );
                             });
                       }),
@@ -116,7 +120,9 @@ class StoreScreen extends StatelessWidget {
 
                 ///---------------Tabs--------------------------------///
                 bottom: PrTabBar(
-                    tabs: categories.map((category) => Tab(child: Text(category.name))).toList()),
+                    tabs: categories
+                        .map((category) => Tab(child: Text(category.name)))
+                        .toList()),
                 // [
                 //   Tab(child: Text('Sports')),
                 //   Tab(child: Text('Furniture')),
@@ -131,7 +137,9 @@ class StoreScreen extends StatelessWidget {
 
           ///----------Body-------///
           body: TabBarView(
-              children: categories.map((category) => PrCategoryTab(category: category)).toList()),
+              children: categories
+                  .map((category) => PrCategoryTab(category: category))
+                  .toList()),
           // [
           //   PrCategoryTab(),
           //   PrCategoryTab(),

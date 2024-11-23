@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:pr_store/features/shop/controllers/cart/cart_controller.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
-
 import '../../../../features/shop/screens/cart/cart.dart';
 import '../../../../utils/constants/colors.dart';
 
@@ -17,6 +17,8 @@ class PrCartCounterIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Getting instance of cart controller
+    final controller = Get.put(CartController());
     final isDark = PrHelper.isDarkMode(context);
     return Stack(
       children: [
@@ -36,12 +38,14 @@ class PrCartCounterIcon extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             child: Center(
-              child: Text(
-                '2',
-                style: Theme.of(context).textTheme.labelLarge!.apply(
-                    color: isDark
-                        ? PrColor.dark.withOpacity(0.8)
-                        : PrColor.light.withOpacity(0.8)),
+              child: Obx(
+                () => Text(
+                  controller.noOfCartItems.value.toString(),
+                  style: Theme.of(context).textTheme.labelLarge!.apply(
+                      color: isDark
+                          ? PrColor.dark.withOpacity(0.8)
+                          : PrColor.light.withOpacity(0.8)),
+                ),
               ),
             ),
           ),

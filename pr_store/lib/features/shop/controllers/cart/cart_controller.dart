@@ -14,7 +14,12 @@ class CartController extends GetxController {
   RxDouble totalCartPrice = 0.0.obs;
   RxInt productQuantityInCart = 0.obs;
   RxList<CartItemModel> cartItems = <CartItemModel>[].obs;
-  final variationController = VariationsController.instance;
+  //final variationController = VariationsController.instance;
+  final variationController = Get.put(VariationsController());
+
+  CartController() {
+    loadCartItems();
+  }
 
   /// Add items in the cart
   void addToCart(ProductModel product) {
@@ -63,6 +68,52 @@ class CartController extends GetxController {
 
     updateCart();
     PrLoaders.customToast(message: 'Your product has been added to Cart.');
+  }
+
+  /// adding one item to cart
+  void addOneToCart(CartItemModel item) {
+    int index = cartItems.indexWhere((cartItems) =>
+        cartItems.productId == item.productId &&
+        cartItems.variationId == item.variationId);
+    if (index >= 0) {
+      cartItems[index].quantity += 1;
+    } else {
+      cartItems.add(item);
+    }
+    updateCart();
+  }
+
+  /// removing one item from cart
+  void removeOneFromCart(CartItemModel item) {
+    int index = cartItems.indexWhere((cartItems) =>
+        cartItems.productId == item.productId &&
+        cartItems.variationId == item.variationId);
+    if (index >= 0) {
+      if (cartItems[index].quantity > 1) {
+        cartItems[index].quantity -= 1;
+      } else {
+        /// Showing dialogue before completely removing
+        cartItems[index].quantity == 1
+            ? removeFromCartDialog(index)
+            : cartItems.removeAt(index);
+      }
+      updateCart();
+    }
+  }
+
+  /// Removing Cart Dialog
+  void removeFromCartDialog(int index) {
+    Get.defaultDialog(
+      title: 'Remove Product',
+      middleText: 'Are you sure you want to remove this  product?',
+      onConfirm: () {
+        cartItems.removeAt(index);
+        updateCart();
+        PrLoaders.customToast(message: 'Product removes from the cart.');
+        Get.back();
+      },
+      onCancel: () => Get.back(),
+    );
   }
 
   /// This Function converts product model to cart model
