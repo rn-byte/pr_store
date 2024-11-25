@@ -12,6 +12,7 @@ class PrBillingPaymentSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = PrHelper.isDarkMode(context);
+
     return Column(
       children: [
         PrSectionHeading(

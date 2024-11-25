@@ -4,7 +4,7 @@ class PrPricingCalculator {
   ///calculate price based on tax and shipping
   static double calculateTotalPrice(double productPrice, String location) {
     double taxRate = getTaxRateForLocation(location);
-    double taxAmount = productPrice + taxRate;
+    double taxAmount = productPrice * taxRate;
     double shippingCost = getShippingCost(location);
     double totalPrice = productPrice + taxAmount + shippingCost;
     return totalPrice;
@@ -20,7 +20,7 @@ class PrPricingCalculator {
 
   static String calculateTax(double productPrice, String location) {
     double taxRate = getTaxRateForLocation(location);
-    double taxAmount = productPrice + taxRate;
+    double taxAmount = productPrice * taxRate;
     return taxAmount.toStringAsFixed(2);
   }
 
@@ -34,7 +34,7 @@ class PrPricingCalculator {
   static double getShippingCost(String location) {
     //look up the tax rate for the given location from the tax rate database or API
     //calculate the shipping rate based on factors like distance, package weight etc
-    return 5.00; //example shipping cost of $5
+    return 50.00; //example shipping cost of $5
   }
 
   ///calculate CART total

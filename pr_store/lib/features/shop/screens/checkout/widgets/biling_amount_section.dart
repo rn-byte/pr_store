@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
+import 'package:pr_store/utils/helpers/pricing_calculator.dart';
+
+import '../../../controllers/cart/cart_controller.dart';
 
 class PrBillingAmountSection extends StatelessWidget {
   const PrBillingAmountSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = CartController.instance;
+    final subTotal = controller.totalCartPrice.value;
     return Column(
       children: [
         /// SubTotal
@@ -13,7 +18,8 @@ class PrBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Sub Total ', style: Theme.of(context).textTheme.bodyMedium),
-            Text('Rs. 258.8 ', style: Theme.of(context).textTheme.bodyMedium),
+            Text('Rs. $subTotal ',
+                style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
         const SizedBox(
@@ -26,7 +32,9 @@ class PrBillingAmountSection extends StatelessWidget {
           children: [
             Text('Shipping fee ',
                 style: Theme.of(context).textTheme.bodyMedium),
-            Text('Rs. 50 ', style: Theme.of(context).textTheme.labelLarge),
+            Text(
+                'Rs. ${PrPricingCalculator.calculateShippingCost(subTotal, 'NEP')} ',
+                style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
         const SizedBox(
@@ -38,7 +46,8 @@ class PrBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Tax Fee', style: Theme.of(context).textTheme.bodyMedium),
-            Text('Rs. 10 ', style: Theme.of(context).textTheme.labelLarge),
+            Text('Rs. ${PrPricingCalculator.calculateTax(subTotal, 'NEP')} ',
+                style: Theme.of(context).textTheme.labelLarge),
           ],
         ),
         const SizedBox(
@@ -50,7 +59,9 @@ class PrBillingAmountSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Order Total ', style: Theme.of(context).textTheme.bodyMedium),
-            Text('Rs. 328.8 ', style: Theme.of(context).textTheme.titleMedium),
+            Text(
+                'Rs. ${PrPricingCalculator.calculateTotalPrice(subTotal, 'NEP')} ',
+                style: Theme.of(context).textTheme.titleMedium),
           ],
         ),
         const SizedBox(
