@@ -7,7 +7,6 @@ import 'package:pr_store/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:pr_store/features/shop/screens/checkout/widgets/biling_amount_section.dart';
 import 'package:pr_store/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:pr_store/features/shop/screens/checkout/widgets/billing_payment_section.dart';
-import 'package:pr_store/main.dart';
 import 'package:pr_store/navigation_menu.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
