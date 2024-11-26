@@ -33,7 +33,42 @@ class CheckoutController extends GetxController {
                       showActionButton: false,
                     ),
                     SizedBox(height: PrSizes.spaceBtwSections),
-                    PrPaymentTile
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.khalti, name: 'Khalti')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.esewa, name: 'Esewa')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.googlePay, name: 'Google Pay')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.applePay, name: 'Apple Pay')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.masterCard, name: 'Master Cart')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.visa, name: 'Visa Card')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.creditCard, name: 'Credit Card')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.paytm, name: 'Paytm')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                    PrPaymentTile(
+                        paymentMethod: PaymentMethodModel(
+                            image: PrImage.paypal, name: 'PayPal')),
+                    const SizedBox(height: PrSizes.spaceBtwItems / 2),
                   ],
                 ),
               ),
