@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/personalization/screens/address/widgets/single_address.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
+import 'package:pr_store/utils/constants/sizes.dart';
+import 'package:pr_store/utils/helpers/cloud_helper_functions.dart';
 import 'package:pr_store/utils/helpers/network_manager.dart';
 import 'package:pr_store/utils/popups/full_screen_loader.dart';
 import 'package:pr_store/utils/popups/loaders.dart';
@@ -30,7 +34,8 @@ class AddressController extends GetxController {
   Future<List<AddressModel>> getAllUserAddress() async {
     try {
       final addresses = await addressRepository.fetchUserAddress();
-      selectedAddress.value = addresses.firstWhere((element) => element.selectedAddress,
+      selectedAddress.value = addresses.firstWhere(
+          (element) => element.selectedAddress,
           orElse: () => AddressModel.empty());
       return addresses;
     } catch (e) {
@@ -55,7 +60,8 @@ class AddressController extends GetxController {
 
       /// Clear the 'selected' field
       if (selectedAddress.value.id.isNotEmpty) {
-        await addressRepository.updateSelectedField(selectedAddress.value.id, false);
+        await addressRepository.updateSelectedField(
+            selectedAddress.value.id, false);
       }
 
       /// Assign selected address
@@ -63,11 +69,13 @@ class AddressController extends GetxController {
       selectedAddress.value = newSelectedAddress;
 
       /// set the 'selected' field to true for the newly selected address
-      await addressRepository.updateSelectedField(selectedAddress.value.id, true);
+      await addressRepository.updateSelectedField(
+          selectedAddress.value.id, true);
 
       Get.back();
     } catch (e) {
-      PrLoaders.errorSnackBar(title: 'Error in Selection ', message: e.toString());
+      PrLoaders.errorSnackBar(
+          title: 'Error in Selection ', message: e.toString());
     }
   }
 
@@ -75,7 +83,8 @@ class AddressController extends GetxController {
   Future addNewAddress() async {
     try {
       /// Start Loading
-      PrFullScreenLoader.openLoadingDialog('Storing Address....', PrImage.docerAnimation);
+      PrFullScreenLoader.openLoadingDialog(
+          'Storing Address....', PrImage.docerAnimation);
 
       /// Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
@@ -114,7 +123,8 @@ class AddressController extends GetxController {
 
       /// Show success message
       PrLoaders.successSnackBar(
-          title: 'Congratulations', message: 'Your address has been saved successfully.');
+          title: 'Congratulations',
+          message: 'Your address has been saved successfully.');
 
       /// refresh address data
       refreshData.toggle();
@@ -128,8 +138,43 @@ class AddressController extends GetxController {
       /// Remove Loader
       PrFullScreenLoader.stopLoading();
       PrLoaders.errorSnackBar(
-          title: 'Something went wrong while adding your new address.', message: e.toString());
+          title: 'Something went wrong while adding your new address.',
+          message: e.toString());
     }
+  }
+
+  /// Show address ModalBottomSheet at checkout
+  Future<dynamic> selectNewAddressPopup(BuildContext context) {
+    return showModalBottomSheet(
+        context: context,
+        builder: (_) => Container(
+              padding: const EdgeInsets.all(PrSizes.lg),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const PrSectionHeading(title: 'Select Address'),
+                  FutureBuilder(
+                      future: getAllUserAddress(),
+                      builder: (_, snapshot) {
+                        /// Helper Function to handle loader,No record or error message
+                        final response =
+                            PrCloudHelperFunctions.checkMultiRecordState(
+                                snapshot: snapshot);
+                        if (response != null) return response;
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: snapshot.data!.length,
+                            itemBuilder: (_, index) => PrSingleAddress(
+                                  address: snapshot.data![index],
+                                  onTap: () async {
+                                    await selectAddress(snapshot.data![index]);
+                                    Get.back();
+                                  },
+                                ));
+                      })
+                ],
+              ),
+            ));
   }
 
   /// Reset Form Fileds

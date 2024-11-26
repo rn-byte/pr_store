@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pr_store/features/personalization/controllers/address/address_controller.dart';
 import '../../../../../common/widgets/texts/section_heading.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/sizes.dart';
@@ -9,11 +10,14 @@ class PrBillingAddressSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //final isDark = PrHelper.isDarkMode(context);
+    final controller = AddressController.instance;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PrSectionHeading(
-            title: 'Shipping Address', buttonTitle: 'Change', onPressed: () {}),
+            title: 'Shipping Address',
+            buttonTitle: 'Change',
+            onPressed: () => controller.selectNewAddressPopup(context)),
         const SizedBox(height: PrSizes.spaceBtwItems / 2),
         Text(
           'Pr Store',

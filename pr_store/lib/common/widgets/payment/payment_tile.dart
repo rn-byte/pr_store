@@ -6,7 +6,6 @@ import 'package:pr_store/features/shop/controllers/checkout/checkout_controller.
 import 'package:pr_store/features/shop/models/payment_method_model.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
-import 'package:pr_store/utils/helpers/helper.dart';
 
 class PrPaymentTile extends StatelessWidget {
   const PrPaymentTile({super.key, required this.paymentMethod});
@@ -25,8 +24,7 @@ class PrPaymentTile extends StatelessWidget {
       leading: PrRoundedContainer(
         width: 60,
         height: 40,
-        backgroundColor:
-            PrHelper.isDarkMode(context) ? PrColor.light : PrColor.dark,
+        backgroundColor: PrColor.lightGrey,
         padding: const EdgeInsets.all(PrSizes.sm),
         child: Image(
           image: AssetImage(paymentMethod.image),

@@ -27,6 +27,7 @@ class CheckoutController extends GetxController {
               child: Container(
                 padding: EdgeInsets.all(PrSizes.lg),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     PrSectionHeading(
                       title: 'Select Payment Method',
@@ -51,7 +52,7 @@ class CheckoutController extends GetxController {
                     const SizedBox(height: PrSizes.spaceBtwItems / 2),
                     PrPaymentTile(
                         paymentMethod: PaymentMethodModel(
-                            image: PrImage.masterCard, name: 'Master Cart')),
+                            image: PrImage.masterCard, name: 'Master Card')),
                     const SizedBox(height: PrSizes.spaceBtwItems / 2),
                     PrPaymentTile(
                         paymentMethod: PaymentMethodModel(
