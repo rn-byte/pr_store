@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/custom_shapes/containers/rounded_container.dart';
-import 'package:pr_store/common/widgets/success_screen/success_screen.dart';
 import 'package:pr_store/features/shop/controllers/cart/cart_controller.dart';
 import 'package:pr_store/features/shop/screens/cart/widgets/cart_items.dart';
 import 'package:pr_store/features/shop/screens/checkout/widgets/biling_amount_section.dart';
 import 'package:pr_store/features/shop/screens/checkout/widgets/billing_address_section.dart';
 import 'package:pr_store/features/shop/screens/checkout/widgets/billing_payment_section.dart';
-import 'package:pr_store/navigation_menu.dart';
 import 'package:pr_store/utils/constants/colors.dart';
-import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import 'package:pr_store/utils/helpers/pricing_calculator.dart';
@@ -17,6 +14,7 @@ import 'package:pr_store/utils/popups/loaders.dart';
 
 import '../../../../common/widgets/app_bar/appbar.dart';
 import '../../../../common/widgets/products/cart/coupon_widget.dart';
+import '../../controllers/order/order_controller.dart';
 
 class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});

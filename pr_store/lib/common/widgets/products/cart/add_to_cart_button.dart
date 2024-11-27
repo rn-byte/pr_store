@@ -23,6 +23,7 @@ class PrAddToCartButton extends StatelessWidget {
       onTap: () {
         /// If product have variation then show product variation details for selection
         /// Else add the product to cart
+        // ignore: unrelated_type_equality_checks
         if (product.productVariations == ProductType.single.toString()) {
           final cartItem = cartController.convertToCartItem(product, 1);
           cartController.addOneToCart(cartItem);

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
+import '../../../features/shop/models/order_model.dart';
 import '../authentication/authentication_repository.dart';
 
 class OrderRepository extends GetxController {
