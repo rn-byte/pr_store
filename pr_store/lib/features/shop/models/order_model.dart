@@ -59,7 +59,7 @@ class OrderModel {
           OrderStatus.values.firstWhere((e) => e.toString() == data['status']),
       totalAmount: data['totalAmount'] as double,
       orderDate: (data['orderDate'] as Timestamp).toDate(),
-      paymentMethod: data['payment Method'] as String,
+      paymentMethod: data['paymentMethod'] as String,
       address: AddressModel.fromMap(data['address'] as Map<String, dynamic>),
       deliveryDate: data['deliveryDate'] == null
           ? null

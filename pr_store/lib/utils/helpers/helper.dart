@@ -91,7 +91,7 @@ class PrHelper {
   }
 
   static String getFormattedDate(DateTime date,
-      {String format = 'dd MM YYYY'}) {
+      {String format = 'dd-MM-yyyy'}) {
     return DateFormat(format).format(date);
   }
 

@@ -24,7 +24,7 @@ class AuthenticationRepository extends GetxController {
   final _auth = FirebaseAuth.instance;
 
   /// Get Authenticated User Data
-  User? get authUser => _auth.currentUser;
+  User get authUser => _auth.currentUser!;
 
   /// Called from Main.dart on App Run
   @override
@@ -56,9 +56,11 @@ class AuthenticationRepository extends GetxController {
   /*---------------------- Email and password sign-in-------------------- */
 
   /// [Email Authentication] - sign-in
-  Future<UserCredential> loginWithEmailAndPassword(String email, String password) async {
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
     try {
-      return await _auth.signInWithEmailAndPassword(email: email, password: password);
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {
@@ -73,9 +75,11 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [Email Authentication] - Register
-  Future<UserCredential> registerWithEmailAndPassword(String email, String password) async {
+  Future<UserCredential> registerWithEmailAndPassword(
+      String email, String password) async {
     try {
-      return await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      return await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw PrFirebaseAuthExceptions(e.code).message;
     } on FirebaseException catch (e) {
@@ -124,10 +128,12 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [Re-authentication] - Reauthenticate user
-  Future<void> reAuthenticateWithEmailAndPassword(String email, String password) async {
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String email, String password) async {
     try {
       //create a credentials
-      AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
+      AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
 
       /// Re-Authenticate
       await _auth.currentUser!.reauthenticateWithCredential(credential);
@@ -154,7 +160,8 @@ class AuthenticationRepository extends GetxController {
       final GoogleSignInAccount? userAccount = await GoogleSignIn().signIn();
 
       /// Obtain the Auth Details from the Request
-      final GoogleSignInAuthentication? googleAuth = await userAccount?.authentication;
+      final GoogleSignInAuthentication? googleAuth =
+          await userAccount?.authentication;
 
       ///Create a new Credentials
       final credentials = GoogleAuthProvider.credential(

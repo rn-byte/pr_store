@@ -37,7 +37,7 @@ class UserRepository extends GetxController {
     try {
       final documentSnapshot = await _db
           .collection("Users")
-          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .doc(AuthenticationRepository.instance.authUser.uid)
           .get();
       if (documentSnapshot.exists) {
         return UserModel.fromSnapshot(documentSnapshot);
@@ -78,7 +78,7 @@ class UserRepository extends GetxController {
     try {
       await _db
           .collection("Users")
-          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .doc(AuthenticationRepository.instance.authUser.uid)
           .update(json);
     } on FirebaseException catch (e) {
       throw PrFirebaseExceptions(e.code).message;
