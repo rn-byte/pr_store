@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
+import 'package:pr_store/features/personalization/screens/address/add_new_address.dart';
 import 'package:pr_store/features/personalization/screens/address/widgets/single_address.dart';
 import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -154,24 +155,34 @@ class AddressController extends GetxController {
                 children: [
                   const PrSectionHeading(title: 'Select Address'),
                   FutureBuilder(
-                      future: getAllUserAddress(),
-                      builder: (_, snapshot) {
-                        /// Helper Function to handle loader,No record or error message
-                        final response =
-                            PrCloudHelperFunctions.checkMultiRecordState(
-                                snapshot: snapshot);
-                        if (response != null) return response;
-                        return ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: snapshot.data!.length,
-                            itemBuilder: (_, index) => PrSingleAddress(
-                                  address: snapshot.data![index],
-                                  onTap: () async {
-                                    await selectAddress(snapshot.data![index]);
-                                    Get.back();
-                                  },
-                                ));
-                      })
+                    future: getAllUserAddress(),
+                    builder: (_, snapshot) {
+                      /// Helper Function to handle loader,No record or error message
+                      final response =
+                          PrCloudHelperFunctions.checkMultiRecordState(
+                              snapshot: snapshot);
+                      if (response != null) return response;
+                      return ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (_, index) => PrSingleAddress(
+                          address: snapshot.data![index],
+                          onTap: () async {
+                            await selectAddress(snapshot.data![index]);
+                            Get.back();
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: PrSizes.defaultSpace * 2),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                        onPressed: () =>
+                            Get.to(() => const AddNewAddressScreen()),
+                        child: const Text('Add new Address')),
+                  )
                 ],
               ),
             ));

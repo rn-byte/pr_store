@@ -19,33 +19,42 @@ class PrBillingAddressSection extends StatelessWidget {
             buttonTitle: 'Change',
             onPressed: () => controller.selectNewAddressPopup(context)),
         const SizedBox(height: PrSizes.spaceBtwItems / 2),
-        Text(
-          'Pr Store',
-          style: Theme.of(context).textTheme.bodyLarge,
-        ),
-        const SizedBox(height: PrSizes.spaceBtwItems / 2),
-        Row(
-          children: [
-            const Icon(Icons.phone, color: PrColor.grey, size: 16),
-            const SizedBox(width: PrSizes.spaceBtwItems),
-            Text('+977 9823212123',
-                style: Theme.of(context).textTheme.bodyMedium)
-          ],
-        ),
-        const SizedBox(height: PrSizes.spaceBtwItems / 2),
-        Row(
-          children: [
-            const Icon(Icons.location_history, color: PrColor.grey, size: 16),
-            const SizedBox(width: PrSizes.spaceBtwItems),
-            Expanded(
-              child: Text(
-                'Purnachandi - 20, Kumaripati, Lalitpur, Nepal',
-                style: Theme.of(context).textTheme.bodyMedium,
-                softWrap: true,
-              ),
-            )
-          ],
-        ),
+        controller.selectedAddress.value.id.isNotEmpty
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Pr Store',
+                    style: Theme.of(context).textTheme.bodyLarge,
+                  ),
+                  const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                  Row(
+                    children: [
+                      const Icon(Icons.phone, color: PrColor.grey, size: 16),
+                      const SizedBox(width: PrSizes.spaceBtwItems),
+                      Text('+977 9823212123',
+                          style: Theme.of(context).textTheme.bodyMedium)
+                    ],
+                  ),
+                  const SizedBox(height: PrSizes.spaceBtwItems / 2),
+                  Row(
+                    children: [
+                      const Icon(Icons.location_history,
+                          color: PrColor.grey, size: 16),
+                      const SizedBox(width: PrSizes.spaceBtwItems),
+                      Expanded(
+                        child: Text(
+                          'Purnachandi - 20, Kumaripati, Lalitpur, Nepal',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                          softWrap: true,
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              )
+            : Text('Select Address',
+                style: Theme.of(context).textTheme.bodyMedium),
       ],
     );
   }

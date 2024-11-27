@@ -13,6 +13,7 @@ import 'package:pr_store/utils/constants/image_strings.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
 import 'package:pr_store/utils/helpers/helper.dart';
 import 'package:pr_store/utils/helpers/pricing_calculator.dart';
+import 'package:pr_store/utils/popups/loaders.dart';
 
 import '../../../../common/widgets/app_bar/appbar.dart';
 import '../../../../common/widgets/products/cart/coupon_widget.dart';
@@ -24,6 +25,9 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = CartController.instance;
     final subTotal = controller.totalCartPrice.value;
+    final orderController = Get.put(OrderController());
+    final totalAmount =
+        PrPricingCalculator.calculateTotalPrice(subTotal, 'NEP');
     final isDark = PrHelper.isDarkMode(context);
     return Scaffold(
       appBar: PrAppBar(
@@ -76,14 +80,12 @@ class CheckoutScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(PrSizes.defaultSpace),
         child: ElevatedButton(
-            onPressed: () => Get.to(() => SuccessScreen(
-                  title: 'Payment Successful',
-                  subTitle: 'Your Item Will be Delivered Soon !',
-                  image: PrImage.successfulPaymentIcon,
-                  onPressed: () => Get.offAll(() => const NavigationMenu()),
-                )),
-            child: Text(
-                'Checkout Rs. ${PrPricingCalculator.calculateTotalPrice(subTotal, 'NEP')}')),
+            onPressed: subTotal > 0
+                ? () => orderController.processOrder(totalAmount)
+                : () => PrLoaders.warningSnackBar(
+                    title: 'Empty Cart',
+                    message: 'Add items in the cart inorder to proceed.'),
+            child: Text('Checkout Rs. $totalAmount')),
       ),
     );
   }
