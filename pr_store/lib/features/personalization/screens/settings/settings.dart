@@ -8,6 +8,7 @@ import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:pr_store/features/personalization/screens/address/address.dart';
 import 'package:pr_store/features/personalization/screens/profile/profile.dart';
+import 'package:pr_store/features/shop/screens/cart/cart.dart';
 import 'package:pr_store/features/shop/screens/order/order.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -66,7 +67,8 @@ class SettingScreen extends StatelessWidget {
                       icon: Iconsax.safe_home,
                       title: 'My Address ',
                       subTitle: 'Set Shopping Delivery Address'),
-                  const PrSettingsMenuTile(
+                  PrSettingsMenuTile(
+                      onTap: () => Get.to(() => const CartScreen()),
                       icon: Iconsax.shopping_cart,
                       title: 'My Cart ',
                       subTitle: 'Add , remove product and move to Checkout'),

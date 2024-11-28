@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/common/widgets/texts/section_heading.dart';
 import 'package:pr_store/features/shop/models/product_model.dart';
-import 'package:pr_store/features/shop/screens/checkout/checkout.dart';
 import 'package:pr_store/features/shop/screens/product_review/product_reviews.dart';
 import 'package:pr_store/features/shop/screens/product_details/widgets/bottom_add_to_cart.dart';
 import 'package:pr_store/features/shop/screens/product_details/widgets/product_attributes.dart';

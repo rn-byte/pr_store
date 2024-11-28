@@ -21,12 +21,12 @@ class OrderRepository extends GetxController {
 
       final result =
           await _db.collection('Users').doc(userId).collection('Orders').get();
-      print(result.docs.length);
+      //print(result.docs.length);
       return result.docs
           .map((documentSnapshot) => OrderModel.fromSnapshot(documentSnapshot))
           .toList();
     } catch (e) {
-      print(e.toString());
+      //print(e.toString());
       throw 'Something went wrong while fetching Order Information. Try again later.}';
     }
   }
