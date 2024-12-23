@@ -9,6 +9,7 @@ import 'package:pr_store/data/repositories/authentication/authentication_reposit
 import 'package:pr_store/features/personalization/screens/address/address.dart';
 import 'package:pr_store/features/personalization/screens/profile/profile.dart';
 import 'package:pr_store/features/shop/screens/cart/cart.dart';
+import 'package:pr_store/features/shop/screens/load/load_product.dart';
 import 'package:pr_store/features/shop/screens/order/order.dart';
 import 'package:pr_store/utils/constants/colors.dart';
 import 'package:pr_store/utils/constants/sizes.dart';
@@ -105,7 +106,10 @@ class SettingScreen extends StatelessWidget {
                   const SizedBox(
                     height: PrSizes.spaceBtwItems,
                   ),
-                  const PrSettingsMenuTile(
+                  PrSettingsMenuTile(
+                      onTap: () {
+                        Get.to(() => LoadProduct());
+                      },
                       icon: Iconsax.document_upload,
                       title: 'Load Data',
                       subTitle: 'Upload Data to your cloud Firebase'),

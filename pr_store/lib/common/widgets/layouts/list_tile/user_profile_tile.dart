@@ -3,6 +3,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:pr_store/features/personalization/controllers/user/user_controller.dart';
 
 import '../../../../utils/constants/colors.dart';
+import '../../../../utils/constants/image_strings.dart';
 import '../../images/pr_circular_image.dart';
 
 class PrProfileUserTile extends StatelessWidget {
@@ -15,14 +16,17 @@ class PrProfileUserTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = UserController.instance;
+    final networkImage = controller.user.value.profilePicture;
+    final image = networkImage.isNotEmpty ? networkImage : PrImage.user;
     return ListTile(
-      leading: const PrCircularImage(
+      leading: PrCircularImage(
         backgroundColor: Colors.transparent,
-        image: 'assets/images/user/user.png',
+        image: image,
         height: 50,
         width: 50,
         padding: 0,
         fit: BoxFit.contain,
+        isNetworkImage: networkImage.isNotEmpty,
       ),
       title: Text(
         controller.user.value.fullName,
